@@ -40,71 +40,9 @@ block content
 			button(class="btn btn-default btn-sm fixed-button" id="closenewitem" title="CLOSE")
 				span(class="glyphicon glyphicon-triangle-bottom" aria-hidden="true")  	
 				
-		// jQuery scripts
+		// - jQuery scripts
 		// - Include the database scripts to updat/insert/delete
 		include dbscripts.jade
 		
-		script.
-			$(document).ready(function () {
-				// - Load main menu 
-				$("#leftmenu").load("/menu/mainmenu")
-				
-				// To main page on logo click
-				$(".small_logo").click(function () {
-					window.location.href = "/main";			
-				});
-				
-				// - Menu Handler
-				$(document).on("click", ".mainmenulink", function () {
-					// Hide new item div on menu click
-					$('#divnewitem').fadeOut()
-					
-					// Set link for refresh page button so we can reload the currently open div in workspace
-					$("#refreshpage").attr("refreshlink", $(this).attr("link"));
-					
-					// Set link for newitem button to open page for inserting new things in DB
-					$("#newitem").attr("dblink", $(this).attr("newitemlink"))
-		
-					$("#workspace").empty().load($(this).attr("link"));
-					// Unhide new item button and refresh button
-					$("#newitem").removeClass("hide");
-					$("#refreshpage").removeClass("hide");
-					
-					// - Set page name based on selection	
-					$("#headingtext").text($(this).text().toUpperCase());	
-				});
-				
-				
-				// New item button
-				$("#newitem").click(function () {
-					//alert($("#newitem").attr("dblink"));
-					$('#divnewitem').fadeIn();
-					$('#divnewitemdet').empty().load($("#newitem").attr("dblink"));
-				})
-				
-				// Always prevent frmnewinsert (when adding new items) to submit when hitting enter
-				// Emulate #btninsert click instead
-				$(document).bind("keypress", "#frmnewitem", function(e) {
-					if (e.keyCode == 13) {
-						return false;
-					}
-				});
-					
-				$("#closenewitem").click(function () {
-					// Hide new item div
-					$('#divnewitem').fadeOut();
-				})
-
-				// refresh page button
-				$("#refreshpage").click(function () {
-					// - Reload workspace based on link set when selected from menu
-					$("#workspace").load($(this).attr("refreshlink"))				
-					// - Remove divnewitem
-					$("#divnewitem").fadeOut()
-				})
-				
-				// - Logout function
-				$("#logout").click(function () {
-					window.location.href = "/logout"			
-				})
-			})
+		// - include the page that contains all button handlers.
+		include button_handlers.jade

@@ -2,7 +2,7 @@
 // - The function serializes the form which contains all the info such as table and fields to update
 // - The page has to be created with 2 hidden fields whcih are dbtable and returnid which are used in the insert query
 // - In order to reload the page after a sucessfull insert the hidden input app-page has to be set to the page we want to reload in workspace
-// After done clear all form Items
+// - After done clear all form Items
 
 // - Delete a row from DB table
 // - The button handler is included. You have to add a button with class="btndelete"

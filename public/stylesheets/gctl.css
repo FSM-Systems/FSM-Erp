@@ -36,6 +36,11 @@ body {
 	border-bottom-width: 1px;
 }
 
+/* Tooltip overide settings*/
+div.tooltip-inner {
+	max-width: 500px;
+}
+
 /* Remove outlines such as in chrome */
 *:focus {
     outline: 0 ! important;

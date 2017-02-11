@@ -4,8 +4,8 @@ var db = require('../db.js');
 var config = require('../appconfig');
 
 // New system user
-router.get('/new_user', function (req, res, next) {
-	res.render('new_item/new_user', { title: 'ADD A NEW SYSTEM USER'} );
+router.get('/new_system_user', function (req, res, next) {
+	res.render('new_item/new_system_user', { title: 'ADD A NEW SYSTEM USER'} );
 })
 
 // New equipment

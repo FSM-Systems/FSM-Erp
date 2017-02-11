@@ -39,7 +39,7 @@ router.get('/desktop_icons_setup', function (req, res, next) {
 });
 
 // Equipment user menu option
-router.get('/equipment', function (req, res, next) {
+router.get('/equipment_setup', function (req, res, next) {
 	// Get all users and load in table on page
 	db.query('select eid, enumberplate, edescription, \
 			to_char(eroadlicense, \'dd/mm/yyyy\') as eroadlicense,\
@@ -47,7 +47,7 @@ router.get('/equipment', function (req, res, next) {
 			to_char(etra, \'dd/mm/yyyy\') as etra \
 			from equipment order by eid', function (err, result) {
 			console.log(result.rows)
-		res.render('equipment', { equipment: result.rows, pagename: 'Equipment Management' })
+		res.render('equipment_setup', { equipment: result.rows, pagename: 'Equipment Management' })
 	})
 })
 
