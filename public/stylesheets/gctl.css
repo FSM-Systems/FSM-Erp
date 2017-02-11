@@ -1,0 +1,130 @@
+body {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+}
+
+.centered {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}
+
+.loginform {
+	text-align:center;
+	vertical-align:middle; 
+	width: 30%;
+	height: 50%;
+}
+
+.closenewitem {
+	cursor: pointer;
+}
+
+/* Header tools */
+.header-vertical-align {
+	height: 45px;
+	line-height: 45px;
+}
+
+.gctl-header {
+	background-color: #f6f6f6;
+	border-bottom-color: lightgray;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+/* Remove outlines such as in chrome */
+*:focus {
+    outline: 0 ! important;
+}
+
+/* all input text align center*/
+
+input, textarea {
+	text-align: center;
+	cursor: pointer;
+	font-weight: 400;
+}
+
+/* Logo CSS */
+.logo {
+	cursor: pointer;
+}
+
+.logo:hover {
+	opacity: 0.7;
+}
+
+.small_logo {
+	height: 30px;
+	position: absolute;
+	left: 8px;
+	top: 8px;
+}
+
+/* menu css */
+.mainmenu {
+	padding: 20px;
+	border-left-width: 2px;
+	border-left-style: solid;
+	border-left-color: white;
+	margin: 10px;
+}
+
+.mainmenu tr td {
+	padding: 10px;
+	font-weight: 400;
+}
+
+.mainmenu tr td:hover {
+	border-left-color: green;
+	border-left-style: solid;
+	border-left-width: 2px;
+	color: green;
+	cursor: pointer;
+	background-color: #edffdd; /*#f9eafc*/
+}
+
+.mainmenu tr td span {
+	padding-left: 2px;
+}
+
+/* 
+Boostrap alerts CSS
+fixed, centered on top
+*/
+.alert {
+  position: fixed;
+  top: 5px;
+  margin-left: 25%; 
+  width: 50%;
+}
+/* Boostrap Table Exta CSS */
+.table {
+	margin: 0 auto;
+}
+
+table th {
+	cursor: pointer;
+}
+
+/* Footer div for additions to DB*/
+.footer {
+	position: fixed;
+	bottom:  0px;
+	height: 50%;
+	background-color: #f6f6f6;
+	border-top-color: lightgray;
+	border-top-style: solid;
+	border-top-width: 1px;
+	width: 100%;
+}
+
+.fixed-button {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+}

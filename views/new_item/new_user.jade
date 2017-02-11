@@ -1,0 +1,38 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	div(class="container")
+		div(class="row")
+			span &nbsp;
+		div(class="row")
+			div(class="col-sm-3")
+			div(class="col-sm-6")
+				div(class="panel panel-info")
+					div(class="panel-heading")
+						h5 #{title}
+					div(class="panel-body")
+						form(class="form-horizontal" id="frmnewitem")
+							div(class="form-group")
+								label(for="nusername" class="col-sm-2 control-label") Username:
+								div(class="col-sm-10")
+									input(type="text" class="form-control input-sm" name="lusername" id="nusername" placeholder="Assigned username")
+							div(class="form-group")
+								label(for="npassword" class="col-sm-2 control-label") Password:
+								div(class="col-sm-10")
+									input(type="text" class="form-control input-sm" name="lpassword" id="npassword" placeholder="Assigned password")
+							div(class="form-group")
+								label(for="ndescription" class="col-sm-2 control-label") Description:
+								div(class="col-sm-10")
+									input(type="text" class="form-control input-sm" name="ldescription" id="ndescription" placeholder="User Description")
+							div(class="form-group")
+								input(type="hidden" name="dbtable" value="login")
+								input(type="hidden" name="returnid" value="lid")
+								input(type="hidden" id="apppage" value="/menu/sysusers")
+								button(class="btn btn-success" type="button" id="btninsert") ADD USER
+		div(class="col-sm-3")
+		
+		script.
+			$(document).ready(function () {
+				$("#nusername").focus();			
+			})
+							

@@ -1,0 +1,54 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	// - h4 #{pagename}
+	table(class="table table-hover" style="width: 100%" id="dbtable" dbtable="warehouse_items")
+		thead
+			tr 
+				th ID
+				th Item Code
+				th Item Description
+				th Unit
+				th For Model
+				th
+		
+		tbody
+			if whi.length == 0
+				tr
+					td(colspan="100")
+						| No results, please add a new item
+			for w in whi
+				tr
+					td #{w.wiid}
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-barcode" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="wisku" colid="wiid"  colidval="#{w.wiid}" id="u_#{w.wiid}" value="#{w.wisku}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-font" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="widescription" colid="wiid"  colidval="#{w.wiid}" id="u_#{w.wiid}" value="#{w.widescription}")
+					td 
+						div(class="input-group")
+							select(class="form-control input-sm update" col="wi_unit" colid="wiid" colidval="#{w.wiid}"  id="wi_unit_#{w.wiid}")
+								option(selected="selected" disabled) Unit of Measure
+									for u in units
+										if u.wuid === w.wi_unit
+											option(value="#{u.wuid}" selected) #{u.wuunit}
+										else
+											option(value="#{u.wuid}") #{u.wuunit}
+					td 
+						div(class="input-group")
+							select(class="form-control input-sm update"  col="wiforequip" colidval="#{w.wiid}" colid="wiid" id="wiforequip_#{w.wiid}")
+								option(selected="selected" disabled) For Equipment
+									for m in models
+										if m.emid === w.wiforequip
+											option(value="#{m.emid}" selected) #{m.emdescription}
+										else
+											option(value="#{m.emid}") #{m.emdescription}
+					td 
+						div(class="input-group pull-right")
+							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="wiid" dbcolidval="#{w.wiid}" id="btn_del_#{w.wiid}")
+								span(class="glyphicon glyphicon-trash" aria-hidden="true")

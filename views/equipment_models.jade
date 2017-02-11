@@ -1,0 +1,27 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	// - h4 #{pagename}
+	table(class="table table-hover" style="width: 100%" id="dbtable" dbtable="equipment_models" apppage="/menu/equipment_models")
+		thead
+			tr 
+				th ID
+				th Model Description
+				th
+		
+		tbody
+			if equip_models.length == 0
+				tr
+					td(colspan="100")	No results, please add a new item
+			for em in equip_models
+				tr
+					td #{em.emid}
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-bed" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="emdescription" colid="emid"  colidval="#{em.emid}" id="em_#{em.emid}" value="#{em.emdescription}")
+					td 
+						div(class="input-group pull-right")
+							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="emid" dbcolidval="#{em.emid}" id="btn_del_#{em.emid}")
+								span(class="glyphicon glyphicon-trash" aria-hidden="true")

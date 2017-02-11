@@ -1,0 +1,45 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	// - h4 #{pagename}
+	table(class="table table-hover" style="width: 100%" id="dbtable" dbtable="login" apppage="/sysusers")
+		thead
+			tr 
+				th ID
+				th Username
+				th Password
+				th User Description
+				th(class="text-center") User Active?
+				th
+		
+		tbody
+			if sysusers.length == 0
+				tr
+					td(colspan="100")	No results, please add a new item
+			for u in sysusers
+				tr
+					td #{u.lid}
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-user" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="lusername" colid="lid"  colidval="#{u.lid}" id="u_#{u.lid}" value="#{u.lusername}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-lock" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="lpassword" colid="lid" colidval="#{u.lid}"  id="u_#{u.lid}" value="#{u.lpassword}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-font" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="ldescription" colid="lid" colidval="#{u.lid}"  id="u_#{u.lid}" value="#{u.ldescription}")
+					td(class="text-center")
+						if u.lactive === true
+							input(type="checkbox" checked class="update" col="lactive" colid="lid" colidval="#{u.lid}"  id="u_#{u.lid}")
+						else
+							input(type="checkbox" class="update" col="lactive" colid="lid" colidval="#{u.lid}"  id="u_#{u.lid}")
+					td 
+						div(class="input-group pull-right")
+							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="lid" dbcolidval="#{u.lid}" id="btn_del_#{u.lid}")
+								span(class="glyphicon glyphicon-trash" aria-hidden="true")

@@ -1,0 +1,51 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	// - h4 #{pagename}
+	table(class="table table-hover" id="dbtable" dbtable="equipment" apppage="/equipment")
+		thead
+			tr 
+				th ID
+				th Number Plate
+				th Description
+				th Road License
+				th Insurance
+				th TRA
+				th 
+		
+		tbody
+			if equipment.length == 0
+				tr
+					td(colspan="100")	No results, please add a new item
+			for e in equipment
+				tr
+					td #{e.eid}
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-font" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="enumberplate" colid="eid" colidval="#{e.eid}" table="equipment" id="eq_numplate_#{e.eid}" value="#{e.enumberplate}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-font" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="edescription" colid="eid" colidval="#{e.eid}" table="equipment" id="eq_descr_#{e.eid}" value="#{e.edescription}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-calendar" aria-hidden="true")
+							input(type="text" class="update form-control input-sm datepicker" col="eroadlicense" colid="eid" colidval="#{e.eid}" table="equipment" id="eq_rl_#{e.eid}" value="#{e.eroadlicense}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-calendar" aria-hidden="true")
+							input(type="text" class="update form-control input-sm datepicker" col="einsurance" colid="eid" colidval="#{e.eid}" table="equipment" id="eq_ins_#{e.eid}" value="#{e.einsurance}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-calendar" aria-hidden="true")
+							input(type="text" class="update form-control input-sm datepicker" col="etra" colid="eid" colidval="#{e.eid}" table="equipment" id="eq_#{e.eid}" value="#{e.etra}")
+					td 
+						div(class="input-group pull-right")
+							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="eid" dbcolidval="#{e.eid}" id="btn_del_#{e.eid}" title="DELETE")
+								span(class="glyphicon glyphicon-trash" aria-hidden="true")

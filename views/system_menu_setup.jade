@@ -1,0 +1,139 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	div
+		br
+		span 
+			strong
+				u Drag menu options to order them in the way that they will be ordered in the menu
+		
+	table(class="table table-hover" id="dbtable" dbtable="menu")
+		thead
+			tr 
+				th ID
+				th Menu Option Description
+				th(data-toggle="tooltip" data-placement="bottom" title="Link to the route that will load the page in #workspace div") Express.js API Link
+				th(data-toggle="tooltip" data-placement="bottom" title="Link to the route that loads the page in the New Item div") API New item link
+				th(data-toggle="tooltip" data-placement="bottom" title="Long description of the menu function") Detail of Menu Item
+				th(data-toggle="tooltip" data-placement="bottom" title="Order in which the items are displayed in the main menu") Order
+				th(data-toggle="tooltip" data-placement="bottom" title="Which Desktop Icon does this menu item belong to") Desktop Icon
+				th(class="text-center" data-toggle="tooltip" data-placement="bottom" title="Show or hide this item in the menu?") Active?
+				th
+		
+		tbody
+			if menu.length == 0
+				tr
+					td(colspan="100")	No results, please add a new item
+			for m in menu
+				tr
+					td #{m.mid}
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-th-list" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="mdescription" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}" value="#{m.mdescription}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-link" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="mlink" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}" data-toggle="tooltip" data-placement="bottom" value="#{m.mlink}" title="#{m.mlink}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-link" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="mnewitemlink" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}" data-toggle="tooltip" data-placement="bottom" value="#{m.mnewitemlink}" title="#{m.mnewitemlink}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-tag" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="mlongdescription" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}" value="#{m.mlongdescription}" data-toggle="tooltip" data-placement="bottom" title="#{m.mlongdescription}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-sort-by-order" aria-hidden="true")
+							input(type="text" class="update form-control order input-sm" col="morder" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}" value="#{m.morder}" style="width: 40px;")
+					td 
+						div(class="input-group")
+							select(class="form-control input-sm update" col="mgroup" colid="mid" colidval="#{m.mid}"  id="group_#{m.mid}")
+								option(selected="selected" disabled) Desktop Icon
+									for g in groups
+										if m.mgroup === g.mgid
+											option(value="#{g.mgid}" selected) #{g.mgdescription}
+										else
+											option(value="#{g.mgid}") #{g.mgdescription}
+											
+					td(class="text-center col-md-1")
+						if m.mactive === true
+							input(type="checkbox" checked class="update" col="mactive" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}")
+						else
+							input(type="checkbox" class="update" col="mactive" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}")
+					td 
+						div(class="input-group pull-right")
+							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="mid" dbcolidval="#{m.mid}" id="btn_del_#{m.mid}")
+								span(class="glyphicon glyphicon-trash" aria-hidden="true")
+								
+			// - Add sortable rows by drag and drop only for this page.
+			// - We use this to order the menu, then save the order to the database
+			
+			script. 
+				$(document).ready(function () {
+					$( "#dbtable tbody" ).sortable({
+						start: function (event, ui) {
+							// -  Get current index of menu item. We use this to calculate the update of the iems that we are going to take place in the order.
+							var startmenupos = parseInt(ui.item.index()); // Starting position of the menu item
+						},
+						stop: function (event, ui) {
+							// - Get the Database ID of the dragged item from the 1st td of the line dragged
+							var dbid = ui.item.first("td").text();
+							// - Get new position of dragged item
+							var newpos = parseInt(ui.item.index()) + 1; // - Add 1 as index start from 0
+							// - Update the morder value in the DB based on these values. We call custome ajax here
+							// -  as it is slightly different from all the logic for the tables.
+							$.ajax({
+								type: 'POST',
+								url: '/api/db/update_db_field',
+								data: {
+									table: $("#dbtable").attr("dbtable"),
+									dbcol: "morder",
+									dbcolid: "mid",
+									dbcolval: newpos,
+									dbcolidval: dbid
+								},
+								success: function (data) {
+									if (data == "OK") {
+										$("#succesfull_db").slideDown().delay(600).slideUp();
+										
+										// -  if startpos > newpos then we add + 1 to the item that has position same as new pos
+										// - If startpos < new pos the we -1 to the item that has the position same as new pos
+										var adder = 1;
+										/* if (startmenupos < newpos) {
+											adder = -1;	
+										}
+										
+										// - Update the item that has morder value the same as new position based on adder value. (No error handling)								
+										$.ajax({
+											type: 'POST',
+											url: '/api/db/update_order_field', // not good but has to work for the moment
+											data: {
+												table: $("#dbtable").attr("dbtable"),
+												dbcol: "morder",
+												dbcolid: "morder",
+												dbcolval: newpos,
+												dbcolidval: newpos
+											}
+										}) */
+										
+									} else {
+										alert(JSON.stringify(data))
+										//$("#error_db").slideDown().delay(1000).slideUp();
+									}
+								}, 
+								error: function () {
+									$("#error_db").slideDown().delay(1000).slideUp();
+								}					
+							})		
+						}					
+					});
+					$( "#dbtable tbody" ).disableSelection();				
+				})
+			

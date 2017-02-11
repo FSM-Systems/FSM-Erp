@@ -1,0 +1,45 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	div(class="container")
+		div(class="row")
+			span &nbsp;
+		div(class="row")
+			div(class="col-sm-3")
+			div(class="col-sm-6")
+				div(class="panel panel-info")
+					div(class="panel-heading")
+						h5 #{title}
+					div(class="panel-body")
+						form(class="form-horizontal" id="frmnewitem")
+							div(class="form-group")
+								div(class="col-sm-6")
+									input(type="text" class="form-control input-sm" name="wisku" id="wisku" placeholder="Item Code")
+								div(class="col-sm-6")
+									input(type="text" class="form-control input-sm" name="widescription" id="widescription" placeholder="Description")
+							div(class="form-group")
+								div(class="col-sm-6")
+									select(class="form-control input-sm" name="wi_unit" id="wi_unit")
+										option(selected="selected") Select Unit
+										for u in units
+											option(value="#{u.wuid}") #{u.wuunit}
+										
+								div(class="col-sm-6")
+									select(class="form-control input-sm" name="wiforequip" id="wiforequip")
+										option(selected="selected") Select Model
+										for em in equip_models
+											option(value="#{em.emid}") #{em.emdescription}
+									
+							div(class="form-group")
+								input(type="hidden" name="dbtable" value="warehouse_items")
+								input(type="hidden" name="returnid" value="wiid")
+								input(type="hidden" id="apppage" value="/menu/warehouse_items_Setup")
+								button(class="btn btn-success" type="button" id="btninsert") ADD NEW STOCK ITEM
+									
+				div(class="col-sm-3")
+		
+		script.
+			$(document).ready(function () {
+				$("#wisku").focus();			
+			})
+							

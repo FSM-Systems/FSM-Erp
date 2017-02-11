@@ -1,0 +1,9 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+
+	table(class="mainmenu text-muted")     		
+		for m in menuitems
+			tr
+				td(class="mainmenulink" link="#{m.mlink}" newitemlink="#{m.mnewitemlink}" data-toggle="tooltip" data-placement="right" title="#{m.mlongdescription}")
+					span #{m.mdescription}

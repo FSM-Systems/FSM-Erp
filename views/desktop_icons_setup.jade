@@ -1,0 +1,42 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	// - h4 #{pagename}
+	table(class="table table-hover" style="width: 100%" id="dbtable" dbtable="menu_groups" apppage="/desktop_icons_config")
+		thead
+			tr 
+				th ID
+				th Description
+				th Icon File
+				th(class="text-center") Active?
+				th
+		
+		tbody
+			if di.length == 0
+				tr
+					td(colspan="100")	No results, please add a new item
+			for i in di
+				tr
+					td #{i.mgid}
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-font" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="mgdescription" colid="mgid" colidval="#{i.mgid}"  id="u_#{i.mgid}" value="#{i.mgdescription}")
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-font" aria-hidden="true")
+							input(type="text" class="update form-control input-sm" col="mgicon" colid="mgid" colidval="#{i.mgid}"  id="u_#{i.mgid}" value="#{i.mgicon}")
+					td(class="text-center")
+						if i.mgactive === true
+							input(type="checkbox" checked class="update" col="mgactive" colid="mgid" colidval="#{i.mgid}"  id="u_#{i.mgid}")
+						else
+							input(type="checkbox" class="update" col="mgactive" colid="mgid" colidval="#{i.mgid}"  id="u_#{i.mgid}")
+					td 
+						div(class="btn-group pull-right")
+							button(class="btn btn-info btn-sm btn-setup" dbcolid="mgid" dbcolidval="#{i.mgid}" id="btn_del_#{i.mgid}")
+								span(class="glyphicon glyphicon-cog" aria-hidden="true")
+								
+							button(class="btn btn-danger btn-sm btn-delete" dbcolid="mgid" dbcolidval="#{i.mgid}" id="btn_del_#{i.mgid}")
+								span(class="glyphicon glyphicon-trash" aria-hidden="true")
