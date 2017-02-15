@@ -1,11 +1,14 @@
 script.
 	$(document).ready(function () {
 		// - Load main menu 
-		$("#leftmenu").load("/menu/mainmenu")
+		// when we open main we are coming from desktop
+		// in desktop when clicking we are passig the group (Eg. Equipment, System Setup etc to the page)
+		// We have to then pass it on here when loading the menu so that we filter ans show only the items that belong to this group
+		$("#leftmenu").load("/menu/mainmenu/menugroup/!{menugroup}") 
 		
 		// To main page on logo click
 		$(".small_logo").click(function () {
-			window.location.href = "/main";			
+			window.location.href = "/desktop";			
 		});
 		
 		// - Menu Handler
@@ -66,6 +69,8 @@ script.
 		
 		// - Logout function
 		$("#logout").click(function () {
-			window.location.href = "/logout"			
+			if (confirm('LOGOUT?')) {
+				window.location.href = "/logout"
+			}			
 		})
 	})
