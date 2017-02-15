@@ -15,7 +15,9 @@ router.get('/new_equipment', function (req, res, next) {
 
 // New menu item
 router.get('/new_system_menu_config', function (req, res, next) {
-	res.render('new_item/new_menuconfig', { title: 'ADD A NEW MENU ITEM'} );
+	db.query('select mgid, mgdescription from menu_groups order by mgdescription', function (err, result) {
+		res.render('new_item/new_system_menu_config', { title: 'ADD A NEW MENU ITEM', menugroups: result.rows} );
+	})
 })
 
 // New desktop icon
