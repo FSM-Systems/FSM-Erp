@@ -24,6 +24,9 @@ var newitemsapi = require('./routes/newitemsapi'); // Contains the routes to div
 var menuapi = require('./routes/menu'); // Routes for the main menu
 var config = require('./appconfig.js') // Application configuration
 
+// Helmet for enhanced security as from express site tutorials
+var helmet = require('helmet')
+
 var app = express();
 
 // view engine setup
@@ -39,6 +42,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Use helmet in app
+app.use(helmet())
 
 app.use(express.static(path.join(__dirname, 'public')));
 
