@@ -6,8 +6,14 @@
 // - The ID value is stores in the attribute colidval of the input
 // - This will update the tables in the Postgres Database
 $(document).ready(function () {
+	$(document).on("focus", ".update", function () {
+		// Remove any error class when we focus on the input
+		$(".update").removeClass("customerror")
+		$(this).attr("oldvalue", $(this).val())
+	})
 	$(document).on("change", ".update", function () {
 		var dbcolval;
+		var input = $(this);
 		if ($(this).is(":checkbox")) {
 			if ($(this).is(":checked")) {
 				dbcolval = true;	
@@ -31,8 +37,9 @@ $(document).ready(function () {
 				if (data == "OK") {
 					$("#succesfull_db").slideDown().delay(600).slideUp();
 				} else {
-					alert(JSON.stringify(data))
-					//$("#error_db").slideDown().delay(1000).slideUp();
+					input.addClass("customerror");
+					input.val(input.attr("oldvalue")) // - Revert to old value if error
+					alert(JSON.stringify(data)) 
 				}
 			}, 
 			error: function () {
