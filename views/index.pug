@@ -8,15 +8,15 @@ block content
 				form(id="login")
 					div(class="form-group")
 						label(for="username") Username
-						input(type="text" class="form-control" id="username" placeholder="Username")
+						input(type="text" class="form-control" id="username" placeholder="Username" required)
 	
 					div(class="form-group" id="password")
 						label(for="password") Password
-						input(type="password" class="form-control" id="pw" placeholder="Password")
+						input(type="password" class="form-control" id="pw" placeholder="Password" required)
 			
 					button(class="btn btn-default" id="auth") AUTHENTICATE
 					
-		div(class="row")
+		div(class="row" id="warnings")
 				if expired == true
 					div(id="alert")
 						div(class="alert alert-warning text-center" role="alert")
@@ -24,7 +24,7 @@ block content
 								b Your session is not valid! Please authenticate!
 							button(type="button" class="close" data-dismiss="alert" aria-label="Close")
 								span(aria-hidden="true") &times;
-				if loggedout === true
+				if loggedout == "true"
 					div(id="loggedout")
 						div(class="alert alert-info text-center alert-dismissible" role="alert")
 							span 
@@ -42,36 +42,46 @@ block content
 						$("#username").focus()
 						
 						$("#auth").click(function () {
-							$.ajax({
-								type: "POST",
-								url: "/auth",
-								data: {
-									username: $("#username").val(),								
-									pw: $("#pw").val()								
-								},
-								success: function (data) {
-									// Route based on response from server
-									switch(data) {
-										case "OK":
-											window.location.href = "/main";
-											break;
-										case "NOTOK":
-											// Add line to login form if t does not exists
-											if ($("#alert").length == 0) {
-												$("#loginform").find("#password").append('\
-													<br><div id="alert" class="alert alert-danger text-center" role="alert">Wrong Username or Password! Please try again!	</div>\
-												');
-											}
-											$("#alert").hide().fadeIn();
-											break;
-										case "DBERR":
-											alert("DATABASE ERROR " + data);
-											break;
+							// - Remove any open warnings
+							$(".alert").remove();
+							$("#login").validate({
+								errorClass: 'customerror',
+								errorPlacement: function(error,element) {
+									return true; // No labels for the error fields. Just highlight with error class! Looks better and more fluid
+								}							
+							})
+							if ($("#login").valid() == true) {
+								$.ajax({
+									type: "POST",
+									url: "/auth",
+									data: {
+										username: $("#username").val(),								
+										pw: $("#pw").val()								
+									},
+									success: function (data) {
+										// Route based on response from server
+										switch(data) {
+											case "OK":
+												window.location.href = "/desktop";
+												break;
+											case "NOTOK":
+												// Add line to login form if t does not exists
+												if ($("#alert").length == 0) {
+													$("#warnings").append('\
+														<br><div id="alert" class="alert alert-danger text-center" role="alert">Wrong Username or Password! Please try again!	</div>\
+													');
+												}
+												$("#alert").hide().fadeIn();
+												break;
+											case "DBERR":
+												alert("DATABASE ERROR " + data);
+												break;
+										}
+									},
+									error: function () {
+										alert("DATABASE CONNECTION ERROR")
 									}
-								},
-								error: function () {
-									alert("DATABASE CONNECTION ERROR")
-								}
-							})					
+								})			
+							}		
 						})
 					})
