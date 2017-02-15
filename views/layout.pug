@@ -28,9 +28,12 @@ html(lang="en")
 		link(rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css")
 		script(src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js")
 		
+		// jQuery Validation
+		script(src="http://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js")
+		
 		// NProgress
-		<script src='/scripts/nprogress/nprogress.js'></script>
-		<link rel='stylesheet' href='/scripts/nprogress/nprogress.css'/>
+		script(src='/scripts/nprogress/nprogress.js')
+		link(rel='stylesheet' href='/scripts/nprogress/nprogress.css')
 	
 	body
 		block content
@@ -67,3 +70,10 @@ html(lang="en")
 					handles: "n",				
 				});*/
 			})
+			
+		// - jQuery scripts
+		// - Include the database scripts to updat/insert/delete
+		include dbscripts.pug
+		
+		// - include the page that contains all button handlers.
+		include button_handlers.pug
