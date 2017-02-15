@@ -4,9 +4,11 @@ var db = require('../db.js');
 var config = require('../appconfig');
 
 // Load main left menu
-router.get('/mainmenu', function (req, res, next) {
-	// Create the main menu from DB
-	db.query('select * from menu where mactive=true order by morder', function (err, result) {
+router.get('/mainmenu/menugroup/:menugroup', function (req, res, next) {
+	// Create the main menu from DB based on permissions of user
+	db.query("select * from menu where mactive=true \
+					and mgroup=$2 and mid=any (select unnest(regexp_split_to_array(lpermissions, ',')::int[]) \
+					from login where lid=$1) order by morder", [req.session.user_id, req.params.menugroup], function (err, result) { // Main menu based on permissions and menugroup
 		// Send to client as JSON
 		res.render('mainmenu', { menuitems: result.rows });
 	})	
@@ -33,8 +35,8 @@ router.get('/system_menu_setup', function (req, res, next) {
 // Desktop Items menu option (menu_groups)
 router.get('/desktop_icons_setup', function (req, res, next) {
 	// Get all users and load in table on page
-	db.query('select * from menu_groups where mgactive=true order by mgid', function (err, result) {
-		res.render('desktop_icons_setup', { di: result.rows, pagename: 'Desktop Icons Configuration' })
+	db.query('select * from menu_groups order by mgdescription', function (err, result) {
+		res.render('desktop_icons_setup', { di: result.rows, pagename: 'Desktop Icons Setup' })
 	})
 });
 
@@ -44,9 +46,9 @@ router.get('/equipment_setup', function (req, res, next) {
 	db.query('select eid, enumberplate, edescription, \
 			to_char(eroadlicense, \'dd/mm/yyyy\') as eroadlicense,\
 			to_char(einsurance, \'dd/mm/yyyy\') as einsurance,\
-			to_char(etra, \'dd/mm/yyyy\') as etra \
+			to_char(etra, \'dd/mm/yyyy\') as etra, \
+			to_char(epurchased, \'dd/mm/yyyy\') as epurchased \
 			from equipment order by eid', function (err, result) {
-			console.log(result.rows)
 		res.render('equipment_setup', { equipment: result.rows, pagename: 'Equipment Management' })
 	})
 })
@@ -84,11 +86,6 @@ router.get('/warehouse_items_setup', function (req, res, next) {
 			})
 		})
 	})
-	
-	
-	//console.log(result)
-	// Render the template
-	
 });
 
 // Configure and add new warehouse units (Piece Kilo etc etc)
@@ -99,4 +96,25 @@ router.get('/warehouse_units_setup', function (req, res, next) {
 	})
 });
 
+// User permissions
+router.get('/user_permissions/param/:param', function (req, res, next) {
+	// Get all perms available. Basically its all the items in the menu table
+	db.query('select mid, mdescription from menu order by mgroup, morder', function (err, result) {
+		db.query('select lpermissions, ldescription from login where lid=$1', [req.params.param], function (err, result2) {
+			// For user permission we are going to pass the lpermissions column which is actually a comma separated field in the DB that can be iterated through
+			res.render('user_permissions', { 
+				menu: result.rows,  // All permissions available
+				userperms: result2.rows[0].lpermissions,  // Permissions of this user
+				title: 'Setup User Permissions',  // Page title
+				username: result2.rows[0].ldescription, // Username of the selected user,
+				userid: req.params.param // login table ID of the selected user
+			}); 
+		})	
+	})
+})
+
+// Stock items {in_stock_tems.pug}
+router.get('/in_stock_items', function (req, res, next) {
+	res.render('in_stock_items');
+})
 module.exports = router;
