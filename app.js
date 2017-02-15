@@ -20,7 +20,7 @@ var app = express()
 var index = require('./routes/index');
 var users = require('./routes/users');
 var dbapi = require('./routes/dbapi'); // Container the routes to access and modify DB data
-var itemsapi = require('./routes/itemsapi'); // Contains the routes to divs that add new items (templates)
+var newitemsapi = require('./routes/newitemsapi'); // Contains the routes to divs that add new items (templates)
 var menuapi = require('./routes/menu'); // Routes for the main menu
 var config = require('./appconfig.js') // Application configuration
 
@@ -68,7 +68,7 @@ app.use('/users', users);
 // Database actions
 app.use('/api/db', dbapi);
 // New items actions
-app.use('/api/new_item', itemsapi);
+app.use('/new_item', newitemsapi);
 // Menu action
 app.use('/menu', menuapi)
 
