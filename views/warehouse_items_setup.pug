@@ -5,7 +5,7 @@ block content
 	table(class="table table-hover" style="width: 100%" id="dbtable" dbtable="warehouse_items")
 		thead
 			tr 
-				th ID
+				th.text-center ID
 				th Item Code
 				th Item Description
 				th Unit
@@ -36,9 +36,9 @@ block content
 								option(selected="selected" disabled) Unit of Measure
 									for u in units
 										if u.wuid === w.wi_unit
-											option(value="#{u.wuid}" selected) #{u.wuunit}
+											option(value=u.wuid selected) #{u.wuunit}
 										else
-											option(value="#{u.wuid}") #{u.wuunit}
+											option(value=u.wuid) #{u.wuunit}
 					td 
 						div(class="input-group")
 							select(class="form-control input-sm update"  col="wiforequip" colidval=w.wiid colid="wiid" id="wiforequip_" + w.wiid)

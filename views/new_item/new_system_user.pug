@@ -13,17 +13,21 @@ block content
 					div(class="panel-body")
 						form(class="form-horizontal" id="frmnewitem")
 							div(class="form-group")
-								label(for="nusername" class="col-sm-2 control-label") Username:
+								label(for="lusername" class="col-sm-2 control-label") Username:
 								div(class="col-sm-10")
-									input(type="text" class="form-control input-sm" name="lusername" id="nusername" placeholder="Assigned username")
+									input(type="text" class="form-control input-sm" name="lusername" id="lusername" placeholder="Assigned username" required)
 							div(class="form-group")
-								label(for="npassword" class="col-sm-2 control-label") Password:
+								label(for="lpassword" class="col-sm-2 control-label") Password:
 								div(class="col-sm-10")
-									input(type="text" class="form-control input-sm" name="lpassword" id="npassword" placeholder="Assigned password")
+									input(type="text" class="form-control input-sm" name="lpassword" id="lpassword" placeholder="Assigned password" required)
 							div(class="form-group")
-								label(for="ndescription" class="col-sm-2 control-label") Description:
+								label(for="ldescription" class="col-sm-2 control-label") Description:
 								div(class="col-sm-10")
-									input(type="text" class="form-control input-sm" name="ldescription" id="ndescription" placeholder="User Description")
+									input(type="text" class="form-control input-sm" name="ldescription" id="ldescription" placeholder="User Description" required)
+							div(class="form-group")
+								label(for="lemail" class="col-sm-2 control-label") Email:
+								div(class="col-sm-10")
+									input(type="email" class="form-control input-sm" name="lemail" id="lemail" placeholder="User Email" required)
 							div(class="form-group")
 								input(type="hidden" name="dbtable" value="login")
 								input(type="hidden" name="returnid" value="lid")
@@ -31,8 +35,5 @@ block content
 								button(class="btn btn-success" type="button" id="btninsert") ADD USER
 		div(class="col-sm-3")
 		
-		script.
-			$(document).ready(function () {
-				$("#nusername").focus();			
-			})
+		include ../focus_first_form_item
 							

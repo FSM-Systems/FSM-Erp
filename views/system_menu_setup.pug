@@ -10,13 +10,13 @@ block content
 	table(class="table table-hover" id="dbtable" dbtable="menu")
 		thead
 			tr 
-				th ID
+				th.text-center ID
 				th Menu Option Description
 				th(data-toggle="tooltip" data-placement="bottom" title="Link to the route that will load the page in #workspace div") Express.js API Link
 				th(data-toggle="tooltip" data-placement="bottom" title="Link to the route that loads the page in the New Item div") API New item link
 				th(data-toggle="tooltip" data-placement="bottom" title="Long description of the menu function") Detail of Menu Item
 				th(data-toggle="tooltip" data-placement="bottom" title="Order in which the items are displayed in the main menu") Order
-				th(data-toggle="tooltip" data-placement="bottom" title="Which Desktop Icon does this menu item belong to") Desktop Icon
+				th(data-toggle="tooltip" data-placement="bottom" title="Which Desktop Icon does this menu item belong to") Menu Group
 				th(class="text-center" data-toggle="tooltip" data-placement="bottom" title="Show or hide this item in the menu?") Active?
 				th
 		
@@ -51,7 +51,7 @@ block content
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-sort-by-order" aria-hidden="true")
-							input(type="text" class="update form-control order input-sm" col="morder" colid="mid" colidval=m.mid id="mn_" + m.mid value=m.morder style="width: 40px;")
+							input(type="text" class="update form-control order input-sm" col="morder" colid="mid" colidval=m.mid id="mn_" + m.mid value=m.morder style="width: 50px;")
 					td 
 						div(class="input-group")
 							select(class="form-control input-sm update" col="mgroup" colid="mid" colidval=m.mid  id="group_" + m.mid)

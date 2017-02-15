@@ -15,7 +15,7 @@ block content
 							div(class="form-group")
 								label(for="wdescription" class="col-sm-2 control-label") Description:
 								div(class="col-sm-10")
-									input(type="text" class="form-control input-sm" name="wuunit" id="wuunit" placeholder="Unit type")
+									input(type="text" class="form-control input-sm" name="wuunit" id="wuunit" placeholder="Unit type" required)
 							div(class="form-group")
 								input(type="hidden" name="dbtable" value="warehouse_units")
 								input(type="hidden" name="returnid" value="wuid")
@@ -23,8 +23,7 @@ block content
 								button(class="btn btn-success" type="button" id="btninsert") ADD UNIT
 		div(class="col-sm-3")
 		
-		script.
-			$(document).ready(function () {
-				$("#wuunit").focus();			
-			})
+		include ../focus_first_form_item
+		
+			
 							

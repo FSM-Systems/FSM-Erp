@@ -14,17 +14,17 @@ block content
 						form(class="form-horizontal" id="frmnewitem")
 							div(class="form-group")
 								div(class="col-sm-6")
-									input(type="text" class="form-control input-sm" name="enumberplate" id="enumberplate" placeholder="Number Plate")
+									input(type="text" class="form-control input-sm" name="enumberplate" id="enumberplate" placeholder="Number Plate" required)
 								div(class="col-sm-6")
-									input(type="text" class="form-control input-sm datepicker" name="eroadlicense" id="eroadlicense" placeholder="Road License")
+									input(type="text" class="form-control input-sm datepicker" name="eroadlicense" id="eroadlicense" placeholder="Road License" required)
 							div(class="form-group")
 								div(class="col-sm-6")
-									input(type="text" class="form-control input-sm datepicker" name="einsurance" id="einsurance" placeholder="Insurance")
+									input(type="text" class="form-control input-sm datepicker" name="einsurance" id="einsurance" placeholder="Insurance" required)
 								div(class="col-sm-6")
-									input(type="text" class="form-control input-sm datepicker" name="etra" id="tra" placeholder="TRA Sticker")
+									input(type="text" class="form-control input-sm datepicker" name="etra" id="tra" placeholder="TRA Sticker" required)
 							div(class="form-group")
 								div(class="col-sm-12")
-									textarea(class="form-control input-sm" name="edescription" id="edescription" placeholder="Equipment Description")
+									textarea(class="form-control input-sm" name="edescription" id="edescription" placeholder="Equipment Description" required)
 							div(class="form-group")
 								input(type="hidden" name="dbtable" value="equipment")
 								input(type="hidden" name="returnid" value="eid")
@@ -32,8 +32,5 @@ block content
 								button(class="btn btn-success" type="button" id="btninsert") ADD EQUIPMENT
 				div(class="col-sm-3")
 		
-		script.
-			$(document).ready(function () {
-				$("#enumberplate").focus();			
-			})
+		include ../focus_first_form_item
 							

@@ -15,7 +15,7 @@ block content
 							div(class="form-group")
 								label(for="wdescription" class="col-sm-2 control-label") Description:
 								div(class="col-sm-10")
-									input(type="text" class="form-control input-sm" name="wdescription" id="wdescription" placeholder="Warehouse description")
+									input(type="text" class="form-control input-sm" name="wdescription" id="wdescription" placeholder="Warehouse description" required)
 							div(class="form-group")
 								input(type="hidden" name="dbtable" value="warehouses")
 								input(type="hidden" name="returnid" value="wid")
@@ -23,7 +23,4 @@ block content
 								button(class="btn btn-success" type="button" id="btninsert") ADD WAREHOUSE
 		div(class="col-sm-3")
 		
-		script.
-			$(document).ready(function () {
-				$("#wdescription").focus();			
-			})
+		include ../focus_first_form_item

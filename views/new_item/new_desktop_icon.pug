@@ -13,18 +13,18 @@ block content
 					div(class="panel-body")
 						form(class="form-horizontal" id="frmnewitem")
 							div(class="form-group")
-								label(for="mgdescription" class="col-sm-4 control-label") Icon Text:
+								label(for="mgdescription" class="col-sm-4 control-label") Description:
 								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mgdescription" id="mgdescription" placeholder="Model description")
+									input(type="text" class="form-control input-sm" name="mgdescription" id="mgdescription" placeholder="Icon Text" required)
+							div(class="form-group")
+								label(for="mgicon" class="col-sm-4 control-label") Icon File:
+								div(class="col-sm-8")
+									input(type="text" class="form-control input-sm" name="mgicon" id="mgicon" placeholder="Icon File")
 							div(class="form-group")
 								input(type="hidden" name="dbtable" value="menu_groups")
 								input(type="hidden" name="returnid" value="mgid")
-								input(type="hidden" id="apppage" value="/menu/desktop_icons_config")
+								input(type="hidden" id="apppage" value="/menu/desktop_icons_setup")
 								button(class="btn btn-success" type="button" id="btninsert") ADD DESKTOP ICON
 		div(class="col-sm-3")
 		
-		script.
-			$(document).ready(function () {
-				$("#mgdescription").focus();			
-			})
-							
+		include ../focus_first_form_item	

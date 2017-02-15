@@ -15,28 +15,33 @@ block content
 							div(class="form-group")
 								label(for="mdescription" class="col-sm-4 control-label") Option Text:
 								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mdescription" id="mdescription" placeholder="Menu option Text")
+									input(type="text" class="form-control input-sm" name="mdescription" id="mdescription" placeholder="Menu option Text" required)
 							div(class="form-group")
 								label(for="mlink" class="col-sm-4 control-label") API Link:
 								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mlink" id="npassword" placeholder="API Link")
+									input(type="text" class="form-control input-sm" name="mlink" id="npassword" placeholder="API Link" required)
 							div(class="form-group")
 								label(for="mnewitemlink" class="col-sm-4 control-label") API New Item Link:
 								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mnewitemlink" id="mnewitemlink" placeholder="API Link for new Item")
+									input(type="text" class="form-control input-sm" name="mnewitemlink" id="mnewitemlink" placeholder="API Link for new Item" required)
 							div(class="form-group")
 								label(for="mlongdescription" class="col-sm-4 control-label") Description:
 								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mlongdescription" id="mlongdescription" placeholder="Detailed description of menu item")
+									input(type="text" class="form-control input-sm" name="mlongdescription" id="mlongdescription" placeholder="Detailed description of menu item" required)
+							div(class="form-group")
+								label(for="mgroup" class="col-sm-4 control-label") Menu Group:
+								div(class="col-sm-8")
+									select(class="form-control input-sm" name="mgroup" id="mgroup" required)
+										option(selected="selected") Select Model
+										for di in menugroups
+											option(value="#{di.mgid}") #{di.mgdescription}
+										
 							div(class="form-group")
 								input(type="hidden" name="dbtable" value="menu")
 								input(type="hidden" name="returnid" value="mid")
-								input(type="hidden" id="apppage" value="/menu/menuconfig")
+								input(type="hidden" id="apppage" value="/menu/system_menu_setup")
 								button(class="btn btn-success" type="button" id="btninsert") ADD MENU ITEM
 		div(class="col-sm-2")
 		
-		script.
-			$(document).ready(function () {
-				$("#mdescription").focus();			
-			})
+		include ../focus_first_form_item
 							
