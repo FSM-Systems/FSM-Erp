@@ -6,26 +6,36 @@
 
 $(document).ready(function () {
 	$(document).on("click", "#btninsert", function (event) {
-		$.ajax({
-			type: 'POST',
-			url: '/api/db/insert_db_field',
-			data: $("#frmnewitem").serializeArray(),
-			success: function (data) {
-				if (data == "OK") {
-					$("#succesfull_db").slideDown().delay(600).slideUp();
-					$("#workspace").load($("#apppage").val())
-					$("#frmnewitem").find("input[type=text], textarea").val("");
-					$("#frmnewitem").find("*").filter(":input:first").focus();
-				} else {
-					// Add the error message from backend to the alertbox
-					//$("#error_db").html($("#error_db").html() + JSON.stringify(data))
-					//$("#error_db").slideDown();
-					alert(JSON.stringify(data))
-				}
-			}, 
-			error: function () {
-				$("#error_db").slideDown().delay(1000).slideUp();
-			}			
-		})
+		$("#frmnewitem").validate({
+			errorClass: 'customerror',
+			errorPlacement: function(error,element) {
+				return true; // No labels for the error fields. Just highlight with error class! Looks better and more fluid
+			}		
+		});
+		if($("#frmnewitem").valid() == true) {
+			$.ajax({
+				type: 'POST',
+				url: '/api/db/insert_db_field',
+				data: $("#frmnewitem").serializeArray(),
+				success: function (data) {
+					if (data == "OK") {
+						$("#succesfull_db").slideDown().delay(600).slideUp();
+						$("#workspace").load($("#apppage").val())
+						$("#frmnewitem").find("input[type=text], input[type=email], textarea").val("");
+						$("#frmnewitem").find("*").filter(":input:first").focus();
+					} else {
+						// Add the error message from backend to the alertbox
+						//$("#error_db").html($("#error_db").html() + JSON.stringify(data))
+						//$("#error_db").slideDown();
+						alert(JSON.stringify(data))
+					}
+				}, 
+				error: function () {
+					$("#error_db").slideDown().delay(1000).slideUp();
+				}			
+			})
+		} else {
+			$("#error_validate").slideDown().delay(600).slideUp();
+		}
 	})
 })

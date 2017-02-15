@@ -1,0 +1,48 @@
+extends layout
+
+block content
+	// - Whan we load or reload we always want the progress bar. Tha is why we have to show it first thing on top
+	script.
+		NProgress.start();
+		window.onload = function () { NProgress.done(); }
+	- var count = 0
+	// Create sthe desktop with rows of 6 icons
+	div.container-fluid
+		include header.pug
+		
+		div.container
+			div.row
+				each d in desktop
+					div.col-md-2.text-center.desktop-panel
+						if d.mgtype
+							div(class="panel " + d.mgtype id=d.mgid disabled="disabled")
+								div.panel-heading
+									h4.panel-title #{d.mgdescription}
+								div.panel-body
+									img.desktop-icon(src="/icons/" + d.mgicon)
+						else 
+							div.panel.panel-info(id=d.mgid)
+								div.panel-heading
+									h4.panel-title #{d.mgdescription}
+								div.panel-body
+									img.desktop-icon(src="/icons/" + d.mgicon)
+								
+					- count++
+					
+				if ( count % 5 == 0 ) 
+					div.row
+					
+	script.
+		$(document).ready(function () {
+			$(".panel").click(function () {
+				window.location.href ="/main/menugroup/" + $(this).attr("id") // - Send to main page but filter menu with only options of this group
+			})
+			
+			// For desktop we set the refresh button to a page reload as it is different from the menuitems
+			$("#refreshpage").removeClass("hide").attr("title", "REFRESH DESKTOP");
+			$("#refreshpage").click(function () {
+				window.location.href = "/desktop"			
+			})
+		})
+		
+		
