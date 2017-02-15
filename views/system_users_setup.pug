@@ -15,7 +15,7 @@ block content
 		tbody
 			if sysusers.length == 0
 				tr
-					td(colspan="100")	No results, please add a new item
+					td(colspan="100") No results, please add a new item
 			for u in sysusers
 				tr
 					td #{u.lid}
@@ -23,28 +23,28 @@ block content
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-user" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="lusername" colid="lid"  colidval="#{u.lid}" id="u_#{u.lid}" value="#{u.lusername}")
+							input(type="text" class="update form-control input-sm" col="lusername" colid="lid"  colidval=u.lid id="u_" + u.lid value=u.lusername)
 					td 
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-lock" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="lpassword" colid="lid" colidval="#{u.lid}"  id="u_#{u.lid}" value="#{u.lpassword}")
+							input(type="text" class="update form-control input-sm" col="lpassword" colid="lid" colidval=u.lid  id="u_" + u.lid value=u.lpassword)
 					td 
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-font" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="ldescription" colid="lid" colidval="#{u.lid}"  id="u_#{u.lid}" value="#{u.ldescription}")
+							input(type="text" class="update form-control input-sm" col="ldescription" colid="lid" colidval=u.lid  id="u_" + u.lid value=u.ldescription)
 					td(class="text-center")
 						if u.lactive === true
-							input(type="checkbox" checked class="update" col="lactive" colid="lid" colidval="#{u.lid}"  id="u_#{u.lid}")
+							input(type="checkbox" checked class="update" col="lactive" colid="lid" colidval=u.lid  id="u_" + u.lid)
 						else
-							input(type="checkbox" class="update" col="lactive" colid="lid" colidval="#{u.lid}"  id="u_#{u.lid}")
+							input(type="checkbox" class="update" col="lactive" colid="lid" colidval=u.lid  id="u_" + u.lid)
 					td 
 						div(class="btn-group pull-right")
-							button(class="btn btn-info btn-sm btn-setup")
+							button(class="btn btn-info btn-sm btn-setup" setuplink="/menu/user_permissions" param=u.lid)
 								span(class="glyphicon glyphicon-cog" aria-hidden="true")
 								
-							button(class="btn btn-danger btn-sm btn-delete" dbcolid="lid" dbcolidval="#{u.lid}" id="btn_del_#{u.lid}")
+							button(class="btn btn-danger btn-sm btn-delete" dbcolid="lid" dbcolidval=u.lid id="btn_del_" + u.lid )
 								span(class="glyphicon glyphicon-trash" aria-hidden="true")
 								
 							

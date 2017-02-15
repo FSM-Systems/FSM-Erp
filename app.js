@@ -17,27 +17,29 @@ var compression = require('compression')
 var express = require('express')
 var app = express()
 
-// Use compression for better performance
-app.use(compression())
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var dbapi = require('./routes/dbapi'); // Container the routes to access and modify DB data
 var itemsapi = require('./routes/itemsapi'); // Contains the routes to divs that add new items (templates)
 var menuapi = require('./routes/menu'); // Routes for the main menu
+var config = require('./appconfig.js') // Application configuration
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
+
+// Use compression for better performance
+app.use(compression())
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Setup session handling 
@@ -49,6 +51,16 @@ app.use(session({
     saveUninitialized: false,
     resave: false
 }));
+
+// Global session handler mimddleware
+/*app.use(function(req, res, next) {
+    if (req.session.loggedin == null) {
+        //res.render('index', { title: 'Greencity', expired: true, full_logo: config.full_logo })
+         res.redirect('http://gctl.mac');
+    }   else{
+        next();
+    }
+});*/
 
 app.use('/', index);
 app.use('/users', users);

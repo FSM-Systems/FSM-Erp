@@ -5,5 +5,5 @@ block content
 	table(class="mainmenu text-muted")     		
 		for m in menuitems
 			tr
-				td(class="mainmenulink" link="#{m.mlink}" newitemlink="#{m.mnewitemlink}" data-toggle="tooltip" data-placement="right" title="#{m.mlongdescription}")
+				td(class="mainmenulink" link=m.mlink newitemlink=m.mnewitemlink data-toggle="tooltip" data-placement="right" title=m.mlongdescription)
 					span #{m.mdescription}

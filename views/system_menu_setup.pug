@@ -23,7 +23,7 @@ block content
 		tbody
 			if menu.length == 0
 				tr
-					td(colspan="100")	No results, please add a new item
+					td(colspan="100") No results, please add a new item
 			for m in menu
 				tr
 					td #{m.mid}
@@ -31,45 +31,45 @@ block content
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-th-list" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mdescription" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}" value="#{m.mdescription}")
+							input(type="text" class="update form-control input-sm" col="mdescription" colid="mid" colidval=m.mid id="mn_#{m.mid}" value=m.mdescription)
 					td 
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-link" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mlink" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}" data-toggle="tooltip" data-placement="bottom" value="#{m.mlink}" title="#{m.mlink}")
+							input(type="text" class="update form-control input-sm" col="mlink" colid="mid" colidval=m.mid id="ml_" + m.mid data-toggle="tooltip" data-placement="bottom" value=m.mlink title=m.mlink)
 					td 
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-link" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mnewitemlink" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}" data-toggle="tooltip" data-placement="bottom" value="#{m.mnewitemlink}" title="#{m.mnewitemlink}")
+							input(type="text" class="update form-control input-sm" col="mnewitemlink" colid="mid" colidval=m.mid id="mnl_" + m.mid data-toggle="tooltip" data-placement="bottom" value=m.mnewitemlink title=m.mnewitemlink)
 					td 
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-tag" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mlongdescription" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}" value="#{m.mlongdescription}" data-toggle="tooltip" data-placement="bottom" title="#{m.mlongdescription}")
+							input(type="text" class="update form-control input-sm" col="mlongdescription" colid="mid" colidval=m.mid id="mld_" + m.mid value=m.mlongdescription data-toggle="tooltip" data-placement="bottom" title=m.mlongdescription)
 					td 
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-sort-by-order" aria-hidden="true")
-							input(type="text" class="update form-control order input-sm" col="morder" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}" value="#{m.morder}" style="width: 40px;")
+							input(type="text" class="update form-control order input-sm" col="morder" colid="mid" colidval=m.mid id="mn_" + m.mid value=m.morder style="width: 40px;")
 					td 
 						div(class="input-group")
-							select(class="form-control input-sm update" col="mgroup" colid="mid" colidval="#{m.mid}"  id="group_#{m.mid}")
+							select(class="form-control input-sm update" col="mgroup" colid="mid" colidval=m.mid  id="group_" + m.mid)
 								option(selected="selected" disabled) Desktop Icon
 									for g in groups
 										if m.mgroup === g.mgid
-											option(value="#{g.mgid}" selected) #{g.mgdescription}
+											option(value=g.mgid selected) #{g.mgdescription}
 										else
-											option(value="#{g.mgid}") #{g.mgdescription}
+											option(value=g.mgid) #{g.mgdescription}
 											
 					td(class="text-center col-md-1")
 						if m.mactive === true
-							input(type="checkbox" checked class="update" col="mactive" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}")
+							input(type="checkbox" checked class="update" col="mactive" colid="mid" colidval=m.mid id="mnc_"  + m.mid)
 						else
-							input(type="checkbox" class="update" col="mactive" colid="mid" colidval="#{m.mid}" id="mn_#{m.mid}")
+							input(type="checkbox" class="update" col="mactive" colid="mid" colidval=m.mid id="mnc_" + m.mid)
 					td 
 						div(class="input-group pull-right")
-							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="mid" dbcolidval="#{m.mid}" id="btn_del_#{m.mid}")
+							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="mid" dbcolidval=m.mid id="btn_del_" + m.mid)
 								span(class="glyphicon glyphicon-trash" aria-hidden="true")
 								
 			// - Add sortable rows by drag and drop only for this page.

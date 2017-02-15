@@ -1,4 +1,4 @@
-body {
+body, * {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
 }
@@ -48,10 +48,14 @@ div.tooltip-inner {
 
 /* all input text align center*/
 
-input, textarea {
+input, textarea, label {
 	text-align: center;
 	cursor: pointer;
 	font-weight: 400;
+}
+
+label:hover {
+	color: red;
 }
 
 /* Logo CSS */
@@ -72,11 +76,10 @@ input, textarea {
 
 /* menu css */
 .mainmenu {
-	padding: 20px;
 	border-left-width: 2px;
 	border-left-style: solid;
 	border-left-color: white;
-	margin: 10px;
+	margin-left: -12px;
 }
 
 .mainmenu tr td {
@@ -120,7 +123,7 @@ table th {
 .footer {
 	position: fixed;
 	bottom:  0px;
-	height: 50%;
+	height: 65%;
 	background-color: #f6f6f6;
 	border-top-color: lightgray;
 	border-top-style: solid;

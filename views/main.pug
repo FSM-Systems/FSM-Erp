@@ -4,9 +4,9 @@ block content
 	div(class="container-fluid")
 		div(class="row gctl-header")
 			div(class="col-sm-2 header-vertical-align text-center")
-				img(src="/images/#{logo}" class="small_logo logo" data-toggle="tooltip" data-placement="right" title="TO MAIN PAGE")
-			div(class="col-sm-8")
-				h4(class="text-center" id="headingtext") 
+				img(src="/images/" + logo class="small_logo logo" data-toggle="tooltip" data-placement="right" title="TO MAIN PAGE")
+			div(class="col-sm-8 header-vertical-align text-center")
+				span(id="headingtext") 
 			div(class="col-sm-2 header-vertical-align text-center")
 				div(class="pull-right")
 					button(type="button" class="btn btn-default hide" id="refreshpage" style="margin-right: 3px;" data-toggle="tooltip" data-placement="bottom" title="REFRESH PAGE")
@@ -25,12 +25,12 @@ block content
 				
 			// - This div is used when ajax calls to DB are done and it has been succesfull. It will fade in, wait for 3 seconds and fade out 
 			div(class="alert alert-success text-center center-block" id="succesfull_db" role="alert" style="display: none")
-				span(class="glyphicon glyphicon-ok" aria-hidden="true")  
-				&nbsp;Update to DB succesfull!
+				span(class="glyphicon glyphicon-ok" aria-hidden="true") &nbsp 
+					b Update to DB succesfull!
 			// - This div is used when ajax calls to DB have failed
 			div(class="alert alert-danger text-center center-block" id="error_db" role="alert" style="display: none")
-				span(class="glyphicon glyphicon-exclamation-sign" aria-hidden="true") 
-				&nbspError updating DB!
+				span(class="glyphicon glyphicon-exclamation-sign" aria-hidden="true") &nbsp; 
+					b Error updating DB!
 				
 		// Div hidden under page. This is used for adding new items to DB
 		div(class="row footer text-center" id="divnewitem" style="display: none; z-index:100000")
@@ -42,7 +42,7 @@ block content
 				
 		// - jQuery scripts
 		// - Include the database scripts to updat/insert/delete
-		include dbscripts.jade
+		include dbscripts.pug
 		
 		// - include the page that contains all button handlers.
-		include button_handlers.jade
+		include button_handlers.pug

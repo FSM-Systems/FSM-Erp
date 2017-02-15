@@ -13,7 +13,7 @@ block content
 		tbody
 			if wh.length == 0
 				tr
-					td(colspan="100")	No results, please add a new item
+					td(colspan="100") No results, please add a new item
 			for w in wh
 				tr
 					td #{w.wid}
@@ -21,13 +21,13 @@ block content
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-object-align-right" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="wdescription" colid="wid"  colidval="#{w.wid}" id="u_#{w.wid}" value="#{w.wdescription}")
+							input(type="text" class="update form-control input-sm" col="wdescription" colid="wid"  colidval=w.wid id="u_" + w.wid value=w.wdescription)
 					td(class="text-center")
 						if w.wactive === true
-							input(type="checkbox" checked class="update" col="wactive" colid="wid" colidval="#{w.wid}"  id="u_#{w.wid}")
+							input(type="checkbox" checked class="update" col="wactive" colid="wid" colidval=w.wid  id="u_" + w.wid)
 						else
-							input(type="checkbox" class="update" col="wactive" colid="wid" colidval="#{w.wid}"  id="w_#{w.wid}")
+							input(type="checkbox" class="update" col="wactive" colid="wid" colidval=w.wid  id="w_" + w.wid)
 					td 
 						div(class="input-group pull-right")
-							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="wid" dbcolidval="#{w.wid}" id="btn_del_#{w.wid}")
+							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="wid" dbcolidval=w.wid id="btn_del_" + w.wid)
 								span(class="glyphicon glyphicon-trash" aria-hidden="true")

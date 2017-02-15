@@ -12,7 +12,7 @@ block content
 		tbody
 			if units.length == 0
 				tr
-					td(colspan="100")	No results, please add a new item
+					td(colspan="100") No results, please add a new item
 			for u in units
 				tr
 					td #{u.wuid}
@@ -20,8 +20,8 @@ block content
 						div(class="input-group")
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-scale" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="wuunit" colid="wuid"  colidval="#{u.wuid}" id="u_#{u.wuid}" value="#{u.wuunit}")
+							input(type="text" class="update form-control input-sm" col="wuunit" colid="wuid"  colidval=u.wuid id="u_" + u.wuid value=u.wuunit)
 					td 
 						div(class="input-group pull-right")
-							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="wuid" dbcolidval="#{u.wuid}" id="btn_del_#{u.wuid}")
+							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="wuid" dbcolidval=u.wuid id="btn_del_" + u.wuid)
 								span(class="glyphicon glyphicon-trash" aria-hidden="true")
