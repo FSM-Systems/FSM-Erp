@@ -68,6 +68,40 @@ app.use(session({
     }
 });*/
 
+
+// This functon is a global one to test session. It will test session on every page except the ones listed
+// in the arrnosessiontest array. these are excluded as they do not need testing
+// They are auth functions and if session test is enabled in these pages the app will go in a loop
+
+var session_test = function (req, res, next) {
+	var arrnosessiontest = 
+		[
+		'/', '/?expired=true', 
+		'/?wrongcred=true', 
+		'/scripts/nprogress/nprogress.js', 
+		'/auth', 
+		'/logout'
+		];
+		
+	var testsession = true;
+	for (var u = 0; u < arrnosessiontest.length; u++) {
+		if (req.url == arrnosessiontest[u]) {
+			testsession = false;	
+			break;
+		}
+	}
+	
+	// redirect always to index with error displayed when session is invalid
+	// Mainly used when cleint tries to access other pages in the app without having gone through auth page
+	if (testsession == true && (req.session.loggedin == false || typeof req.session.loggedin == 'undefined')) {
+         res.redirect('/?expired=true');
+    } else{
+        next();
+    }
+}
+// Use the session_test function in our application
+app.use(session_test)
+
 app.use('/', index);
 app.use('/users', users);
 // Add API Route keeps logic clean

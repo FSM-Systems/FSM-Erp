@@ -17,11 +17,18 @@ block content
 					button(class="btn btn-default" id="auth") AUTHENTICATE
 					
 		div(class="row" id="warnings")
-				if expired == true
+				if expired == "true"
 					div(id="alert")
 						div(class="alert alert-warning text-center" role="alert")
 							span 
-								b Your session is not valid! Please authenticate!
+								b Your session is not valid or has expired! Please authenticate!
+							button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+								span(aria-hidden="true") &times;
+				if wrongcred == "true"
+					div(id="alert")
+						div(class="alert alert-danger text-center" role="alert")
+							span 
+								b Wrong username or password!
 							button(type="button" class="close" data-dismiss="alert" aria-label="Close")
 								span(aria-hidden="true") &times;
 				if loggedout == "true"
@@ -65,13 +72,14 @@ block content
 												window.location.href = "/desktop";
 												break;
 											case "NOTOK":
-												// Add line to login form if t does not exists
-												if ($("#alert").length == 0) {
-													$("#warnings").append('\
-														<br><div id="alert" class="alert alert-danger text-center" role="alert">Wrong Username or Password! Please try again!	</div>\
-													');
-												}
-												$("#alert").hide().fadeIn();
+												window.location.href = "/?wrongcred=true";
+											//	// Add line to login form if t does not exists
+											//	if ($("#alert").length == 0) {
+											//		$("#warnings").append('\
+											//			<br><div id="alert" class="alert alert-danger text-center" role="alert">Wrong Username or Password! Please try again!	</div>\
+											//		');
+											//	}
+												//$("#alert").hide().fadeIn();
 												break;
 											case "DBERR":
 												alert("DATABASE ERROR " + data);
