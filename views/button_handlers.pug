@@ -16,6 +16,11 @@ script.
 			// Hide new item div on menu click
 			$('#divnewitem').fadeOut()
 			
+			// Remove selected class from all links
+			$(".mainmenulink").removeClass("mainmenu_item_selected");
+			// Apply class so Items shows as selected
+			$(this).addClass("mainmenu_item_selected");
+			
 			// Set link for refresh page button so we can reload the currently open div in workspace
 			$("#refreshpage").attr("refreshlink", $(this).attr("link"));
 			

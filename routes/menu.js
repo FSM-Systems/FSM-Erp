@@ -35,7 +35,7 @@ router.get('/system_menu_setup', function (req, res, next) {
 // Desktop Items menu option (menu_groups)
 router.get('/desktop_icons_setup', function (req, res, next) {
 	// Get all users and load in table on page
-	db.query('select * from menu_groups order by mgdescription', function (err, result) {
+	db.query('select * from menu_groups order by mgorder', function (err, result) {
 		res.render('desktop_icons_setup', { di: result.rows, pagename: 'Desktop Icons Setup' })
 	})
 });

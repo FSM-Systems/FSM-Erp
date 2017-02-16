@@ -96,6 +96,14 @@ label:hover {
 	background-color: #edffdd; /*#f9eafc*/
 }
 
+/* Selected menu item*/
+.mainmenu_item_selected {
+	border-left-color: blue;
+	border-left-style: solid;
+	border-left-width: 2px;
+	background-color: #f7faff; /*#f9eafc*/
+}
+
 .mainmenu tr td span {
 	padding-left: 2px;
 }
@@ -143,6 +151,11 @@ table th {
 	border-width: 2px;
 	background-color: #ffcccf;
 	font-weight: bold;
+}
+
+/* Sortale tables CSS */
+.sortable tr {
+	cursor: all-scroll;
 }
 
 /* Desktop CSS */

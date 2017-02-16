@@ -1,14 +1,19 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
-	// - h4 #{pagename}
-	table(class="table table-hover" style="width: 100%" id="dbtable" dbtable="menu_groups" apppage="/desktop_icons_config")
+	div
+		br
+		span 
+			strong
+				u Drag menu options to order them in the way that they will be ordered in the desktop
+				
+	table(class="table table-hover sortable" style="width: 100%" id="dbtable" dbtable="menu_groups" apppage="/desktop_icons_config")
 		thead
 			tr 
 				th.text-center ID
 				th Description
 				th Icon File
-				th Order
+				//th Order
 				th Header
 				th(class="text-center") Active?
 				th
@@ -30,12 +35,13 @@ block content
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-font" aria-hidden="true")
 							input(type="text" class="update form-control input-sm" col="mgicon" colid="mgid" colidval=i.mgid  id="mic_" + i.mgid value=i.mgicon)
+					//td 
+					//	div(class="input-group")
+					//		span(class="input-group-addon") 
+					//			span(class="glyphicon glyphicon-sort-by-order" aria-hidden="true")
+					//		input(type="text" class="update form-control input-sm order" col="mgorder" colid="mgid" colidval=i.mgid  id="mord_" + i.mgid value=i.mgorder style="width: 50px")
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-sort-by-order" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mgorder" colid="mgid" colidval=i.mgid  id="mord_" + i.mgid value=i.mgorder style="width: 50px")
-					td 
+						input(type="hidden" class="update form-control input-sm order" col="mgorder" colid="mgid" colidval=i.mgid  id="mord_" + i.mgid value=i.mgorder)
 						div(class="input-group")
 							select.form-control.input-sm.update(col="mgtype" colidval=i.mgid colid="mgid" id="mgtype_" + i.mgid)
 								option(selected="selected" disabled) Header Type
@@ -60,3 +66,7 @@ block content
 						div(class="btn-group pull-right")
 							button(class="btn btn-danger btn-sm btn-delete" dbcolid="mgid" dbcolidval=i.mgid id="btn_del_" + i.mgid)
 								span(class="glyphicon glyphicon-trash" aria-hidden="true")
+		
+		// - Add sortable rows by drag and drop.
+		// - We use this to order the menu, then save the order to the database
+		include sort_order_scripts
