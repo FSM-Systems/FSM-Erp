@@ -1,0 +1,60 @@
+// - This script creates dynamically an autocomplete on any element that has a class=autocomplete set
+// - In order to function the element has to contain an attribute ac-source=<express route that returns JSON data>
+// - and an extra <input type=hidden> element created in the form. The name of the hidden input has to be the same
+// - as the field in the database that has to be updated. The autcomplete input can be named differently such as <field_name>_txt
+
+// - This will make the frmnewitem insert function work properly.
+
+// - Example
+
+// - autocomplete element -> txtmsg
+// - hidden input element -> txtmsg_id
+
+// - It will set the text in the input box and the database id of the selected item in the <element>_id hidden input
+
+// - This can be used to update/insert into the database
+
+script.
+	$(document).on("focus", ".autocomplete", function () {
+		// Get the datasource from the element attributs
+		var datasource = $(this).attr("ac-source");
+		// Create the autocomplete opetions 
+		var autocomplete_options = {
+			appendTo: ".container", // append to container as default append to body doesn't work with boostrap
+			dataType: "json",
+			source: function( request, response ) {
+				$.ajax({
+					url: "/autocompletes/" + datasource, // get the source route that returns JSON from the attribut ac-source of the element 
+					data: {
+						term: request.term
+					},
+					success: function(data) {
+						console.log(data)
+						var transformed  = $.map(data, function (item) {
+							return {
+								label: item.label,
+								value: item.value,										
+							}
+						})
+						response(transformed)												
+					}
+				});
+			},
+			//minLength: 2,
+			select: function( event, ui ) {
+				event.preventDefault()
+				// Put text in input element and is in hidden element
+				$(this).val(ui.item.label);
+				$("#" + $(this).attr("id") + "_id").val(ui.item.value)
+			},
+			change: function (event, ui) {
+				if (!ui.item) {
+					$(this).val(""); // Force user to select item
+				}	
+			}
+		}
+		
+		$(this).autocomplete(autocomplete_options).on("dblclick", function() {
+			$(this).autocomplete("search");
+		});
+	})
