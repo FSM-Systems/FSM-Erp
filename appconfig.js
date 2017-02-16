@@ -12,4 +12,7 @@ config.applogo = 'logotext.png'; // Logo for main application has to be stored i
 config.full_logo = 'logo.png'; // Logo for index page
 config.company_name = 'Greencity'; // Comany Name
 
+// Session settings
+config.session_time = 240 * 60000;
+
 module.exports = config;
