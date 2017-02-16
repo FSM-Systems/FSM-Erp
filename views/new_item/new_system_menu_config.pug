@@ -34,7 +34,7 @@ block content
 									select(class="form-control input-sm" name="mgroup" id="mgroup" required)
 										option(selected="selected") Select Model
 										for di in menugroups
-											option(value="#{di.mgid}") #{di.mgdescription}
+											option(value=di.mgid) #{di.mgdescription}
 										
 							div(class="form-group")
 								input(type="hidden" name="dbtable" value="menu")
