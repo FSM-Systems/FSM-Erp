@@ -41,7 +41,10 @@ script.
 		$("#newitem").click(function () {
 			//alert($("#newitem").attr("dblink"));
 			$('#divnewitem').fadeIn();
-			$('#divnewitemdet').empty().load($("#newitem").attr("dblink"));
+			$('#divnewitemdet').empty().load($("#newitem").attr("dblink"), function () {
+				// Always focus first item in form when loading
+				$("#frmnewitem").find("input:first").focus();				
+			});
 		})
 		
 		// Always prevent frmnewinsert (when adding new items) to submit when hitting enter
