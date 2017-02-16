@@ -14,21 +14,26 @@ block content
 						form(class="form-horizontal" id="frmnewitem")
 							div(class="form-group")
 								div(class="col-sm-6")
-									input(type="text" class="form-control input-sm" name="wisku" id="wisku" placeholder="Item Code")
+									input(type="text" class="form-control input-sm" name="wisku" id="wisku" placeholder="Item Code" required)
 								div(class="col-sm-6")
-									input(type="text" class="form-control input-sm" name="widescription" id="widescription" placeholder="Description")
+									input(type="text" class="form-control input-sm" name="widescription" id="widescription" placeholder="Description" required)
 							div(class="form-group")
 								div(class="col-sm-6")
-									select(class="form-control input-sm" name="wi_unit" id="wi_unit")
+									input(type="number" class="form-control input-sm" name="wi_unit_cost" id="wisku" placeholder="Item Cost" required)
+								div(class="col-sm-6")
+									input(type="number" class="form-control input-sm" name="wi_unit_price" id="widescription" placeholder="Item Resell Price" required)
+							div(class="form-group")
+								div(class="col-sm-6")
+									select(class="form-control input-sm" name="wi_unit" id="wi_unit" required)
 										option(selected="selected") Select Unit
 										for u in units
-											option(value="#{u.wuid}") #{u.wuunit}
+											option(value=u.wuid) #{u.wuunit}
 										
 								div(class="col-sm-6")
-									select(class="form-control input-sm" name="wiforequip" id="wiforequip")
+									select(class="form-control input-sm" name="wiforequip" id="wiforequip" required)
 										option(selected="selected") Select Model
 										for em in equip_models
-											option(value="#{em.emid}") #{em.emdescription}
+											option(value=em.emid) #{em.emdescription}
 									
 							div(class="form-group")
 								input(type="hidden" name="dbtable" value="warehouse_items")

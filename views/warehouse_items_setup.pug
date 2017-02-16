@@ -8,6 +8,8 @@ block content
 				th.text-center ID
 				th Item Code
 				th Item Description
+				th Item Cost
+				th Item Price
 				th Unit
 				th For Model
 				th
@@ -30,6 +32,16 @@ block content
 							span(class="input-group-addon") 
 								span(class="glyphicon glyphicon-font" aria-hidden="true")
 							input(type="text" class="update form-control input-sm" col="widescription" colid="wiid"  colidval=w.wiid id="u_" + w.wiid value=w.widescription)
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-usd" aria-hidden="true")
+							input(type="number" class="update form-control input-sm" col="wi_unit_cost" colid="wiid"  colidval=w.wiid id="u_" + w.wiid value=w.wi_unit_cost)
+					td 
+						div(class="input-group")
+							span(class="input-group-addon") 
+								span(class="glyphicon glyphicon-usd" aria-hidden="true")
+							input(type="number" class="update form-control input-sm" col="wi_unit_price" colid="wiid"  colidval=w.wiid id="u_" + w.wiid value=w.wi_unit_price)
 					td 
 						div(class="input-group")
 							select(class="form-control input-sm update" col="wi_unit" colid="wiid" colidval=w.wiid  id="wi_unit_" + w.wiid)
