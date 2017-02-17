@@ -1,9 +1,11 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
-
+	// The new item link is automatically prepended with /new_item as this is the route that will habndle all of the requests.
+	// The link is prepended with /menu/ 
+	// This is to make things readable in system menu setup
 	table(class="mainmenu text-muted")     		
 		for m in menuitems
 			tr
-				td(class="mainmenulink" link=m.mlink newitemlink=m.mnewitemlink data-toggle="tooltip" data-placement="right" title=m.mlongdescription)
+				td(class="mainmenulink" link='/menu/' + m.mlink newitemlink="/new_item/" + m.mnewitemlink data-toggle="tooltip" data-placement="right" title=m.mlongdescription)
 					span #{m.mdescription}
