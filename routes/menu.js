@@ -115,6 +115,16 @@ router.get('/user_permissions/param/:param', function (req, res, next) {
 
 // Stock items {in_stock_tems.pug}
 router.get('/in_stock_items', function (req, res, next) {
-	res.render('in_stock_items');
+	db.query('select * from vw_warehouse_stock', function (err, result) {
+		res.render('in_stock_items', { title: 'WAREHOUSE STOCK', stock: result.rows });
+	})
 })
+
+// Goods issue note
+router.get('/goods_issue_notes', function (req, res, next) {
+	db.query('select * from vw_goods_issued_notes', function (err, result) {
+		res.render('goods_issue_notes', { title: 'GOODS ISSUE NOTE', gin: result.rows });
+	})
+})
+
 module.exports = router;
