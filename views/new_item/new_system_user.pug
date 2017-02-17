@@ -31,6 +31,7 @@ block content
 							div(class="form-group")
 								input(type="hidden" name="dbtable" value="login")
 								input(type="hidden" name="returnid" value="lid")
+								input(type="hidden" name="l_user" id="l_user" value=session.user_id)
 								input(type="hidden" id="apppage" value="/menu/system_users_setup")
 								button(class="btn btn-success" type="button" id="btninsert") ADD USER
 		div(class="col-sm-3")

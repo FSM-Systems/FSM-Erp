@@ -19,6 +19,7 @@ block content
 							div(class="form-group")
 								input(type="hidden" name="dbtable" value="warehouses")
 								input(type="hidden" name="returnid" value="wid")
+								input(type="hidden" name="w_user" id="w_user" value=session.user_id)
 								input(type="hidden" id="apppage" value="/menu/warehouse_setup")
 								button(class="btn btn-success" type="button" id="btninsert") ADD WAREHOUSE
 		div(class="col-sm-3")
