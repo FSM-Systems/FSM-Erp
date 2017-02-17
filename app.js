@@ -10,6 +10,7 @@ var redis  = require("redis");
 var session = require("express-session");
 var RedisStore = require('connect-redis')(session);
 var client  = redis.createClient();
+var expressUglify = require('express-uglify');
 
 // Add compression to app for performance
 var compression = require('compression')
@@ -17,12 +18,18 @@ var compression = require('compression')
 var express = require('express')
 var app = express()
 
+app.use(expressUglify.middleware({ 
+	src: __dirname + '/public',
+}));
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var dbapi = require('./routes/dbapi'); // Container the routes to access and modify DB data
+var autocompleteapi = require('./routes/autocompletes'); // Container the routes to access and modify DB data
 var newitemsapi = require('./routes/newitemsapi'); // Contains the routes to divs that add new items (templates)
 var menuapi = require('./routes/menu'); // Routes for the main menu
 var config = require('./appconfig.js') // Application configuration
+var btnsetup = require('./routes/btn-setup') // Tputes for the setup buttons, when editing details of a line
 
 // Helmet for enhanced security as from express site tutorials
 var helmet = require('helmet')
@@ -51,28 +58,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Setup session handling 
 app.use(session({
     secret: 'sasl76324mnasb_sdfsds*anmsbda',
-    cookie: { maxAge: config.session_time }, // 240 minutes session - 1 minute = 60000 millisec 
+    cookie: { maxAge: parseInt(config.session_time) }, // 240 minutes session - 1 minute = 60000 millisec 
     // create new redis store.
     store: new RedisStore({ host: 'localhost', port: 6379, client: client, ttl : 260}),
     saveUninitialized: false,
-    resave: false
-}));
+    resave: true
+	})
+);
 
-// Global session handler mimddleware
-/*app.use(function(req, res, next) {
-    if (req.session.loggedin == null) {
-        //res.render('index', { title: 'Greencity', expired: true, full_logo: config.full_logo })
-         res.redirect('http://gctl.mac');
-    }   else{
-        next();
-    }
-});*/
-
+// Expose sessions to all views so we can use them anywhere by calling session.<var>
+app.use(function(req,res,next){
+    res.locals.session = req.session;
+    next();
+});
 
 // This functon is a global one to test session. It will test session on every page except the ones listed
 // in the arrnosessiontest array. these are excluded as they do not need testing
 // They are auth functions and if session test is enabled in these pages the app will go in a loop
-
 var session_test = function (req, res, next) {
 	var arrnosessiontest = 
 		[
@@ -95,6 +97,9 @@ var session_test = function (req, res, next) {
 	// Mainly used when cleint tries to access other pages in the app without having gone through auth page
 	if (testsession == true && (req.session.loggedin == false || typeof req.session.loggedin == 'undefined')) {
          res.redirect('/?expired=true');
+		//res.writeHead(302, {
+  		//	'Location': '/?expired=true'
+		//});
     } else{
         next();
     }
@@ -111,6 +116,10 @@ app.use('/api/db', dbapi);
 app.use('/new_item', newitemsapi);
 // Menu action
 app.use('/menu', menuapi)
+// Autocompletes, esposes autocomplete for tables
+app.use('/autocompletes', autocompleteapi)
+// Routes for the btn-setup, for editing the details of a line
+app.use('/btn-setup', btnsetup)
 
 // Add scripts for use in html code
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
