@@ -2,12 +2,12 @@
 
 block content
 	// - h4 #{pagename}
-	table(class="table table-hover" style="width: 60%" id="dbtable" dbtable="warehouses")
+	table.table.table-hover(style="width: 60%")
 		thead
 			tr 
 				th.text-center ID
 				th Warehouse Description
-				th(class="text-center") Active?
+				th.text-center Active?
 				th
 		
 		tbody
@@ -18,16 +18,19 @@ block content
 				tr
 					td #{w.wid}
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-object-align-right" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="wdescription" colid="wid"  colidval=w.wid id="u_" + w.wid value=w.wdescription)
-					td(class="text-center")
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-object-align-right(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="wdescription" colid="wid"  colidval=w.wid id="u_" + w.wid value=w.wdescription)
+					td.text-center
 						if w.wactive === true
-							input(type="checkbox" checked class="update" col="wactive" colid="wid" colidval=w.wid  id="u_" + w.wid)
+							input.update(type="checkbox" checked col="wactive" colid="wid" colidval=w.wid  id="u_" + w.wid)
 						else
-							input(type="checkbox" class="update" col="wactive" colid="wid" colidval=w.wid  id="w_" + w.wid)
+							input.update(type="checkbox" col="wactive" colid="wid" colidval=w.wid  id="w_" + w.wid)
 					td 
-						div(class="input-group pull-right")
-							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="wid" dbcolidval=w.wid id="btn_del_" + w.wid)
-								span(class="glyphicon glyphicon-trash" aria-hidden="true")
+						div.input-group.pull-right
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="wid" dbcolidval=w.wid id="btn_del_" + w.wid)
+								span.glyphicon.glyphicon-trash(aria-hidden="true")
+								
+	input( type="hidden" id="apppage" value="/menu/warehouse_setup")
+	input( type="hidden" id="dbtable" value="warehouses")

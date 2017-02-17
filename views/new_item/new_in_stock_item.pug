@@ -1,0 +1,36 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	div(class="container")
+		div(class="row")
+			span &nbsp;
+		div(class="row")
+			div.col-sm-3
+			div.col-sm-6
+				div.panel.panel-info
+					div.panel-heading
+						h5 #{title}
+					div.panel-body
+						form.form-horizontal(id="frmnewitem")
+							div.form-group
+								label.col-sm-4.control-label(for="wsitem_txt") Item:
+								div.col-sm-8
+									input.form-control.input-sm.autocomplete.nodb(type="text" ac-source="warehouse_items" name="wsitem_txt" id="wsitem_txt" placeholder="Type Description or Code" required)
+									input(type="hidden" name="wsitem" id="wsitem" required)
+							div.form-group
+								label(for="wsitem_txt" class="col-sm-4 control-label") Quantity:
+								div.col-sm-8
+									input.form-control.input-sm(type="text" name="wsqty" id="wsqty" placeholder="Item Quantity" required)
+							div.form-group
+								label(for="wswarehouse_txt" class="col-sm-4 control-label") Destination Warehouse:
+								div.col-sm-8
+									input.form-control.input-sm.autocomplete.nodb(type="text" ac-source="warehouses" name="wswarehouse_txt" id="wswarehouse_txt" placeholder="Destination Warehouse" required)
+									input(type="hidden" name="wswarehouse" id="wswarehouse" required)
+							div.form-group
+								input(type="hidden" name="dbtable" value="warehouse_stock")
+								input(type="hidden" name="returnid" value="wsid")
+								input(type="hidden" name="ws_user" id="ws_user" value=session.user_id)
+								input(type="hidden" id="apppage" value="/menu/in_stock_items")
+								button(class="btn btn-success" type="button" id="btninsert") ADD TO STOCK
+		div(class="col-sm-3")
+			

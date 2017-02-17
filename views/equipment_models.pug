@@ -2,7 +2,7 @@
 
 block content
 	// - h4 #{pagename}
-	table(class="table table-hover" style="width: 60%" id="dbtable" dbtable="equipment_models" apppage="/menu/equipment_models")
+	table.table.table-hover(style="width: 60%")
 		thead
 			tr 
 				th.text-center ID
@@ -17,11 +17,14 @@ block content
 				tr
 					td #{em.emid}
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-bed" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="emdescription" colid="emid"  colidval=em.emid id="em_" + em.emid value=em.emdescription)
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-bed(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="emdescription" colid="emid" colidval=em.emid id="em_" + em.emid value=em.emdescription)
 					td 
-						div(class="input-group pull-right")
-							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="emid" dbcolidval=em.emid id="btn_del_" + em.emid)
-								span(class="glyphicon glyphicon-trash" aria-hidden="true")
+						div.nput-group.pull-right
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="emid" dbcolidval=em.emid id="btn_del_" + em.emid)
+								span.glyphicon.glyphicon-trash(aria-hidden="true")
+								
+	input( type="hidden" id="apppage" value="/menu/equipment_models")
+	input( type="hidden" id="dbtable" value="equipment_models")

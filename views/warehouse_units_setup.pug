@@ -2,7 +2,7 @@
 
 block content
 	// - h4 #{pagename}
-	table(class="table table-hover" style="width: 60%" id="dbtable" dbtable="warehouse_units")
+	table.table.table-hover(style="width: 60%")
 		thead
 			tr 
 				th.text-center ID
@@ -17,11 +17,14 @@ block content
 				tr
 					td #{u.wuid}
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-scale" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="wuunit" colid="wuid"  colidval=u.wuid id="u_" + u.wuid value=u.wuunit)
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-scale(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="wuunit" colid="wuid"  colidval=u.wuid id="u_" + u.wuid value=u.wuunit)
 					td 
-						div(class="input-group pull-right")
-							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="wuid" dbcolidval=u.wuid id="btn_del_" + u.wuid)
-								span(class="glyphicon glyphicon-trash" aria-hidden="true")
+						div.input-group.pull-right
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="wuid" dbcolidval=u.wuid id="btn_del_" + u.wuid)
+								span.glyphicon.glyphicon-trash(aria-hidden="true")
+	
+	input( type="hidden" id="apppage" value="/menu/warehouse_units_setup")
+	input( type="hidden" id="dbtable" value="warehouse_units")

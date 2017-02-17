@@ -1,0 +1,37 @@
+// - Visualize only. No updates on this page
+block content
+	table.table.table-condensed.table-striped
+		thead
+			tr 
+				th ID
+				th Date
+				th Issued To
+				th Issued By
+				th Notes
+				th
+		
+		tbody
+			if gin.length == 0
+				tr
+					td(colspan="100") No results, please add a new item
+					
+			for g in gin
+				tr
+					td.text-left 
+						span #{g.ginid}
+					td.text-left
+						span #{g.date}
+					td.text-left 
+						span #{g.to}
+					td.text-left 
+						span #{g.by}
+					td.text-left 
+						span #{g.notes}
+					td
+						div.btn-group.pull-right
+							button.btn.btn-default.btn-sm.btn-setup(id='btn_' + g.ginid data-toggle="tooltip" setuplink="/btn-setup/add_to_goods_received_note" param=g.ginid data-placement="bottom" title="Add items to this goods issue note No " + g.ginid)
+								span.glyphicon.glyphicon-pencil(aria-hidden="true" title="Add items to this goods issue note")
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="ginid" dbtable="goods_issue_notes" dbcolidval=g.ginid id="btn_del_" + g.ginid)
+								span.glyphicon.glyphicon-trash(aria-hidden="true")
+								
+			input(type="hidden" id="apppage" value="/menu/goods_issue_notes")

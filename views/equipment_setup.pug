@@ -1,6 +1,6 @@
 block content
 	// - h4 #{pagename}
-	table(class="table table-hover" id="dbtable" dbtable="equipment" apppage="/equipment_setup")
+	table.table.table-hover
 		thead
 			tr 
 				th.text-center ID
@@ -22,36 +22,39 @@ block content
 				tr
 					td #{e.eid}
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-font" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="enumberplate" colid="eid" colidval=e.eid table="equipment" id="eq_numplate_" + e.eid value=e.enumberplate style="width: 80px;")
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-font(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="enumberplate" colid="eid" colidval=e.eid id="eq_numplate_" + e.eid value=e.enumberplate style="width: 80px;")
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-font" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="edescription" colid="eid" colidval=e.eid table="equipment" id="eq_descr_" + e.eid value=e.edescription style="width: 180px;")
+						div.input-group
+							span.input-group-addon
+								span.glyphicon.glyphicon-font(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="edescription" colid="eid" colidval=e.eid id="eq_descr_" + e.eid value=e.edescription style="width: 180px;")
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-calendar" aria-hidden="true")
-							input(type="calendar" class="update form-control input-sm datepicker" col="epurchased" colid="eid" colidval=e.eid table="equipment" id="eq_purch_" + e.eid value=e.epurchased) 								
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-calendar(aria-hidden="true")
+							input.update.form-control.input-sm.datepicker(type="text" col="epurchased" colid="eid" colidval=e.eid id="eq_purch_" + e.eid value=e.epurchased) 								
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-calendar" aria-hidden="true")
-							input(type="text" class="update form-control input-sm datepicker" col="eroadlicense" colid="eid" colidval=e.eid table="equipment" id="eq_rl_" + e.eid value=e.eroadlicense)
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-calendar(aria-hidden="true")
+							input.update.form-control.input-sm.datepicker(type="text" col="eroadlicense" colid="eid" colidval=e.eid id="eq_rl_" + e.eid value=e.eroadlicense)
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-calendar" aria-hidden="true")
-							input(type="text" class="update form-control input-sm datepicker" col="einsurance" colid="eid" colidval=e.eid table="equipment" id="eq_ins_" + e.eid value=e.einsurance)
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-calendar(aria-hidden="true")
+							input.update.form-control.input-sm.datepicker(type="text" col="einsurance" colid="eid" colidval=e.eid id="eq_ins_" + e.eid value=e.einsurance)
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-calendar" aria-hidden="true")
-							input(type="text" class="update form-control input-sm datepicker" col="etra" colid="eid" colidval=e.eid table="equipment" id="eq_" + e.eid value=e.etra)
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-calendar(aria-hidden="true")
+							input.update.form-control.input-sm.datepicker(type="text" col="etra" colid="eid" colidval=e.eid id="eq_" + e.eid value=e.etra)
 					td 
-						div(class="input-group pull-right")
-							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="eid" dbcolidval=e.eid id="btn_del_" + e.eid title="DELETE")
-								span(class="glyphicon glyphicon-trash" aria-hidden="true")
+						div.input-group.pull-right
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="eid" dbcolidval=e.eid id="btn_del_" + e.eid title="DELETE")
+								span.glyphicon.glyphicon-trash(aria-hidden="true")
+								
+		input( type="hidden" id="apppage" value="/menu/equipment_setup")
+		input( type="hidden" id="dbtable" value="equipment")

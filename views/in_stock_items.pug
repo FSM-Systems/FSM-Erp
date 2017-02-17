@@ -1,2 +1,31 @@
+// - Visualize only. No updates on this page
 block content
-	span test
+	table.table.table-condensed.table-striped(id="dbtable")
+		thead
+			tr 
+				th Item Code
+				th Item Description
+				th.text-right Quantity
+				th Units
+				th Location
+				th For Equipment
+		
+		tbody
+			if stock.length == 0
+				tr
+					td(colspan="100") No results, please add a new item
+					
+			for s in stock
+				tr
+					td.text-left
+						span #{s.wisku}
+					td.text-left
+						span #{s.widescription}
+					td.text-right 
+						span #{s.wsqty}
+					td.text-left 
+						span #{s.wuunit}
+					td.text-left 
+						span #{s.wdescription}
+					td.text-left 
+						span #{s.emdescription}

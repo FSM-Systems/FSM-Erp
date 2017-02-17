@@ -7,7 +7,7 @@ block content
 			strong
 				u Drag menu options to order them in the way that they will be ordered in the menu
 		
-	table(class="table table-hover sortable help" id="dbtable" dbtable="menu")
+	table.table.table-hover.sortable.help
 		thead
 			tr 
 				th.text-center ID
@@ -27,34 +27,29 @@ block content
 				tr
 					td #{m.mid}
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
+						div.input-group
+							span.input-group-addon
 								span(class="glyphicon glyphicon-th-list" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mdescription" colid="mid" colidval=m.mid id="mn_#{m.mid}" value=m.mdescription)
+							input.update.form-control.input-sm(type="text" col="mdescription" colid="mid" colidval=m.mid id="mn_#{m.mid}" value=m.mdescription)
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
+						div.input-group
+							span.input-group-addon
 								span(class="glyphicon glyphicon-link" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mlink" colid="mid" colidval=m.mid id="ml_" + m.mid data-toggle="tooltip" data-placement="bottom" value=m.mlink title=m.mlink)
+							input.update.form-control.input-sm(type="text" col="mlink" colid="mid" colidval=m.mid id="ml_" + m.mid data-toggle="tooltip" data-placement="bottom" value=m.mlink title=m.mlink)
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
+						div.input-group
+							span.input-group-addon
 								span(class="glyphicon glyphicon-link" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mnewitemlink" colid="mid" colidval=m.mid id="mnl_" + m.mid data-toggle="tooltip" data-placement="bottom" value=m.mnewitemlink title=m.mnewitemlink)
+							input.update.form-control.input-sm(type="text" col="mnewitemlink" colid="mid" colidval=m.mid id="mnl_" + m.mid data-toggle="tooltip" data-placement="bottom" value=m.mnewitemlink title=m.mnewitemlink)
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
+						div.input-group
+							span.input-group-addon
 								span(class="glyphicon glyphicon-tag" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mlongdescription" colid="mid" colidval=m.mid id="mld_" + m.mid value=m.mlongdescription data-toggle="tooltip" data-placement="bottom" title=m.mlongdescription)
-					//td 
-						//div(class="input-group")
-						//	span(class="input-group-addon") 
-						//		span(class="glyphicon glyphicon-sort-by-order" aria-hidden="true")
-							
+							input.update.form-control.input-sm(type="text" col="mlongdescription" colid="mid" colidval=m.mid id="mld_" + m.mid value=m.mlongdescription data-toggle="tooltip" data-placement="bottom" title=m.mlongdescription)
 					td
-						input(type="hidden" class="update form-control order input-sm" col="morder" colid="mid" colidval=m.mid id="mn_" + m.mid value=m.morder) 
-						div(class="input-group")
-							select(class="form-control input-sm update" col="mgroup" colid="mid" colidval=m.mid  id="group_" + m.mid)
+						input.update.form-control.order.input-sm(type="hidden" col="morder" colid="mid" colidval=m.mid id="mn_" + m.mid value=m.morder) 
+						div.input-group
+							select.form-control.input-sm.update(col="mgroup" colid="mid" colidval=m.mid  id="group_" + m.mid)
 								option(selected="selected" disabled) Desktop Icon
 									for g in groups
 										if m.mgroup === g.mgid
@@ -62,16 +57,19 @@ block content
 										else
 											option(value=g.mgid) #{g.mgdescription}
 											
-					td(class="text-center col-md-1")
+					td.text-center.col-md-1
 						if m.mactive === true
-							input(type="checkbox" checked class="update" col="mactive" colid="mid" colidval=m.mid id="mnc_"  + m.mid)
+							input.update(type="checkbox" checked col="mactive" colid="mid" colidval=m.mid id="mnc_"  + m.mid)
 						else
-							input(type="checkbox" class="update" col="mactive" colid="mid" colidval=m.mid id="mnc_" + m.mid)
+							input.update(type="checkbox" col="mactive" colid="mid" colidval=m.mid id="mnc_" + m.mid)
 					td 
-						div(class="input-group pull-right")
-							button(class="btn btn-danger btn-sm" class="btn-delete" dbcolid="mid" dbcolidval=m.mid id="btn_del_" + m.mid)
-								span(class="glyphicon glyphicon-trash" aria-hidden="true")
+						div.input-group.pull-right
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="mid" dbcolidval=m.mid id="btn_del_" + m.mid)
+								span.glyphicon.glyphicon-trash(aria-hidden="true")
 								
-			// - Add sortable rows by drag and drop.
-			// - We use this to order the menu, then save the order to the database
-			include sort_order_scripts
+	input( type="hidden" id="apppage" value="/menu/system_menu_setup")
+	input( type="hidden" id="dbtable" value="menu")
+								
+	// - Add sortable rows by drag and drop.
+	// - We use this to order the menu, then save the order to the database
+	include sort_order_scripts

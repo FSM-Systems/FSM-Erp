@@ -7,7 +7,7 @@ block content
 			strong
 				u Drag menu options to order them in the way that they will be ordered in the desktop
 				
-	table(class="table table-hover sortable" style="width: 100%" id="dbtable" dbtable="menu_groups" apppage="/desktop_icons_config")
+	table.table.table-hover.sortable(style="width: 100%")
 		thead
 			tr 
 				th.text-center ID
@@ -15,7 +15,7 @@ block content
 				th Icon File
 				//th Order
 				th Header
-				th(class="text-center") Active?
+				th.text-center Active?
 				th
 		
 		tbody
@@ -26,23 +26,18 @@ block content
 				tr
 					td #{i.mgid}
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-font" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mgdescription" colid="mgid" colidval=i.mgid  id="mdes_" + i.mgid value=i.mgdescription)
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-font(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="mgdescription" colid="mgid" colidval=i.mgid  id="mdes_" + i.mgid value=i.mgdescription)
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-font" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="mgicon" colid="mgid" colidval=i.mgid  id="mic_" + i.mgid value=i.mgicon)
-					//td 
-					//	div(class="input-group")
-					//		span(class="input-group-addon") 
-					//			span(class="glyphicon glyphicon-sort-by-order" aria-hidden="true")
-					//		input(type="text" class="update form-control input-sm order" col="mgorder" colid="mgid" colidval=i.mgid  id="mord_" + i.mgid value=i.mgorder style="width: 50px")
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-font(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="mgicon" colid="mgid" colidval=i.mgid  id="mic_" + i.mgid value=i.mgicon)
 					td 
-						input(type="hidden" class="update form-control input-sm order" col="mgorder" colid="mgid" colidval=i.mgid  id="mord_" + i.mgid value=i.mgorder)
-						div(class="input-group")
+						input(type="hidden" col="mgorder" colid="mgid" colidval=i.mgid  id="mord_" + i.mgid value=i.mgorder)
+						div.input-group
 							select.form-control.input-sm.update(col="mgtype" colidval=i.mgid colid="mgid" id="mgtype_" + i.mgid)
 								option(selected="selected" disabled) Header Type
 								if i.mgtype=="panel-success"
@@ -57,15 +52,18 @@ block content
 									option(value="panel-info" selected) Important Item
 								else
 									option(value="panel-info") Important Item  
-					td(class="text-center")
+					td.text-center
 						if i.mgactive === true
-							input(type="checkbox" checked class="update" col="mgactive" colid="mgid" colidval=i.mgid  id="mact_" + i.mgid)
+							input.update(type="checkbox" checked col="mgactive" colid="mgid" colidval=i.mgid  id="mact_" + i.mgid)
 						else
-							input(type="checkbox" class="update" col="mgactive" colid="mgid" colidval=i.mgid  id="mact_" + i.mgid)
+							input.update(type="checkbox" col="mgactive" colid="mgid" colidval=i.mgid  id="mact_" + i.mgid)
 					td 
-						div(class="btn-group pull-right")
-							button(class="btn btn-danger btn-sm btn-delete" dbcolid="mgid" dbcolidval=i.mgid id="btn_del_" + i.mgid)
-								span(class="glyphicon glyphicon-trash" aria-hidden="true")
+						div.btn-group.pull-right
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="mgid" dbcolidval=i.mgid id="btn_del_" + i.mgid)
+								span.glyphicon.glyphicon-trash(aria-hidden="true")
+								
+		input( type="hidden" id="apppage" value="/menu/desktop_icons_setup")
+		input( type="hidden" id="dbtable" value="menu_groups")
 		
 		// - Add sortable rows by drag and drop.
 		// - We use this to order the menu, then save the order to the database

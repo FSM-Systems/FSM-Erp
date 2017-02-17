@@ -1,0 +1,13 @@
+div.row.gctl-header
+	div.col-sm-2.text-center.header-vertical-align
+		img.logo.small_logo.pull-left(src="/images/" + logo data-toggle="tooltip" data-placement="right" title="BACK TO DESKTOP")
+	div.col-sm-8.text-center.header-vertical-align 
+		span(id="headingtext") 
+	div.col-sm-2.text-center.header-vertical-align
+		div.pull-right
+			button(type="button" class="btn btn-default hide" id="refreshpage" style="margin-right: 3px;" data-toggle="tooltip" data-placement="bottom" title="REFRESH PAGE")
+				span(class="glyphicon glyphicon-refresh" aria-hidden="true") 	
+			button(type="button" class="btn btn-default hide" id="newitem" style="margin-right: 3px;" data-toggle="tooltip" data-placement="bottom" title="CREATE NEW ITEM")
+				span(class="glyphicon glyphicon-cog" aria-hidden="true") 			
+			button(type="button" class="btn btn-default" id="logout" data-toggle="tooltip" data-placement="bottom" title="LOGOUT")
+				span(class="glyphicon glyphicon-log-out" aria-hidden="true")

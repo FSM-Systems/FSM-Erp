@@ -2,7 +2,7 @@
 
 block content
 	// - h4 #{pagename}
-	table(class="table table-hover" style="width: 100%" id="dbtable" dbtable="login" apppage="/system_users_setup")
+	table.table.table-hover(style="width: 100%")
 		thead
 			tr 
 				th.text-center ID
@@ -10,7 +10,7 @@ block content
 				th Password
 				th User Description
 				th Email
-				th(class="text-center") User Active?
+				th.text-center User Active?
 				th
 		
 		tbody
@@ -21,36 +21,37 @@ block content
 				tr
 					td #{u.lid}
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-user" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="lusername" colid="lid"  colidval=u.lid id="lu_" + u.lid value=u.lusername)
+						div.input-group
+							span.input-group-addon
+								span.glyphicon.glyphicon-user(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="lusername" colid="lid"  colidval=u.lid id="lu_" + u.lid value=u.lusername)
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-lock" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="lpassword" colid="lid" colidval=u.lid  id="lp_" + u.lid value=u.lpassword)
+						div.input-group
+							span.input-group-addon
+								span.glyphicon.glyphicon-lock(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="lpassword" colid="lid" colidval=u.lid  id="lp_" + u.lid value=u.lpassword)
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-font" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="ldescription" colid="lid" colidval=u.lid  id="ld_" + u.lid value=u.ldescription)
+						div.input-group
+							span.input-group-addon
+								span.glyphicon.glyphicon-font(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="ldescription" colid="lid" colidval=u.lid  id="ld_" + u.lid value=u.ldescription)
 					td 
-						div(class="input-group")
-							span(class="input-group-addon") 
-								span(class="glyphicon glyphicon-envelope" aria-hidden="true")
-							input(type="text" class="update form-control input-sm" col="lemail" colid="lid" colidval=u.lid  id="le_" + u.lid value=u.lemail)
-					td(class="text-center")
+						div.input-group
+							span.input-group-addon
+								span.glyphicon.glyphicon-envelope(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="lemail" colid="lid" colidval=u.lid  id="le_" + u.lid value=u.lemail)
+					td.text-center
 						if u.lactive === true
-							input(type="checkbox" checked class="update" col="lactive" colid="lid" colidval=u.lid  id="la_" + u.lid)
+							input.update(type="checkbox" checked col="lactive" colid="lid" colidval=u.lid  id="la_" + u.lid)
 						else
-							input(type="checkbox" class="update" col="lactive" colid="lid" colidval=u.lid  id="la_" + u.lid)
+							input.update(type="checkbox" col="lactive" colid="lid" colidval=u.lid  id="la_" + u.lid)
 					td 
-						div(class="btn-group pull-right")
-							button(class="btn btn-info btn-sm btn-setup" setuplink="/btn-setup/user_permissions" param=u.lid)
-								span(class="glyphicon glyphicon-cog" aria-hidden="true")
+						div.btn-group.pull-right
+							button.btn.btn-info.btn-sm.btn-setup(setuplink="/btn-setup/user_permissions" param=u.lid)
+								span.glyphicon.glyphicon-cog(aria-hidden="true")
 								
-							button(class="btn btn-danger btn-sm btn-delete" dbcolid="lid" dbcolidval=u.lid id="btn_del_" + u.lid )
-								span(class="glyphicon glyphicon-trash" aria-hidden="true")
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="lid" dbcolidval=u.lid id="btn_del_" + u.lid )
+								span.glyphicon.glyphicon-trash(aria-hidden="true")
 								
-							
+	input( type="hidden" id="apppage" value="/menu/system_users_setup")
+	input( type="hidden" id="dbtable" value="login")
