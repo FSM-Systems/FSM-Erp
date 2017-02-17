@@ -1,16 +1,17 @@
 // - This script creates dynamically an autocomplete on any element that has a class=autocomplete set
 // - In order to function the element has to contain an attribute ac-source=<express route that returns JSON data>
 // - and an extra <input type=hidden> element created in the form. The name of the hidden input has to be the same
-// - as the field in the database that has to be updated. The autcomplete input can be named differently such as <field_name>_txt
+// - as the field in the database that has to be updated. The autcomplete input has to be named as the field with _txt added
+// - example: <field_name>_txt
 
 // - This will make the frmnewitem insert function work properly.
 
 // - Example
 
-// - autocomplete element -> txtmsg
-// - hidden input element -> txtmsg_id
+// - autocomplete element -> txtmsg_txt
+// - hidden input element -> txtmsg
 
-// - It will set the text in the input box and the database id of the selected item in the <element>_id hidden input
+// - It will set the text in the input box and the database id of the selected item in the <element> hidden input
 
 // - This can be used to update/insert into the database
 
@@ -45,7 +46,7 @@ script.
 				event.preventDefault()
 				// Put text in input element and is in hidden element
 				$(this).val(ui.item.label);
-				$("#" + $(this).attr("id") + "_id").val(ui.item.value)
+				$("#" + $(this).attr("id").replace("_txt","")).val(ui.item.value) // Id value that will be sent to DB for update
 			},
 			change: function (event, ui) {
 				if (!ui.item) {
@@ -55,6 +56,14 @@ script.
 		}
 		
 		$(this).autocomplete(autocomplete_options).on("dblclick", function() {
-			$(this).autocomplete("search");
+			$(this).autocomplete("search").data("autocomplete")._renderItem = function (ul, item) {
+				var newText = String(item.value).replace(
+					new RegExp(this.term, "gi"),
+					"<span style='font-weight: bold; text-decoration: underline' class='ui-state-highlight'>$&</span>");
+					return $("<li></li>")
+					.data("item.autocomplete", item)
+					.append("<a>" + newText + "</a>")
+					.appendTo(ul);
+			};
 		});
 	})
