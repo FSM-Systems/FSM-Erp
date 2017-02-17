@@ -7,17 +7,16 @@ block content
 			strong
 				u Drag menu options to order them in the way that they will be ordered in the menu
 		
-	table(class="table table-hover sortable" id="dbtable" dbtable="menu")
+	table(class="table table-hover sortable help" id="dbtable" dbtable="menu")
 		thead
 			tr 
 				th.text-center ID
-				th Menu Option Description
-				th(data-toggle="tooltip" data-placement="bottom" title="Link to the route that will load the page in #workspace div") Express.js API Link
-				th(data-toggle="tooltip" data-placement="bottom" title="Link to the route that loads the page in the New Item div") API New item link
-				th(data-toggle="tooltip" data-placement="bottom" title="Long description of the menu function") Detail of Menu Item
-				//th(data-toggle="tooltip" data-placement="bottom" title="Order in which the items are displayed in the main menu") Order
-				th(data-toggle="tooltip" data-placement="bottom" title="Which Desktop Icon does this menu item belong to") Menu Group
-				th(class="text-center" data-toggle="tooltip" data-placement="bottom" title="Show or hide this item in the menu?") Active?
+				th.help(data-toggle="popover" data-placement="bottom" title="Menu Option Description Help" data-content="Name displayed in the left navigation menu") Menu Option Description
+				th.help(data-toggle="popover" data-placement="bottom" title="Express.js API Help" data-content="Link to the route that will load the page in #workspace div. Just use the name of the route as /menu/ will be added automatically as this is the route handling the link.") Express.js API Link
+				th.help(data-toggle="popover" data-placement="bottom" title="API New item link Help" data-content="Link to the route that loads the page in the New Item div. Just use the name of the route as /new_item/ will be added automatically as this is the route handling the link") API New item link
+				th.help(data-toggle="popover" data-placement="bottom" title="Detail of Menu Item Help" data-content="Long description of the menu function. Appears on menu tooltip") Detail of Menu Item
+				th.help(data-toggle="popover" data-placement="bottom" title="Menu Group Help"  data-content="The Desktop Icon does this menu item belong to. Will be a sub selecton of the icon in /desktop when /main opens") Menu Group
+				th.help.text-center(data-toggle="popover" data-placement="bottom" title="Active Help" data-content="Show or hide this item in the menu?") Active?
 				th
 		
 		tbody
