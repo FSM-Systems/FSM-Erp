@@ -7,7 +7,7 @@ var db = require('../db.js');
 
 // Warehouse Items 
 router.get('/warehouse_items', function (req, res, next) {
-	db.query("select widescription as label, wiid as value from warehouse_items where upper(widescription) like '%' || upper($1) || '%'", [req.query.term], function (err, result) {
+	db.query("select wisku || ' - ' || widescription as label, wiid as value from warehouse_items where (upper(widescription) like '%' || upper($1) || '%' or upper(wisku) like '%' || upper($1) || '%')", [req.query.term], function (err, result) {
 		res.json(result.rows)
 	})
 })
@@ -15,6 +15,13 @@ router.get('/warehouse_items', function (req, res, next) {
 // Warehouses 
 router.get('/warehouses', function (req, res, next) {
 	db.query("select wdescription as label, wid as value from warehouses where upper(wdescription) like '%' || upper($1) || '%'", [req.query.term], function (err, result) {
+		res.json(result.rows)
+	})
+})
+
+// Users 
+router.get('/users', function (req, res, next) {
+	db.query("select ldescription as label, lid as value from login where upper(ldescription) like '%' || upper($1) || '%'", [req.query.term], function (err, result) {
 		res.json(result.rows)
 	})
 })
