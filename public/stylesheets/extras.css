@@ -1,0 +1,17 @@
+/* Highlight text in autocompletes */
+.ui-state-highlight {
+
+}
+
+/* styles for autocomplete as boostrap overrides jQuery ones */
+.ui-autocomplete {
+	font-size: 12px ! important;
+}
+
+.ui-autocomplete .ui-menu-item .ui-corner-all {
+	background-color: green ! important;
+}
+
+.ui-autocomplete .ui-menu-item .ui-state-focus {
+	background-color: red ! important;
+}
