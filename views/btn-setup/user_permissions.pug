@@ -1,23 +1,23 @@
 block content
 	- var count = 0
 	div(class="container")
-		div(class="row")
+		div.row
 			span
 				strong #{title} for #{username} - UID: #{userid}
-		div(class="row")
+		div.row
 			each p in menu
 				div(class="col-md-3 text-left")
-					input(type="checkbox" class="perms" id="menu_" + p.mid)
+					input.perms(type="checkbox" id="menu_" + p.mid)
 					label(for="menu_" + p.mid) &nbsp;#{p.mdescription}
 				- count++
 						
 				if ( count % 4 == 0 )
-					div(class="row")
+					div.row
 					
-		div(class="row")
-			button(class="btn btn-default" id="select_all") Select All 
+		div.row
+			button.btn.btn-default(id="select_all") Select All 
 			span &nbsp;
-			button(class="btn btn-default" id="update_perms") Update Permissions
+			button.btn.btn-default(id="update_perms") Update Permissions
 						
 		script.
 			$(document).ready(function () {
