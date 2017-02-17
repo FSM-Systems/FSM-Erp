@@ -50,4 +50,14 @@ router.get('/new_equipment_model', function (req, res, next) {
 	res.render('new_item/new_equipment_model', { title: 'ADD A NEW EQUIPMENT MODEL'} );
 })
 
+// New stock model 
+router.get('/new_in_stock_item', function (req, res, next) {
+	res.render('new_item/new_in_stock_item', { title: 'ADD SINGLE STOCK ITEM TO WAREHOUSE'} );
+})
+
+// New goods issue note
+router.get('/new_goods_issue_note', function (req, res, next) {
+	res.render('new_item/new_good_issue_note', { title: 'CREATE NEW GOODS ISSUE NOTE' } );
+})
+
 module.exports = router;
