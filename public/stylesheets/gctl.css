@@ -1,6 +1,7 @@
-body, * {
+html, body, * {
 	font-family: 'Raleway', sans-serif;
-	font-weight: 100;
+	font-weight: 300;
+	margin: 0;
 }
 
 .centered {
@@ -25,8 +26,8 @@ body, * {
 
 /* Header tools */
 .header-vertical-align {
-	height: 45px;
-	line-height: 45px;
+	/height: 45px;
+	/line-height: 45px;
 }
 
 .gctl-header {
@@ -41,56 +42,57 @@ div.tooltip-inner {
 	max-width: 500px;
 }
 
+/* Table dbtable header for popover, when class help is added th become red so we know that there is a help popover */
+.help th:hover {
+	color: tomato;
+	text-decoration: underline; 
+	font-weight: 400;
+}
+
 /* Remove outlines such as in chrome */
 *:focus {
     outline: 0 ! important;
 }
 
 /* all input text align center*/
-
 input, textarea, label {
 	text-align: center;
 	cursor: pointer;
 	font-weight: 400;
 }
 
-label:hover {
+/* Labels for help add help class to them */
+label.help:hover {
 	color: red;
 }
 
 /* Logo CSS */
 .logo {
 	cursor: pointer;
+	margin-top -10px;
 }
 
 .logo:hover {
 	opacity: 0.7;
 }
 
-.small_logo {
-	height: 30px;
-	position: absolute;
-	left: 8px;
-	top: 8px;
-}
-
 /* menu css */
 .mainmenu {
-	border-left-width: 2px;
-	border-left-style: solid;
-	border-left-color: white;
-	margin-left: -12px;
+	border-right-width: 2px;
+	border-right-style: solid;
+	border-right-color: white;
+	margin-left: -15px;
+	height: 100%;
 }
 
 .mainmenu tr td {
 	padding: 10px;
-	font-weight: 400;
 }
 
 .mainmenu tr td:hover {
-	border-left-color: green;
-	border-left-style: solid;
-	border-left-width: 2px;
+	border-right-color: green;
+	border-right-style: solid;
+	border-right-width: 2px;
 	color: green;
 	cursor: pointer;
 	background-color: #edffdd; /*#f9eafc*/
@@ -98,9 +100,9 @@ label:hover {
 
 /* Selected menu item*/
 .mainmenu_item_selected {
-	border-left-color: blue;
-	border-left-style: solid;
-	border-left-width: 2px;
+	border-right-color: blue;
+	border-right-style: solid;
+	border-right-width: 2px;
 	background-color: #f7faff; /*#f9eafc*/
 }
 
@@ -117,13 +119,14 @@ fixed, centered on top
   top: 5px;
   margin-left: 25%; 
   width: 50%;
+  z-index: 10000;
 }
 /* Boostrap Table Exta CSS */
 .table {
 	margin: 0 auto;
 }
 
-table th {
+table th.help {
 	cursor: pointer;
 }
 
@@ -164,7 +167,8 @@ table th {
 	cursor: pointer;
 }
 
-.panel:hover {
+/* Shadow only for desktop icons panel as otherwise it would appear everywhere and it's annoying! */
+.dsk-panel:hover {
 	-webkit-box-shadow: -1px 7px 39px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: -1px 7px 39px 0px rgba(0,0,0,0.75);
 	box-shadow: -1px 7px 39px 0px rgba(0,0,0,0.75);
