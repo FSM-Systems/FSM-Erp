@@ -25,7 +25,6 @@ $(document).ready(function () {
 			}		
 		});
 		if($("#frmnewitem").valid() == true) {
-			console.log($("#frmnewitem").find(":input").not(".nodb").serializeArray())
 			$.ajax({
 				type: 'POST',
 				url: '/api/db/insert_db_field',
@@ -61,7 +60,6 @@ $(document).ready(function () {
 			}		
 		});
 		if($("#frmnewitem").valid() == true) {
-			console.log($("#frmnewitem").find(":input").not(".nodb").serializeArray())
 			$.ajax({
 				type: 'POST',
 				url: '/api/db/insert_db_field',
