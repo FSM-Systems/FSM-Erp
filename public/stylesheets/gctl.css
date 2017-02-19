@@ -68,8 +68,9 @@ label.help:hover {
 
 /* Logo CSS */
 .logo {
+	position: absolute;
 	cursor: pointer;
-	margin-top -10px;
+	top: 4px;
 }
 
 .logo:hover {
@@ -132,9 +133,10 @@ table th.help {
 
 /* Footer div for additions to DB*/
 .footer {
-	position: fixed;
+	overflow: scroll;
+	position: absolute;
 	bottom:  0px;
-	height: 65%;
+	height: 60%;
 	background-color: #f6f6f6;
 	border-top-color: lightgray;
 	border-top-style: solid;
