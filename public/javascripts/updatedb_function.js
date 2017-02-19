@@ -1,9 +1,9 @@
 // - Update the DB value using the /api/update_db_value route
-// - the column name is stored in the attributes of the input field
-// - The column id eg. lid in login table is stored in attribute colid of input field
-// - The name of the table to update is taken from the actual HTML table on th page 
-// - so we have to give it an attribute called dbtable eg. <table id="dbtable" dbtable="login">
-// - The ID value is stores in the attribute colidval of the input
+// - the column name is stored in the <col> attributes of the input field
+// - The column id eg. lid in login table is stored in <colid> attribute
+// - The column id value eg. 1 2 3 (lid) in login table is stored in <colidval> attribute 
+// - The name of the table to update is taken from <input type=hjidden id=dbtable value={table name in database}> 
+// - The value is taken from the input itself -> if its a checkbox it will be converted to boolean
 // - This will update the tables in the Postgres Database
 $(document).ready(function () {
 	$(document).on("focus", ".update", function () {
@@ -27,7 +27,7 @@ $(document).ready(function () {
 			type: 'POST',
 			url: '/api/db/update_db_field',
 			data: {
-				table: $("#dbtable").attr("dbtable"),
+				table: $("#dbtable").val(),
 				dbcol: $(this).attr("col"),
 				dbcolid: $(this).attr("colid"),
 				dbcolval: dbcolval,

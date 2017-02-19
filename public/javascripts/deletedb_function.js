@@ -1,13 +1,8 @@
-// - Insert into the DB value using the /api/insert_db_value route
-// - The function serializes the form which contains all the info such as table and fields to update
-// - The page has to be created with 2 hidden fields whcih are dbtable and returnid which are used in the insert query
-// - In order to reload the page after a sucessfull insert the hidden input app-page has to be set to the page we want to reload in workspace
-// - After done clear all form Items
-
 // - Delete a row from DB table
 // - The button handler is included. You have to add a button with class="btndelete"
 // - In order to identify the line that has to be deleted we have to pass the id from the DB in the dbcolid attribute of the button
 // - The id value to be deleted is passed as attribute to the button like dbcolidval=<id value from DB>
+// - The table from where to delete is passed as value of <input type=hidden id=dbtable>
 
 
 $(document).ready(function () {
@@ -20,7 +15,8 @@ $(document).ready(function () {
 				data: {
 					dbcolid: $(this).attr("dbcolid"),
 					dbcolidval: $(this).attr("dbcolidval"),
-					table: $("#dbtable").attr("dbtable")
+					//table: btn.attr("dbtable")
+					table: $("#dbtable").val()
 				},
 				success: function (data) {
 					if (data == "OK") {
@@ -28,7 +24,8 @@ $(document).ready(function () {
 						// remove row from table after succesfull DB Action
 						btn.closest("tr").remove();
 					} else {
-						$("#error_db").slideDown().delay(1000).slideUp();
+						//$("#error_db").slideDown().delay(1000).slideUp();
+						alert(JSON.stringify(data))
 					}
 				}, 
 				error: function () {
