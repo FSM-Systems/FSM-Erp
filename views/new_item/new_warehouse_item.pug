@@ -1,47 +1,44 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
-	div(class="container")
-		div(class="row")
+	div.container
+		div.row
 			span &nbsp;
-		div(class="row")
-			div(class="col-sm-3")
-			div(class="col-sm-6")
+		div.row
+			div.col-sm-3
+			div.col-sm-6
 				div(class="panel panel-info")
 					div(class="panel-heading")
 						h5 #{title}
 					div(class="panel-body")
 						form(class="form-horizontal" id="frmnewitem")
-							div(class="form-group")
-								div(class="col-sm-6")
-									input(type="text" class="form-control input-sm" name="wisku" id="wisku" placeholder="Item Code" required)
-								div(class="col-sm-6")
-									input(type="text" class="form-control input-sm" name="widescription" id="widescription" placeholder="Description" required)
-							div(class="form-group")
-								div(class="col-sm-6")
-									input(type="number" class="form-control input-sm" name="wi_unit_cost" id="wisku" placeholder="Item Cost" required)
-								div(class="col-sm-6")
-									input(type="number" class="form-control input-sm" name="wi_unit_price" id="widescription" placeholder="Item Resell Price" required)
-							div(class="form-group")
-								div(class="col-sm-6")
-									select(class="form-control input-sm" name="wi_unit" id="wi_unit" required)
+							div.form-group
+								div.col-sm-6
+									input.form-control.input-sm(type="text" name="wisku" id="wisku" placeholder="Item Code" required)
+								div.col-sm-6
+									input.form-control.input-sm(type="text" name="widescription" id="widescription" placeholder="Description" required)
+							div.form-group
+								div.col-sm-6
+									input.form-control.input-sm(type="number" name="wi_unit_cost" id="wisku" placeholder="Item Cost" required)
+								div.col-sm-6
+									input.form-control.input-sm(type="number" name="wi_unit_price" id="widescription" placeholder="Item Resell Price" required)
+							div.form-group
+								div.col-sm-6
+									select.form-control.input-sm(name="wi_unit" id="wi_unit" required)
 										option(selected="selected") Select Unit
 										for u in units
 											option(value=u.wuid) #{u.wuunit}
-										
-								div(class="col-sm-6")
-									select(class="form-control input-sm" name="wiforequip" id="wiforequip" required)
+								div.col-sm-6
+									select.form-control.input-sm(name="wiforequip" id="wiforequip" required)
 										option(selected="selected") Select Model
 										for em in equip_models
 											option(value=em.emid) #{em.emdescription}
-									
-							div(class="form-group")
+							div.form-group
 								input(type="hidden" name="dbtable" value="warehouse_items")
 								input(type="hidden" name="returnid" value="wiid")
 								input(type="hidden" name="wi_user" id="wi_user" value=session.user_id)
 								input(type="hidden" id="apppage" value="/menu/warehouse_items_Setup")
-								button(class="btn btn-success" type="button" id="btninsert") ADD NEW STOCK ITEM
-									
-				div(class="col-sm-3")
+								button.btn.btn-success(type="button" id="btninsert") ADD NEW STOCK ITEM
+				div.col-sm-3
 					
 							

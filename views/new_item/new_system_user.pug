@@ -1,39 +1,39 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
-	div(class="container")
-		div(class="row")
+	div.container
+		div.row
 			span &nbsp;
-		div(class="row")
-			div(class="col-sm-3")
-			div(class="col-sm-6")
-				div(class="panel panel-info")
-					div(class="panel-heading")
+		div.row
+			div.col-sm-3
+			div.col-sm-6
+				div.panel.panel-info
+					div.panel-heading
 						h5 #{title}
-					div(class="panel-body")
-						form(class="form-horizontal" id="frmnewitem")
-							div(class="form-group")
-								label(for="lusername" class="col-sm-2 control-label") Username:
-								div(class="col-sm-10")
-									input(type="text" class="form-control input-sm" name="lusername" id="lusername" placeholder="Assigned username" required)
-							div(class="form-group")
-								label(for="lpassword" class="col-sm-2 control-label") Password:
-								div(class="col-sm-10")
-									input(type="text" class="form-control input-sm" name="lpassword" id="lpassword" placeholder="Assigned password" required)
-							div(class="form-group")
-								label(for="ldescription" class="col-sm-2 control-label") Description:
-								div(class="col-sm-10")
-									input(type="text" class="form-control input-sm" name="ldescription" id="ldescription" placeholder="User Description" required)
-							div(class="form-group")
-								label(for="lemail" class="col-sm-2 control-label") Email:
-								div(class="col-sm-10")
-									input(type="email" class="form-control input-sm" name="lemail" id="lemail" placeholder="User Email" required)
-							div(class="form-group")
+					div.panel-body
+						form.form-horizontal(id="frmnewitem")
+							div.form-group
+								label.col-sm-2.control-label(for="lusername") Username:
+								div.col-sm-10
+									input.form-control.input-sm(type="text" name="lusername" id="lusername" placeholder="Assigned username" required)
+							div.form-group
+								label.col-sm-2.control-label(for="lpassword") Password:
+								div.col-sm-10
+									input.form-control.input-sm(type="text" name="lpassword" id="lpassword" placeholder="Assigned password" required)
+							div.form-group
+								label.col-sm-2.control-label(for="ldescription") Description:
+								div.col-sm-10
+									input.form-control.input-sm(type="text" name="ldescription" id="ldescription" placeholder="User Description" required)
+							div.form-group
+								label.col-sm-2.control-label(for="lemail") Email:
+								div.col-sm-10
+									input.form-control.input-sm(type="email" name="lemail" id="lemail" placeholder="User Email" required)
+							div.form-group
 								input(type="hidden" name="dbtable" value="login")
 								input(type="hidden" name="returnid" value="lid")
 								input(type="hidden" name="l_user" id="l_user" value=session.user_id)
 								input(type="hidden" id="apppage" value="/menu/system_users_setup")
-								button(class="btn btn-success" type="button" id="btninsert") ADD USER
-		div(class="col-sm-3")
+								button.btn.btn-success(type="button" id="btninsert") ADD USER
+		div.col-sm-3
 			
 							

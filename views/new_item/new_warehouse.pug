@@ -1,26 +1,26 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
-	div(class="container")
-		div(class="row")
+	div.container
+		div.row
 			span &nbsp;
-		div(class="row")
-			div(class="col-sm-3")
-			div(class="col-sm-6")
-				div(class="panel panel-info")
-					div(class="panel-heading")
+		div.row
+			div.col-sm-3
+			div.col-sm-6
+				div.panel.panel-info
+					div.panel-heading
 						h5 #{title}
-					div(class="panel-body")
-						form(class="form-horizontal" id="frmnewitem")
-							div(class="form-group")
-								label(for="wdescription" class="col-sm-2 control-label") Description:
-								div(class="col-sm-10")
-									input(type="text" class="form-control input-sm" name="wdescription" id="wdescription" placeholder="Warehouse description" required)
-							div(class="form-group")
+					div.panel-body
+						form.form-horizontal(id="frmnewitem")
+							div.form-group
+								label.col-sm-2.control-label(for="wdescription") Description:
+								div.col-sm-10
+									input.form-control.input-sm(type="text" name="wdescription" id="wdescription" placeholder="Warehouse description" required)
+							div.form-group
 								input(type="hidden" name="dbtable" value="warehouses")
 								input(type="hidden" name="returnid" value="wid")
 								input(type="hidden" name="w_user" id="w_user" value=session.user_id)
 								input(type="hidden" id="apppage" value="/menu/warehouse_setup")
-								button(class="btn btn-success" type="button" id="btninsert") ADD WAREHOUSE
-		div(class="col-sm-3")
+								button.btn.btn-success(type="button" id="btninsert") ADD WAREHOUSE
+		div.col-sm-3
 			

@@ -1,47 +1,47 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
-	div(class="container")
-		div(class="row")
+	div.container
+		div.row
 			span &nbsp;
-		div(class="row")
-			div(class="col-sm-2")
-			div(class="col-sm-8")
-				div(class="panel panel-info")
-					div(class="panel-heading")
+		div.row
+			div.col-sm-2
+			div.col-sm-8
+				div.panel.panel-info
+					div.panel-heading
 						h5 #{title}
-					div(class="panel-body")
-						form(class="form-horizontal" id="frmnewitem")
-							div(class="form-group")
-								label(for="mdescription" class="col-sm-4 control-label") Option Text:
-								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mdescription" id="mdescription" placeholder="Menu option Text" required)
-							div(class="form-group")
-								label(for="mlink" class="col-sm-4 control-label") API Link:
-								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mlink" id="npassword" placeholder="API Link" required)
-							div(class="form-group")
-								label(for="mnewitemlink" class="col-sm-4 control-label") API New Item Link:
-								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mnewitemlink" id="mnewitemlink" placeholder="API Link for new Item" required)
-							div(class="form-group")
-								label(for="mlongdescription" class="col-sm-4 control-label") Description:
-								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mlongdescription" id="mlongdescription" placeholder="Detailed description of menu item" required)
-							div(class="form-group")
-								label(for="mgroup" class="col-sm-4 control-label") Menu Group:
-								div(class="col-sm-8")
-									select(class="form-control input-sm" name="mgroup" id="mgroup" required)
+					div.panel-body
+						form.form-horizontal(id="frmnewitem")
+							div.form-group
+								label.col-sm-4.control-label(for="mdescription") Option Text:
+								div.col-sm-8
+									input.form-control.input-sm(type="text" name="mdescription" id="mdescription" placeholder="Menu option Text" required)
+							div.form-group
+								label.col-sm-4.control-label(for="mlink") API Link:
+								div.col-sm-8
+									input.form-control.input-sm(type="text" class="" name="mlink" id="npassword" placeholder="API Link" required)
+							div.form-group
+								label.col-sm-4.control-label(for="mnewitemlink") API New Item Link:
+								div.col-sm-8
+									input.form-control.input-sm(type="text" name="mnewitemlink" id="mnewitemlink" placeholder="API Link for new Item" required)
+							div.form-group
+								label.col-sm-4.control-label(for="mlongdescription") Description:
+								div.col-sm-8
+									input.form-control.input-sm(type="text" name="mlongdescription" id="mlongdescription" placeholder="Detailed description of menu item" required)
+							div.form-group
+								label.col-sm-4.control-label(for="mgroup") Menu Group:
+								div.col-sm-8
+									select.form-control.input-sm(name="mgroup" id="mgroup" required)
 										option(selected="selected") Select Menu Group
 										for di in menugroups
 											option(value=di.mgid) #{di.mgdescription}
 										
-							div(class="form-group")
+							div.form-group
 								input(type="hidden" name="dbtable" value="menu")
 								input(type="hidden" name="returnid" value="mid")
 								input(type="hidden" name="m_user" id="m_user" value=session.user_id)
 								input(type="hidden" id="apppage" value="/menu/system_menu_setup")
-								button(class="btn btn-success" type="button" id="btninsert") ADD MENU ITEM
-		div(class="col-sm-2")
+								button.btn.btn-success(type="button" id="btninsert") ADD MENU ITEM
+		div.col-sm-2
 			
 							

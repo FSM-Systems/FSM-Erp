@@ -1,30 +1,30 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
-	div(class="container")
-		div(class="row")
+	div.container
+		div.row
 			span &nbsp;
-		div(class="row")
-			div(class="col-sm-3")
-			div(class="col-sm-6")
-				div(class="panel panel-info")
-					div(class="panel-heading")
+		div.row
+			div.col-sm-3
+			div.col-sm-6
+				div.panel.panel-info
+					div.panel-heading
 						h5 #{title}
-					div(class="panel-body")
-						form(class="form-horizontal" id="frmnewitem")
-							div(class="form-group")
-								label(for="mgdescription" class="col-sm-4 control-label") Description:
-								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mgdescription" id="mgdescription" placeholder="Icon Text" required)
-							div(class="form-group")
-								label(for="mgicon" class="col-sm-4 control-label") Icon File:
-								div(class="col-sm-8")
-									input(type="text" class="form-control input-sm" name="mgicon" id="mgicon" placeholder="Icon File")
-							div(class="form-group")
+					div.panel-body
+						form.form-horizontal(id="frmnewitem")
+							div.form-group
+								label.col-sm-4.control-label(for="mgdescription") Description:
+								div.col-sm-8
+									input.form-control.input-sm(type="text" name="mgdescription" id="mgdescription" placeholder="Icon Text" required)
+							div.form-group
+								label.col-sm-4.control-label(for="mgicon") Icon File:
+								div.col-sm-8
+									input.form-control.input-sm(type="text" name="mgicon" id="mgicon" placeholder="Icon File")
+							div.form-group
 								input(type="hidden" name="dbtable" value="menu_groups")
 								input(type="hidden" name="returnid" value="mgid")
 								input(type="hidden" name="mg_user" id="mg_user" value=session.user_id)
 								input(type="hidden" id="apppage" value="/menu/desktop_icons_setup")
-								button(class="btn btn-success" type="button" id="btninsert") ADD DESKTOP ICON
-		div(class="col-sm-3")
+								button.btn.btn-success(type="button" id="btninsert") ADD DESKTOP ICON
+		div.col-sm-3
 			

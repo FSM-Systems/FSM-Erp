@@ -1,10 +1,10 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
-	div(class="container")
-		div(class="row")
+	div.container
+		div.row
 			span &nbsp;
-		div(class="row")
+		div.row
 			div.col-sm-3
 			div.col-sm-6
 				div.panel.panel-info
@@ -31,6 +31,6 @@ block content
 								input(type="hidden" name="returnid" value="wsid")
 								input(type="hidden" name="ws_user" id="ws_user" value=session.user_id)
 								input(type="hidden" id="apppage" value="/menu/in_stock_items")
-								button(class="btn btn-success" type="button" id="btninsert") ADD TO STOCK
-		div(class="col-sm-3")
+								button.btn.btn-success(type="button" id="btninsert") ADD TO STOCK
+		div.col-sm-3
 			
