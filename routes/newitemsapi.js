@@ -60,4 +60,9 @@ router.get('/new_goods_issue_note', function (req, res, next) {
 	res.render('new_item/new_good_issue_note', { title: 'CREATE NEW GOODS ISSUE NOTE' } );
 })
 
+// New supplier
+router.get('/new_supplier', function (req, res, next) {
+	res.render('new_item/new_supplier', { title: 'CREATE A NEW SUPPLIER' } );
+})
+
 module.exports = router;
