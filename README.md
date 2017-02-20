@@ -28,11 +28,11 @@ The display element will have to be called like the name of the field with an ad
 
 Place a hidden field under the display element:
 
->\<input type="hidden" name="field" id="field">\ 
+>\<input type="hidden" name="field" id="field">
 
 Add an attribute to the input element called ac-source
 
->ac-source="<name of the route in autcompletes.js>" 
+>\ac-source="<name of the route in autcompletes.js>"
 
 The library will automatically take care of filling the name in the \<input name="xxxx_txt" id="xxx_txt">\ field and the correct value in the \<input name="xxxx" id="xxxx">\ field
 You can then use the hidden field to trigger updates in the database table by folliwing the update_db_field method (add .update class)
