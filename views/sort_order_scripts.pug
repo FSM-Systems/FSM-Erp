@@ -4,7 +4,7 @@
 // The order column has to have a class=order 
 script. 
 	$(document).ready(function () {
-		$( "#dbtable tbody" ).sortable({
+		$( ".table tbody" ).sortable({
 			start: function (event, ui) {
 				// -  Get current index of menu item. We use this to calculate the update of the iems that we are going to take place in the order.
 				var startmenupos = parseInt(ui.item.index()); // Starting position of the menu item
@@ -14,7 +14,7 @@ script.
 				// - Compare to current order and if it has changed then update DB
 				// - as we do not want to make too many calls to the DB
 				var ordercount = 1;
-				$( "#dbtable tbody tr td" ).find("input.order").each(function () {
+				$( ".table tbody tr td" ).find("input.order").each(function () {
 					// Compare curent order to order value in input box. If different update DB
 					if ($(this).val() != ordercount) {
 						//console.log(ordercount + ' ' + $(this).val() + ' ---- ' +$(this).attr("colidval"))
@@ -26,14 +26,14 @@ script.
 							type: 'POST',
 							url: '/api/db/update_db_field',
 							data: {
-								table: $("#dbtable").attr("dbtable"),
+								table: $("#dbtable").val(),
 								dbcol: dbcolname,
 								dbcolid: dbcolidname,
 								dbcolval: ordercount,
 								dbcolidval: dbid
 							},
 							success: function (data) {
-								console.log(data) // DEBUG: simple just log to console the error from database otherwise page could be too heavy 
+								//console.log(data) // DEBUG: simple just log to console the error from database otherwise page could be too heavy 
 							},
 							error: function () {
 								alert("THERE WAS AN ERROR UPDATING THE DB!")
