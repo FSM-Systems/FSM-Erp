@@ -31,6 +31,8 @@ block content
 							span.input-group-addon
 								span(class="glyphicon glyphicon-th-list" aria-hidden="true")
 							input.update.form-control.input-sm(type="text" col="mdescription" colid="mid" colidval=m.mid id="mn_#{m.mid}" value=m.mdescription)
+							// - Ordering hidden column
+							input.order(type="hidden" value=m.morder colid="mid" colidval=m.mid col="morder")
 					td 
 						div.input-group
 							span.input-group-addon
