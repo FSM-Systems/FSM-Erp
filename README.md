@@ -36,8 +36,11 @@ Add an attribute to the input element called ac-source
 
 The library will automatically take care of filling the name in the 
 >\<input name="xxxx_txt" id="xxx_txt"> 
+
 field and the correct value in the 
+
 >\<input name="xxxx" id="xxxx"> field automatically
 
-You can then use the hidden field to send updates in the database table by folliwing the update_db_field method (add **.update** class)
-Do not use the _txt field as this will send the text and make the update fail. (If you are using foreign keys to identify the item)
+You can then use the hidden field to update the database field in the table by following the update_db_field method (simply add the  **.update** class, the **col**, **colid**, and **colidval** atrributes)
+
+Do not use the _txt field as this will send the text and make the update fail unless the fiels you are actually updating is a text or varchar. If you are using foreign keys to identify the item then use the hidden input to trogger the update.
