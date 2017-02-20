@@ -58,4 +58,4 @@ field and the correct value in the
 
 You can then use the hidden field to update the database field in the table by following the update_db_field method (simply add the  **.update** class, the **col**, **colid**, and **colidval** atrributes)
 
-Do not use the _txt field as this will send the text and make the update fail unless the fiels you are actually updating is a text or varchar. If you are using foreign keys to identify the item then use the hidden input to trogger the update.
+Do not use the _txt field as this will send the text and make the update fail unless the field you are actually updating is of text or varchar type. If you are using foreign keys to identify the item then use the hidden input to trigger the update as the foreign key will be an integer value referencing the main table.
