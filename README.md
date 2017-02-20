@@ -6,7 +6,7 @@ Management tool for workshop, stores and maintenance
 ### /api/db/update_db_field
 This is used to update a given field in the database from any input. The attributes required in the input field in order to make it work are: 
 
->col="\<column to update in db>\"
+>col="\<column_to_update_in_db>\"
 
 >colid="\<id_field_of_row_to_update_in_the_db>\", Usually the primary key
 
@@ -32,7 +32,7 @@ Place a hidden field under the display element:
 
 Add an attribute to the input element called ac-source
 
->ac-source="\<name of the route in autcompletes.js>"
+>ac-source="\<name_of_the_route_in_autcompletes.js>"
 
 The library will automatically take care of filling the name in the 
 >\<input name="xxxx_txt" id="xxxx_txt"> 
