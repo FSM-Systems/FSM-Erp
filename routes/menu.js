@@ -43,7 +43,7 @@ router.get('/desktop_icons_setup', function (req, res, next) {
 // Equipment user menu option
 router.get('/equipment_setup', function (req, res, next) {
 	// Get all users and load in table on page
-	db.query('select eid, enumberplate, edescription, \
+	db.query('select eid, enumberplate, eactive, edescription, \
 			to_char(eroadlicense, \'dd/mm/yyyy\') as eroadlicense,\
 			to_char(einsurance, \'dd/mm/yyyy\') as einsurance,\
 			to_char(etra, \'dd/mm/yyyy\') as etra, \
@@ -124,6 +124,13 @@ router.get('/in_stock_items', function (req, res, next) {
 router.get('/goods_issue_notes', function (req, res, next) {
 	db.query('select * from vw_goods_issued_notes', function (err, result) {
 		res.render('goods_issue_notes', { title: 'GOODS ISSUE NOTE', gin: result.rows });
+	})
+})
+
+// Suppliers
+router.get('/suppliers', function (req, res, next) {
+	db.query('select * from suppliers', function (err, result) {
+		res.render('suppliers', { title: 'SUPPLIERS', suppliers: result.rows });
 	})
 })
 
