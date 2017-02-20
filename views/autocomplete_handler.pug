@@ -10,10 +10,11 @@
 
 // - autocomplete element -> txtmsg_txt
 // - hidden input element -> txtmsg
-
 // - It will set the text in the input box and the database id of the selected item in the <element> hidden input
-
 // - This can be used to update/insert into the database
+// - Remember to always use uniwue identifiers based on id when using this functon in table, for example if the filed is username
+// - the create one field with id="username_" + <id serial> + "_txt"  and the hidden field as id="username_" + <id serial>
+// - the ac-source is the cource of the dropdown. Comes from one of the routes in /autocompletes
 
 script.
 	$(document).on("focus", ".autocomplete", function () {
@@ -46,7 +47,7 @@ script.
 				event.preventDefault()
 				// Put text in input element and is in hidden element
 				$(this).val(ui.item.label);
-				$("#" + $(this).attr("id").replace("_txt","")).val(ui.item.value) // Id value that will be sent to DB for update
+				$("#" + $(this).attr("id").replace("_txt","")).val(ui.item.value).trigger("change") // Id value that will be sent to DB for update
 			},
 			change: function (event, ui) {
 				if (!ui.item) {
