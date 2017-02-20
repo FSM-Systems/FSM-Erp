@@ -15,8 +15,10 @@ The class `update` has to be added to the input element
 The table name to update will come from a hidden input with id dbtable: <input type="hidden" id="dbtable" value="<table to update in db>">
 
 # /api/db/insert_db_field
+to be written
 
 # /api/db/delete_db_field
+to be written
 
 # Autocompletes
 
