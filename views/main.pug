@@ -6,33 +6,33 @@ block content
 		NProgress.start();
 		window.onload = function () { NProgress.done(); }
 
-	div(class="container-fluid")
+	div.container-fluid
 		include header.pug
-		div(class="row")
-			div(class="col-md-2" id="leftmenu")
+		div.row
+			div.col-md-2(id="leftmenu")
 				// Menu div
 				
-			div(class="col-md-10 text-center" id="workspace")
+			div.col-md-10.text-center(id="workspace")
 				// Working div
 				
 			// - This div is used when ajax calls to DB are done and it has been succesfull. It will fade in, wait for 3 seconds and fade out 
-			div(class="alert alert-success text-center center-block" id="succesfull_db" role="alert" style="display: none")
-				span(class="glyphicon glyphicon-ok" aria-hidden="true") &nbsp 
+			div.alert.alert-success.text-center.center-block(id="succesfull_db" role="alert" style="display: none")
+				span.glyphicon.glyphicon-ok(aria-hidden="true") &nbsp 
 					b Update to DB succesfull!
 			// - This div is used when ajax calls to DB have failed
-			div(class="alert alert-danger text-center center-block" id="error_db" role="alert" style="display: none")
-				span(class="glyphicon glyphicon-exclamation-sign" aria-hidden="true") &nbsp; 
+			div.alert.alert-danger.text-center.center-block(id="error_db" role="alert" style="display: none")
+				span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true") &nbsp; 
 					b Error updating DB!
 			// - This div is used when form validation has failed
-			div(class="alert alert-danger text-center center-block" id="error_validate" role="alert" style="display: none")
-				span(class="glyphicon glyphicon-exclamation-sign" aria-hidden="true") &nbsp; 
+			div.alert.alert-danger.text-center.center-block(id="error_validate" role="alert" style="display: none")
+				span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true") &nbsp; 
 					b Please check the fields as some are required!
 				
 		// Div hidden under page. This is used for adding new items to DB
-		div(class="row footer text-center" id="divnewitem" style="display: none; z-index:100000")
-			div(class="col-md-12" id="divnewitemdet")
+		div.row.footer.text-center(id="divnewitem" style="display: none; z-index:100000")
+			div.col-md-12(id="divnewitemdet")
 				// - Load contente here
 			// - div(class="col-md-1 text-center closenewitem" id="closenewitem")
-			button(class="btn btn-default btn-sm fixed-button" id="closenewitem" title="CLOSE")
-				span(class="glyphicon glyphicon-triangle-bottom" aria-hidden="true")  	
+			button.btn.btn-default.btn-sm.fixed-button(id="closenewitem" title="CLOSE")
+				span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")  	
 					
