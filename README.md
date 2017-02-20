@@ -32,10 +32,10 @@ Place a hidden field under the display element:
 
 Add an attribute to the input element called ac-source
 
->ac-source=\"<name of the route in autcompletes.js>"
+>ac-source="\<name of the route in autcompletes.js>"
 
 The library will automatically take care of filling the name in the 
->\<input name="xxxx_txt" id="xxx_txt"> 
+>\<input name="xxxx_txt" id="xxxx_txt"> 
 
 field and the correct value in the 
 
