@@ -22,14 +22,16 @@ app.use(expressUglify.middleware({
 	src: __dirname + '/public',
 }));
 
+// Routes
 var index = require('./routes/index');
 var users = require('./routes/users');
 var dbapi = require('./routes/dbapi'); // Container the routes to access and modify DB data
 var autocompleteapi = require('./routes/autocompletes'); // Container the routes to access and modify DB data
 var newitemsapi = require('./routes/newitemsapi'); // Contains the routes to divs that add new items (templates)
 var menuapi = require('./routes/menu'); // Routes for the main menu
+var btnsetup = require('./routes/btn-setup') // Routes for the setup buttons, when editing details of a line
+// App config
 var config = require('./appconfig.js') // Application configuration
-var btnsetup = require('./routes/btn-setup') // Tputes for the setup buttons, when editing details of a line
 
 // Helmet for enhanced security as from express site tutorials
 var helmet = require('helmet')
@@ -93,13 +95,10 @@ var session_test = function (req, res, next) {
 		}
 	}
 	
-	// redirect always to index with error displayed when session is invalid
+	// Redirect always to index with error displayed when session is invalid
 	// Mainly used when cleint tries to access other pages in the app without having gone through auth page
 	if (testsession == true && (req.session.loggedin == false || typeof req.session.loggedin == 'undefined')) {
          res.redirect('/?expired=true');
-		//res.writeHead(302, {
-  		//	'Location': '/?expired=true'
-		//});
     } else{
         next();
     }
