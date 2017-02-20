@@ -91,20 +91,22 @@ label.help:hover {
 }
 
 .mainmenu tr td:hover {
-	border-right-color: green;
+	border-right-color: blue;
 	border-right-style: solid;
 	border-right-width: 2px;
 	color: green;
 	cursor: pointer;
-	background-color: #edffdd; /*#f9eafc*/
+	background-color: #f7faff; /*#f9eafc*/
 }
 
 /* Selected menu item*/
 .mainmenu_item_selected {
-	border-right-color: blue;
+	border-right-color: black;
 	border-right-style: solid;
 	border-right-width: 2px;
-	background-color: #f7faff; /*#f9eafc*/
+	background-color: gray; /*#f7faff*/
+	font-weight: 700;
+	color: white;
 }
 
 .mainmenu tr td span {
