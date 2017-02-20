@@ -1,0 +1,67 @@
+
+block content
+	div.container
+		div.row
+			span &nbsp;
+		div.row
+			div.col-sm-4
+				div.panel.panel-info
+					div.panel-heading
+						span #{title} number #{gin}
+					div.panel-body
+						form.form-horizontal(id="frmnewitem")
+							div.form-group
+								label.col-sm-4.control-label(for="gindsku") Item Code:
+								div.col-sm-8
+									input.form-control.input-sm.nodb.autocomplete(type="text" ac-source="warehouse_items" name="gindsku_txt" id="gindsku_txt" placeholder="Item Code or Description" required)
+									input(type="hidden" id="gindsku" name="gindsku")
+							div.form-group
+								label.col-sm-4.control-label(for="gindqty") Quantity:
+								div.col-sm-8
+									input.form-control.input-sm(type="text" name="gindqty" id="gindqty" placeholder="Quantity" required)
+							div.form-group
+								input(type="hidden" name="dbtable" id="dbtable-det" value="goods_issue_notes_details")
+								input(type="hidden" name="returnid" value="gindid")
+								input(type="hidden" name="gind_ginid" value=ginid)
+								input(type="hidden" name="gind_user" id="gind_user" value=session.user_id)
+								input(type="hidden" id="apppage-det" value="/btn-setup/add_to_goods_received_note/param/" + ginid)
+								button.btn.btn-success(type="button" id="btninsert-det") ADD TO GOODS REQUEST
+				// - Confirm goods issue note button
+				div.panel.panel-info
+					div.panel-heading
+						span Confirm this document
+					div.panel-body
+						button.btn.btn-warning(type="button" id="btn-confirm") CONFIRM AND PRINT GOODS ISSUE NOTE
+			div.col-sm-8
+				table.table.table-striped
+					thead
+						tr
+							th(colspan="100")
+								span 
+									strong Current Items added to the Goods Received Note
+						tr
+							th.text-left Item
+							th.text-left Description
+							th.text-right Quantity
+							th.text-left Unit
+							th
+					tbody
+						if items.length == 0
+							tr
+								td(colspan="100") No results, please add a items to this good issued note
+						// - Load existing items if there
+						for i in items
+							tr
+								td.text-left
+									span #{i.wisku}
+								td.text-left
+									span #{i.widescription}
+								td.text-right
+									span #{i.gindqty}
+								td.text-left
+									span #{i.wuunit}
+								td
+									button.btn.btn-danger.btn-sm.btn-delete.pull-right(isdetail="true" dbcolid="gindid" dbcolidval=i.gindid id="btn_del_" + i.gindid)
+										span.glyphicon.glyphicon-trash(aria-hidden="true")
+										
+							

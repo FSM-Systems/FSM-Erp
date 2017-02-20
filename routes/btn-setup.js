@@ -21,9 +21,12 @@ router.get('/user_permissions/param/:param', function (req, res, next) {
 })
 
 router.get('/add_to_goods_received_note/param/:param', function (req, res, next) {
-	res.render('btn-setup/add_to_goods_received_note.pug', {
-		title: 'Add items to Goods Received Notes',	
-		gin: req.params.param,
+	db.query('select * from vw_goods_issued_notes_details where gind_ginid=$1', [req.params.param], function (err, result) {
+		res.render('btn-setup/add_to_goods_received_note.pug', {
+			title: 'Add items to Goods Received Notes',	
+			ginid: req.params.param,
+			items: result.rows,
+		})
 	})
 })
 
