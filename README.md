@@ -1,7 +1,7 @@
 # FSM-Erp
 Management tool for workshop, stores and maintenance
 
-Database updating Routes:
+# Database updating Routes:
 
 # /api/db/update_db_field
 This is used to update a given field in the database from any input. The attributes required in the input field in order to make it work are:
@@ -20,4 +20,9 @@ The table name to update will come from a hidden input with id dbtable: <input t
 
 # Autocompletes
 
-Autocomplete impementation:. Create the route that returns label and value in JSON format in the autocomplete.js routes files
+Autocomplete impementation: Create the route that returns label and value in JSON format in the autocomplete.js routes files
+The display element will have to be called like the name of the field with an added "_txt" strin after it
+Place a <inout type="hidden" name="field" id="field"> under the display element
+Add an attribute to the input element called ac-source="<name of the route in autcompletes.js>" The library will automatically take care of filling the name in the <input name="xxxx_txt" id="xxx_txt" field and the correct value in the <input name="xxxx" id="xxxx"> field
+You can then use the hidden field to trigger updates in the dtabase table by folliwing the update_db_field method (add .update class)
+Do not use the _txt field as this will send the text and make the update fail. (If you are using foreign keys to identify the item)
