@@ -5,7 +5,7 @@ var config = require('../appconfig');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index', { title: 'Greencity', full_logo: config.full_logo, loggedout: req.query.loggedout, expired: req.query.expired, wrongcred: req.query.wrongcred })
+	res.render('index', { title: config.company_name, full_logo: config.full_logo, loggedout: req.query.loggedout, expired: req.query.expired, wrongcred: req.query.wrongcred })
 	
 	// here we destroy the session when the user click on logout button
 	// The logout button redirects here and then we destroy session after rendering page
