@@ -21,7 +21,7 @@ The table to update in the database is defined in a hidden input with id dbtable
 >\<input type="hidden" id="dbtable" value="table to update in db">\
 
 ### /api/db/insert_db_field
-The route will insert data in a table from a form on the page. The datab will be serialized from the form and passed to the route via **jQuery.ajax**. The insertion will fire on a form that has a button with **.btninsert** id for the main page and a **.btninsert-det** id for details pages.
+The route will insert data in a table from a form on the page. The data will be serialized from the form and passed to the route via **jQuery.ajax**. The insertion will fire on a form that has a button with **.btninsert** id for the main page and a **.btninsert-det** id for details pages.
 
 Besides the form data extra hidden inputs are required in the form for the function to successfully update the database:
 
@@ -37,11 +37,13 @@ Every table will record the last user to modify or create the record and a hidde
 
 >\<input type="hidden" name="user_field_in_table" id="user_field_in_table" value=session.user_id>
 
+The session value will come from express.js framework and passed to the pug template
+
 After a successfull reload we can reload the main page in #workspace div by adding the hidden input
 
 >\<input type="hidden" id="apppage" value="route_to_reload">
 
-If we do not want to reload simple change the value of the input field to **noreload**
+If we do not want to reload we can simply change the value of the input field to **noreload**
 
 ### /api/db/delete_db_field
 This route will delete a complete row from a table in the database. The **.btn-delete** class has to be added to the button triggering it in order to work. 
@@ -54,11 +56,11 @@ Extra attributes will have to be added in the button tag.
 
 >dbcolidval="value of the primary key to idetify the deleted row"...
 
-We also have to identify the table from where to delete. This is done by adding a hidden element in the page as:
+We also have to identify the table from where to delete. This is done by adding a hidden element in the page:
 
 >\<input type="hidden" id="dbtable" value="table_name">
 
-If deleting from a main page then dbtable is the appropriate tag to use. If we have to delete from a details page then the id will change to **dbtable-det** and we have to add an extra attribute **is-detail="true"** to the input as we might need to identify both the normal table and the detail table on the page. The function will take care of deleting the correct row from the tables.
+If deleting from a main page then **dbtable** is the appropriate tag to use. If we have to delete from a details page then the id will change to **dbtable-det** and we have to add an extra attribute **is-detail="true"** to the input as we might need to identify both the normal table and the detail table on the page. The function will take care of deleting the correct row from the correct tables.
 
 ### Autocompletes
 Create the route that returns label and value in JSON format in the autocomplete.js routes files
@@ -68,9 +70,9 @@ Place a hidden field under the display element:
 
 >\<input type="hidden" name="field_in_db" id="field_in_db">
 
-Add an attribute to the input element called ac-source
+Add an attribute to the input element called **ac-source**
 
->ac-source="\<name_of_the_route_in_autcompletes.js>"
+>\<input type="text" ...... ac-source="\<name_of_the_route_in_autcompletes.js>">
 
 The library will automatically take care of filling the name in the 
 
@@ -84,6 +86,19 @@ field and the correct value in the
 
 >\<input name="xxxx" id="xxxx"> field automatically
 
-You can then use the hidden field to update the database field in the table by following the update_db_field method (simply add the  **.update** class, the **col**, **colid**, and **colidval** atrributes)
+You can then use the hidden field to update the database field in the table by following the update_db_field method (simply add the  **.update** class, the **col**, **colid**, and **colidval** attributes)
 
 Do not use the _txt field as this will send the text and make the update fail unless the field you are actually updating is of text or varchar type. If you are using foreign keys to identify the item then use the hidden input to trigger the update as the foreign key will be an integer value referencing the main table.
+
+### Searchboxes
+
+Adding a searchbox to any table requires to include **views/addons/searchbox.pug** in the page and position where to apply the searchbox. A hidden input field has to be added on the page that defines the parameters of the search box as follows:
+
+-id=searchparam defines this element as the parameters store
+-searchtable=xxxx defines the table name in the database where to search the data from
+-fields=xxx,yyy,zzz defines which fields the function will look for in the table for the searched term. Can be single or comma separated. The names have to match the fields in the database.
+-value=foo the name of the page which we have to reload after the search is successfull.
+
+The suggestion is to use views to show data in main oages as this will make things more clear. You can then reference the columns with human readable name and use them in the **fields** list easily.
+
+>\input(type="hidden" id="searchparam" value="in_stock_items" searchtable="vw_warehouse_stock" fields="widescription,wisku,wdescription,emdescription")
