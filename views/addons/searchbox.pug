@@ -1,6 +1,26 @@
+// - The script will add a search box and the function to relaod the page with the results
+// - the route to search is stored in the id=searchparam hidden input
+// - we build the query string to send to the route (dbapi) in the form of
+// - /api/db/searchterm/table/<table in db>/term/<string to search>/fields/<field1>,<field2>/
+// - then load this into the workspace
+
+// - if we have already searched place the requested search term in the input
+
 form.form-inline
 	div.form-group
 		div.input-group
 			div.input-group-addon Search for items
-			input.input-sm.form-control(type="text" id="srch" placeholder="Type descriptions, models, codes ..." style="width: 300px;")
-	button.btn.btn-primary.btn-sm(id="btn-search") SEARCH DB
+			input.input-sm.form-control(type="text" id="srch" placeholder="Type descriptions, models, codes ..." style="width: 300px;" value=term)
+	button.btn.btn-primary.btn-sm.btn-primary-spacing(type="button" id="btn-search") SEARCH DB
+	button.btn.btn-info.btn-sm.btn-primary-spacing(type="button" id="btn-clear") CLEAR SEARCH
+	
+script. 
+	$(document).ready(function () {
+		$("#btn-search").click(function () {
+			$("#workspace").load("/api/db/searchterm/table/" + $("#searchparam").attr("searchtable") + "/term/" + $("#srch").val() + '/fields/' + $("#searchparam").attr("fields") + '/render/in_stock_items/arrayname/stock')
+		})
+		
+		$("#btn-clear").click(function() {
+			$("#workspace").load("/menu/" + $("#searchparam").val());
+		})
+	})

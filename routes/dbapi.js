@@ -80,4 +80,30 @@ router.post('/insert_db_field', function (req, res, next) {
 	})
 })
 
+// - /api/db/searchterm/table/<table in db>/term/<string to search>/fields/<field1>,<field2>/
+// - Search box route, will create a query string and send back result based on serach parameters
+// - will then render the calling page again with filtered results
+router.get('/searchterm/table/:table/term/:term/fields/:fields/render/:render/arrayname/:arrayname', function (req, res, next) {
+	// Split the fields and create the where clause
+	var fields = req.params.fields.split(",");
+	var strfields = '';
+	for(var f = 0; f < fields.length; f++) {
+		strfields += '(' + fields[f] + ' ilike \'%' + req.params.term + '%\') or ';
+	}
+	
+	var pagetorender = req.params.render;
+	var arrayname = req.params.arrayname;
+	var term = req.params.term;
+	
+	// Clean up the where clause from the last or
+	strfields = strfields.substr(0, strfields.length - 4);
+	db.query('select * from ' + req.params.table + ' where ' + strfields, function (err, result) {
+		if (err) {
+    			res.send(err)
+    		} else {
+    			res.render(pagetorender, { [arrayname]: result.rows, term: term })	
+    		}	
+	})
+})
+
 module.exports = router;
