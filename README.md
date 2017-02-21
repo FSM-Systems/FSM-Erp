@@ -94,10 +94,10 @@ Do not use the _txt field as this will send the text and make the update fail un
 
 Adding a searchbox to any table requires to include **views/addons/searchbox.pug** in the page and position where to apply the searchbox. A hidden input field has to be added on the page that defines the parameters of the search box as follows:
 
--id=searchparam defines this element as the parameters store
--searchtable=xxxx defines the table name in the database where to search the data from
--fields=xxx,yyy,zzz defines which fields the function will look for in the table for the searched term. Can be single or comma separated. The names have to match the fields in the database.
--value=foo the name of the page which we have to reload after the search is successfull.
+- id=searchparam defines this element as the parameters store
+- searchtable=xxxx defines the table name in the database where to search the data from
+- fields=xxx,yyy,zzz defines which fields the function will look for in the table for the searched term. Can be single or comma separated. The names have to match the fields in the database.
+- value=foo the name of the page which we have to reload after the search is successfull.
 
 The suggestion is to use views to show data in main oages as this will make things more clear. You can then reference the columns with human readable name and use them in the **fields** list easily.
 
