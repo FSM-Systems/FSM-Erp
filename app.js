@@ -108,7 +108,6 @@ var session_test = function (req, res, next) {
 app.use(session_test)
 
 app.use('/', index);
-app.use('/users', users);
 // Add API Route keeps logic clean
 // Database actions
 app.use('/api/db', dbapi);
@@ -116,7 +115,7 @@ app.use('/api/db', dbapi);
 app.use('/new_item', newitemsapi);
 // Menu action
 app.use('/menu', menuapi)
-// Autocompletes, esposes autocomplete for tables
+// Autocompletes for tables
 app.use('/autocompletes', autocompleteapi)
 // Routes for the btn-setup, for editing the details of a line
 app.use('/btn-setup', btnsetup)
@@ -134,8 +133,8 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // xxx res.locals.message = err.message;
+  // xxx res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
