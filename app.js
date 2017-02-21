@@ -65,7 +65,7 @@ app.use(session({
     // create new redis store.
     store: new RedisStore({ host: 'localhost', port: 6379, client: client, ttl : 260}),
     saveUninitialized: false,
-    //resave: true
+    resave: false
 	})
 );
 
