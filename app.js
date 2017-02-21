@@ -60,11 +60,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Setup session handling 
 app.use(session({
     secret: 'sasl76324mnasb_sdfsds*anmsbda',
-    cookie: { maxAge: parseInt(config.session_time) }, // 240 minutes session - 1 minute = 60000 millisec 
+    //cookie: { maxAge: parseInt(config.session_time) }, // 240 minutes session - 1 minute = 60000 millisec 
+    cookie: { maxAge: null }, 
     // create new redis store.
     store: new RedisStore({ host: 'localhost', port: 6379, client: client, ttl : 260}),
     saveUninitialized: false,
-    resave: true
+    //resave: true
 	})
 );
 
