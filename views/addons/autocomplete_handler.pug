@@ -17,6 +17,15 @@
 // - the ac-source is the cource of the dropdown. Comes from one of the routes in /autocompletes
 
 script.
+	// Highlight the erached text in the autocomplete list
+	$.ui.autocomplete.prototype._renderItem = function (ul, item) {
+		item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
+		return $("<li></li>")
+		.data("item.autocomplete", item)
+		.append("<a>" + item.label + "</a>")
+		.appendTo(ul);
+	};
+	
 	$(document).on("focus", ".autocomplete", function () {
 		// Get the datasource from the element attributs
 		var datasource = $(this).attr("ac-source");
@@ -26,13 +35,13 @@ script.
 			dataType: "json",
 			source: function( request, response ) {
 				$.ajax({
-					url: "/autocompletes/" + datasource, // get the source route that returns JSON from the attribut ac-source of the element 
+					url: "/autocompletes/" + datasource, // get the source route that returns JSON from the attribute ac-source of the element 
 					data: {
 						term: request.term
 					},
 					success: function(data) {
-						console.log(data)
-						var transformed  = $.map(data, function (item) {
+						//console.log(data)
+						var transformed  = $.map(data, function (item) { // we have to pass the data as object otherwise autocomplete will not work
 							return {
 								label: item.label,
 								value: item.value,										
@@ -42,7 +51,7 @@ script.
 					}
 				});
 			},
-			//minLength: 2,
+			minLength: 0,
 			select: function( event, ui ) {
 				event.preventDefault()
 				// Put text in input element and is in hidden element
@@ -56,15 +65,7 @@ script.
 			}
 		}
 		
-		$(this).autocomplete(autocomplete_options).on("dblclick", function() {
-			$(this).autocomplete("search").data("autocomplete")._renderItem = function (ul, item) {
-				var newText = String(item.value).replace(
-					new RegExp(this.term, "gi"),
-					"<span style='font-weight: bold; text-decoration: underline' class='ui-state-highlight'>$&</span>");
-					return $("<li></li>")
-					.data("item.autocomplete", item)
-					.append("<a>" + newText + "</a>")
-					.appendTo(ul);
-			};
-		});
+		$(this).autocomplete(autocomplete_options).bind("dblclick",function () {
+			$(this).autocomplete("search", "");
+		})
 	})
