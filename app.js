@@ -24,7 +24,6 @@ app.use(expressUglify.middleware({
 
 // Routes
 var index = require('./routes/index');
-var users = require('./routes/users');
 var dbapi = require('./routes/dbapi'); // Container the routes to access and modify DB data
 var autocompleteapi = require('./routes/autocompletes'); // Container the routes to access and modify DB data
 var newitemsapi = require('./routes/newitemsapi'); // Contains the routes to divs that add new items (templates)
@@ -133,8 +132,8 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  // xxx res.locals.message = err.message;
-  // xxx res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
