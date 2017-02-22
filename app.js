@@ -10,17 +10,12 @@ var redis  = require("redis");
 var session = require("express-session");
 var RedisStore = require('connect-redis')(session);
 var client  = redis.createClient();
-var expressUglify = require('express-uglify');
 
 // Add compression to app for performance
 var compression = require('compression')
 
 var express = require('express')
 var app = express()
-
-app.use(expressUglify.middleware({ 
-	src: __dirname + '/public',
-}));
 
 // Routes
 var index = require('./routes/index');
