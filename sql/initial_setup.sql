@@ -1,4 +1,4 @@
-insert into login (lusername, lpassword, ldescription, lpermissions) values ('admin','admin','Admin User','1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30')
+insert into login (lusername, lpassword, ldescription, lpermissions) values ('admin','admin','Admin User','1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30');
 
 INSERT INTO menu VALUES (17, 'Import from Excel', true, 23, 'import_from_excel', 'Import multiple items into stock from an excel sheet', 'not set', 1, 1); 
 INSERT INTO menu VALUES (16, 'Maintenance Summaries', true, 25, 'maintenance/summaries', 'Show all maintenance for specific equipment', 'msh', 15, 1); 
