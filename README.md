@@ -86,7 +86,9 @@ field and the correct value in the
 
 >\<input name="xxxx" id="xxxx"> field automatically
 
-You can then use the hidden field to update the database field in the table by following the update_db_field method (simply add the  **.update** class, the **col**, **colid**, and **colidval** attributes)
+For warehouse items there is a special class called **showunits** that will add the unit (kg,litres,set) to the selected item in the input element once the item has been selected.
+
+You can then use the hidden element to update the database field in the table by following the update_db_field method (simply add the  **.update** class, the **col**, **colid**, and **colidval** attributes). The autocomplete function will trigger the **.change()** event automatically on the hidden field so the update can take place.
 
 Do not use the _txt field as this will send the text and make the update fail unless the field you are actually updating is of text or varchar type. If you are using foreign keys to identify the item then use the hidden input to trigger the update as the foreign key will be an integer value referencing the main table.
 
