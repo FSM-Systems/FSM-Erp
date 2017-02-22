@@ -4,7 +4,7 @@ var config = {};
 config.pghost = 'localhost';
 config.pguser = 'postgres';
 config.pgpw = 'mazzofab';
-config.pgdatabase = 'gctl';
+config.pgdatabase = 'fsmerp';
 config.pgport = '5432';
 
 // Company Details
@@ -14,5 +14,8 @@ config.company_name = 'FSM-Erp'; // Comany Name
 
 // Session settings
 config.session_time = 240 * 60000;
+
+// Pagination settings
+config.max_results = 10;
 
 module.exports = config;
