@@ -57,7 +57,7 @@ app.use(session({
     //cookie: { maxAge: parseInt(config.session_time) }, // 240 minutes session - 1 minute = 60000 millisec 
     //cookie: { maxAge: null }, 
     // create new redis store.
-    //store: new RedisStore({ host: 'localhost', port: 6379, client: client, ttl : 260}),
+    store: new RedisStore({ host: 'localhost', port: 6379, client: client, ttl : 260}),
     saveUninitialized: false,
     resave: false
 	})
