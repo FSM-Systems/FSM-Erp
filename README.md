@@ -39,7 +39,7 @@ Every table will record the last user to modify or create the record and a hidde
 
 The session value will come from express.js framework and passed to the pug template
 
-After a successfull reload we can reload the main page in #workspace div by adding the hidden input
+After a successfull insert we can reload the main page in #workspace div by adding the hidden input
 
 >\<input type="hidden" id="apppage" value="route_to_reload">
 
