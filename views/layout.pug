@@ -22,6 +22,7 @@ html(lang="en")
 		// NProgress ajax jQuery
 		script.
 			$(document).ready(function() {
+				// - Setup NProgress bar
 				NProgress.configure({ showSpinner: false });
 				$(document).ajaxStart(function(){
 					NProgress.start()
@@ -55,11 +56,22 @@ html(lang="en")
 					},
 				}
 				$('body').popover(popOverSettings)
+				
+				// Close popover when clicking in body
+				$('body').on('click', function (e) {
+				    $('[data-toggle=popover]').each(function () {
+				        // hide any open popovers when the anywhere else in the body is clicked
+				        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+				            $(this).popover('hide');
+				        }
+				    });
+				});
 			})
 			
 		// - jQuery scripts
 		// - Include the database scripts to updat/insert/delete
 		include addons/dbscripts.pug
+			
 		
 		// - include the page that contains all button handlers.
 		include addons/button_handlers.pug
