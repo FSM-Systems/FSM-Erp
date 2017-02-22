@@ -1,7 +1,10 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
-	// - h4 #{pagename}
+	// - Add searchbox
+	include addons/searchbox.pug
+	input(type="hidden" id="searchparam" searchtable="login" fields="lusername,ldescription,lemail" render="system_users_setup" arrayname="sysusers")
+	
 	table.table.table-hover(style="width: 100%")
 		thead
 			tr 
@@ -55,3 +58,6 @@ block content
 								
 	input( type="hidden" id="apppage" value="/menu/system_users_setup")
 	input( type="hidden" id="dbtable" value="login")
+	
+	// - Add pagination
+	include addons/datatable.pug

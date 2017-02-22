@@ -1,5 +1,9 @@
 // - Visualize only. No updates on this page
 block content
+	// - Add searchbox
+	include addons/searchbox.pug
+	input(type="hidden" id="searchparam" searchtable="goods_issue_notes" fields="enumberplate,eidescription" render="goods_issue_notes" arrayname="gin")
+	
 	table.table.table-condensed.table-striped
 		thead
 			tr 

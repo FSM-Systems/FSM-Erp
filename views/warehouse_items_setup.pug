@@ -1,7 +1,11 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
-	table.table.table-hover(style="width: 100%")
+	// - Add searchbox
+	include addons/searchbox.pug
+	input(type="hidden" id="searchparam" searchtable="warehouse_items" fields="wisku,widescription" render="warehouse_items_setup" arrayname="whi")
+	
+	table.table.table-hover.table-condensed(style="width: 100%")
 		thead
 			tr 
 				th.text-center ID
@@ -66,3 +70,6 @@ block content
 								
 		input( type="hidden" id="apppage" value="/menu/warehouse_items_setup")
 		input( type="hidden" id="dbtable" value="warehouse_items")
+		
+		// - Add pagination
+		include addons/datatable.pug
