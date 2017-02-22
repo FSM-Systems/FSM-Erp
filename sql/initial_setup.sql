@@ -1,5 +1,13 @@
 insert into login (lusername, lpassword, ldescription, lpermissions) values ('admin','admin','Admin User','1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30');
 
+INSERT INTO menu_groups VALUES (1, 'Warehouse', true, 'warehouse.svg', 3, 'panel-success', 1); 
+INSERT INTO menu_groups VALUES (15, 'Workshop', true, 'maintenance.svg', 2, 'panel-success', 1); 
+INSERT INTO menu_groups VALUES (3, 'System Setup', true, 'settings.svg', 6, 'panel-danger', 1); 
+INSERT INTO menu_groups VALUES (17, 'Fuel register', true, 'fuel.svg', 4, 'panel-success', 1); 
+INSERT INTO menu_groups VALUES (18, 'HR', true, 'humanresources.svg', 5, 'panel-info', 1); 
+INSERT INTO menu_groups VALUES (2, 'Equipment', true, 'equipment.svg', 1, 'panel-success', 1); 
+SELECT pg_catalog.setval('menu_groups_mgid_seq', 18, true); 
+
 INSERT INTO menu VALUES (17, 'Import from Excel', true, 23, 'import_from_excel', 'Import multiple items into stock from an excel sheet', 'not set', 1, 1); 
 INSERT INTO menu VALUES (16, 'Maintenance Summaries', true, 25, 'maintenance/summaries', 'Show all maintenance for specific equipment', 'msh', 15, 1); 
 INSERT INTO menu VALUES (12, 'Maintenance Requests', true, 28, 'maintenance_request', 'Add/Modify Maintenance Requests', 'new_maintenance_request', 15, 1); 
@@ -18,11 +26,3 @@ INSERT INTO menu VALUES (8, 'Warehouse Items', true, 14, 'warehouse_items_setup'
 INSERT INTO menu VALUES (10, 'Warehouse Units Setup', true, 16, 'warehouse_units_setup', 'Add or modify units (Unit/KG/Litre)', 'new_warehouse_unit', 3, 1); 
 
 SELECT pg_catalog.setval('menu_mid_seq', 22, true);
-
-INSERT INTO menu_groups VALUES (1, 'Warehouse', true, 'warehouse.svg', 3, 'panel-success', 1); 
-INSERT INTO menu_groups VALUES (15, 'Workshop', true, 'maintenance.svg', 2, 'panel-success', 1); 
-INSERT INTO menu_groups VALUES (3, 'System Setup', true, 'settings.svg', 6, 'panel-danger', 1); 
-INSERT INTO menu_groups VALUES (17, 'Fuel register', true, 'fuel.svg', 4, 'panel-success', 1); 
-INSERT INTO menu_groups VALUES (18, 'HR', true, 'humanresources.svg', 5, 'panel-info', 1); 
-INSERT INTO menu_groups VALUES (2, 'Equipment', true, 'equipment.svg', 1, 'panel-success', 1); 
-SELECT pg_catalog.setval('menu_groups_mgid_seq', 18, true); 
