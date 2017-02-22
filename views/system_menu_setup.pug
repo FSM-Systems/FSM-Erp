@@ -7,7 +7,7 @@ block content
 			strong
 				u Drag menu options to order them in the way that they will be ordered in the menu
 		
-	table.table.table-hover.sortable.help
+	table.table.table-hover.table-striped.sortable.help
 		thead
 			tr 
 				th.text-center ID
@@ -73,7 +73,7 @@ block content
 	input( type="hidden" id="dbtable" value="menu")
 								
 	// - Add pagination
-	include addons/pagination.pug							
+	include addons/datatable.pug							
 	
 	// - Add sortable rows by drag and drop.
 	// - We use this to order the menu, then save the order to the database

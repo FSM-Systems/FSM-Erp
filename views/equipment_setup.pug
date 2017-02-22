@@ -1,5 +1,8 @@
 block content
-	// - h4 #{pagename}
+	// - Add searchbox
+	include addons/searchbox.pug
+	input(type="hidden" id="searchparam" searchtable="equipment_setup" fields="enumberplate,eidescription" render="equipment_setup" arrayname="equipment")
+	
 	table.table.table-hover
 		thead
 			tr 
@@ -64,3 +67,6 @@ block content
 								
 		input( type="hidden" id="apppage" value="/menu/equipment_setup")
 		input( type="hidden" id="dbtable" value="equipment")
+		
+	// - Add pagination
+	include addons/datatable.pug

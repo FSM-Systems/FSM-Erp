@@ -1,38 +1,37 @@
 // - Visualize only. No updates on this page
 block content
-	div.container-fluid
-		div.row.text-left
-			include addons/searchbox.pug
-		div.row
-			table.table.table-condensed.table-striped()
-				thead
-					tr 
-						th Item Code
-						th Item Description
-						th.text-right Quantity
-						th Units
-						th Location
-						th For Equipment
-				
-				tbody
-					if stock.length == 0
-						tr
-							td(colspan="100") No results, please add a new item
+		include addons/searchbox.pug
+		input(type="hidden" id="searchparam" searchtable="vw_warehouse_stock" fields="widescription,wisku,wdescription,emdescription" render="in_stock_items" arrayname="stock")
+		
+		table.table.table-condensed.table-hover
+			thead
+				tr 
+					th Item Code
+					th Item Description
+					th.text-right Quantity
+					th Units
+					th Location
+					th For Equipment
+			
+			tbody
+				if stock.length == 0
+					tr
+						td(colspan="100") No results, please add a new item
+						
+				for s in stock
+					tr
+						td.text-left
+							span #{s.wisku}
+						td.text-left
+							span #{s.widescription}
+						td.text-right 
+							span #{s.wsqty}
+						td.text-left 
+							span #{s.wuunit}
+						td.text-left 
+							span #{s.wdescription}
+						td.text-left 
+							span #{s.emdescription}
 							
-					for s in stock
-						tr
-							td.text-left
-								span #{s.wisku}
-							td.text-left
-								span #{s.widescription}
-							td.text-right 
-								span #{s.wsqty}
-							td.text-left 
-								span #{s.wuunit}
-							td.text-left 
-								span #{s.wdescription}
-							td.text-left 
-								span #{s.emdescription}
-								
-		//- search fields are description, item code, warehouse and model
-		input(type="hidden" id="searchparam" value="in_stock_items" searchtable="vw_warehouse_stock" fields="widescription,wisku,wdescription,emdescription")
+		// - Add pagination
+		include addons/datatable.pug
