@@ -3,40 +3,42 @@ extends layout
 block content
 	div(class="container-fluid")
 		div(class="row")
-			div(class="centered loginform" id="loginform")
+			div.centered.loginform#loginform
 				img(src="images/" + full_logo)
-				form(id="login")
-					div(class="form-group")
-						label(for="username") Username
-						input(type="text" class="form-control" id="username" placeholder="Username" required)
+				div.row
+					| &nbsp;
+				form#login
+					div.form-group
+						// - label(for="username") Username
+						input.form-control#username(type="text" placeholder="Username" required)
 	
-					div(class="form-group" id="password")
-						label(for="password") Password
-						input(type="password" class="form-control" id="pw" placeholder="Password" required)
+					div.form-group(id="password")
+						// - label(for="password") Password
+						input.form-control#pw(type="password" placeholder="Password" required)
 			
-					button(class="btn btn-default" id="auth") AUTHENTICATE
+					button.btn.btn-default#auth AUTHENTICATE
 					
-		div(class="row" id="warnings")
+		div.row#warnings
 				if expired == "true"
-					div(id="alert")
-						div(class="alert alert-warning text-center" role="alert")
+					div#alert
+						div.alert.alert-warning.text-center(role="alert")
 							span 
 								b Your session is not valid or has expired! Please authenticate!
-							button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+							button.close(type="button" data-dismiss="alert" aria-label="Close")
 								span(aria-hidden="true") &times;
 				if wrongcred == "true"
-					div(id="alert")
-						div(class="alert alert-danger text-center" role="alert")
+					div#alert
+						div.alert.alert-danger.text-center(role="alert")
 							span 
 								b Wrong username or password!
-							button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+							button.close(type="button" data-dismiss="alert" aria-label="Close")
 								span(aria-hidden="true") &times;
 				if loggedout == "true"
-					div(id="loggedout")
-						div(class="alert alert-info text-center alert-dismissible" role="alert")
+					div#loggedout
+						div.alert.alert-info.text-center.alert-dismissible(role="alert")
 							span 
 								b You have successfully logged out.
-							button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+							button.close(type="button" data-dismiss="alert" aria-label="Close")
 								span(aria-hidden="true") &times;
 				
 				script.
