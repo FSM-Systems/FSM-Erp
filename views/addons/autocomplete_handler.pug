@@ -44,7 +44,8 @@ script.
 						var transformed  = $.map(data, function (item) { // we have to pass the data as object otherwise autocomplete will not work
 							return {
 								label: item.label,
-								value: item.value,										
+								value: item.value,		
+								unit: item.unit,								
 							}
 						})
 						response(transformed)												
@@ -56,6 +57,10 @@ script.
 				event.preventDefault()
 				// Put text in input element and is in hidden element
 				$(this).val(ui.item.label);
+				// If the element has a showunitsclass then the units for the selected element will be added after the input box
+				if ($(this).hasClass("showunits")) {
+					$(this).val(ui.item.label + ' ** ( ' + ui.item.unit + ' )');
+				}
 				$("#" + $(this).attr("id").replace("_txt","")).val(ui.item.value).trigger("change") // Id value that will be sent to DB for update
 			},
 			change: function (event, ui) {
