@@ -6,21 +6,43 @@
 
 // - if we have already searched place the requested search term in the input
 
-form.form-inline
-	div.form-group
-		div.input-group
-			div.input-group-addon Search for items
-			input.input-sm.form-control(type="text" id="srch" placeholder="Type descriptions, models, codes ..." style="width: 300px;" value=term)
-	button.btn.btn-primary.btn-sm.btn-primary-spacing(type="button" id="btn-search") SEARCH DB
-	button.btn.btn-info.btn-sm.btn-primary-spacing(type="button" id="btn-clear") CLEAR SEARCH
+form.form-inline(id="frmsearch")
+	div.row
+		div.col-sm-3
+		div.col-sm-4
+			div.form-group.pull-right
+				div.input-group
+					div.input-group-addon Search for items in data
+					input.input-sm.form-control(type="text" id="srch" placeholder="Type text to search ..." style="width: 300px;" value=term required)
+		div.col-sm-1
+			button.btn.btn-primary.btn-sm.btn-primary-spacing(type="button" id="btn-search") SEARCH DB
+		div.col-sm-1
+			if term
+				button.btn.btn-info.btn-sm.btn-primary-spacing(type="button" id="btn-clear") CLEAR SEARCH
+			else
+				button.btn.btn-info.btn-sm.btn-primary-spacing(type="button" id="btn-clear" disabled="true") CLEAR SEARCH
+		div.col-sm-3
 	
 script. 
 	$(document).ready(function () {
+		$("#frmsearch").validate({
+			errorClass: 'customerror',
+			errorPlacement: function(error,element) {
+				return true; // No labels for the error fields. Just highlight with error class! Looks better and more fluid
+			}		
+		});
+		
 		$("#btn-search").click(function () {
-			$("#workspace").load("/api/db/searchterm/table/" + $("#searchparam").attr("searchtable") + "/term/" + $("#srch").val() + '/fields/' + $("#searchparam").attr("fields") + '/render/in_stock_items/arrayname/stock')
+			if($("#frmsearch").valid() == true) {
+				$("#workspace").load("/api/db/searchterm/table/" + $("#searchparam").attr("searchtable") + "/term/" + $("#srch").val() + '/fields/' + $("#searchparam").attr("fields") + '/render/' + $("#searchparam").attr("render") + '/arrayname/' + $("#searchparam").attr("arrayname"))
+				// Enable clear search button
+				$("#btn-clear").attr("disabled", false)
+			}
 		})
 		
 		$("#btn-clear").click(function() {
-			$("#workspace").load("/menu/" + $("#searchparam").val());
+			$("#workspace").load("/menu/" + $("#searchparam").attr("render"));
+			// Disable again button
+			$("#btn-clear").attr("disabled", true)
 		})
 	})
