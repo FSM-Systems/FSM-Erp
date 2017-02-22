@@ -17,14 +17,14 @@
 // - the ac-source is the cource of the dropdown. Comes from one of the routes in /autocompletes
 
 script.
-	// Highlight the erached text in the autocomplete list
-	$.ui.autocomplete.prototype._renderItem = function (ul, item) {
+	// Highlight the searched text in the autocomplete list
+	/*$.ui.autocomplete.prototype._renderItem = function (ul, item) {
 		item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
 		return $("<li></li>")
 		.data("item.autocomplete", item)
 		.append("<a>" + item.label + "</a>")
 		.appendTo(ul);
-	};
+	};*/
 	
 	$(document).on("focus", ".autocomplete", function () {
 		// Get the datasource from the element attributs
