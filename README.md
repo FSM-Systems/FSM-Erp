@@ -1,7 +1,15 @@
 # FSM-Erp
 Management tool for workshop, stores and maintenance
 
-### Database updating Routes:
+## Database updating Routes
+
+### Ajax Security/SQL injection
+
+For the database functions the CSRF tokens for security are added automatically for update and delete functions. For the insert functions whcih are done from forms, a hidden input will have to be added to the form as follows:
+
+>input(type="hidden" name="_csrf" value=_csrf) (PUG format, html works too)
+
+If this isn't done the insert will fail with a Database Error. For SQL injection threats, the queries in pg-node library are properly formatted so there will be no risk.
 
 ### /api/db/update_db_field
 This is used to update a given field in the database from any input. The attributes required in the input field in order to make it work are: 
