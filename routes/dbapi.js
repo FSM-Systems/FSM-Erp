@@ -90,13 +90,13 @@ router.get('/searchterm/table/:table/term/:term/fields/:fields/render/:render/ar
 	for(var f = 0; f < fields.length; f++) {
 		strfields += '(' + fields[f] + ' ilike \'%' + req.params.term + '%\') or ';
 	}
+	// Clean up the where clause from the last or
+	strfields = strfields.substr(0, strfields.length - 4);
 	
 	var pagetorender = req.params.render;
 	var arrayname = req.params.arrayname;
 	var term = req.params.term;
 	
-	// Clean up the where clause from the last or
-	strfields = strfields.substr(0, strfields.length - 4);
 	db.query('select * from ' + req.params.table + ' where ' + strfields, function (err, result) {
 		if (err) {
     			res.send(err)
