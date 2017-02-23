@@ -108,5 +108,5 @@ Adding a searchbox to any table requires to include **views/addons/searchbox.pug
 
 The suggestion is to use views to show data in main oages as this will make things more clear. You can then reference the columns with human readable name and use them in the **fields** list easily.
 
-Sample element creation code (pug template style)
->\input(type="hidden" id="searchparam" value="in_stock_items" searchtable="vw_warehouse_stock" fields="widescription,wisku,wdescription,emdescription")
+Sample element creation code (pug template language style)
+>input(type="hidden" id="searchparam" value="in_stock_items" searchtable="vw_warehouse_stock" fields="widescription,wisku,wdescription,emdescription")
