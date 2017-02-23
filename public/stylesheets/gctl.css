@@ -50,8 +50,8 @@ div.tooltip-inner {
 }
 
 /* Remove outlines such as in chrome */
-*:focus {
-    outline: 0 ! important;
+input:focus {
+    outline: 0;
 }
 
 /* all input text align center*/
@@ -173,9 +173,10 @@ table th.help {
 
 /* Shadow only for desktop icons panel as otherwise it would appear everywhere and it's annoying! */
 .dsk-panel:hover {
-	-webkit-box-shadow: -1px 7px 39px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: -1px 7px 39px 0px rgba(0,0,0,0.75);
-	box-shadow: -1px 7px 39px 0px rgba(0,0,0,0.75);
+	-webkit-box-shadow: -1px 5px 15px 0px lightgray;
+	-moz-box-shadow: -1px 5px 15px 0px lightgray;
+	box-shadow: -1px 5px 15px 0px lightgray;
+	border-color: gray;
 }
 
 .desktop-icon {
