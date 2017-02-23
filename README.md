@@ -67,6 +67,8 @@ Create the route that returns label and value in JSON format in the autocomplete
 The display element will have to be called like the name of the field with an added "_txt" concatenated string after it.
 The element for which we need an autocomplete is required to have the **.autocomplete** class added to it and the main element (with _txt) has to have the class **.nodb** added to it otherwise the library will try and insert/update this into the database resulting in an error.
 
+Use autocompletes when data has to be pulled from the server. You can use \<select> elements only if you declare the options in the code.
+
 >\<input type="text" class="autocomplete nodb" ....>
 
 Place a hidden field under the display element:
