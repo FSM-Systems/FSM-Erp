@@ -15,3 +15,21 @@
 .ui-autocomplete .ui-menu-item .ui-state-focus {
 	background-color: red ! important;
 }
+
+
+/* Sizing CSS */
+.size-50 {
+	width: 50px ! important;
+}
+
+.size-30 {
+	width: 30px ! important;
+}
+
+.size-80 {
+	width: 80px ! important;
+}
+
+.size-100 {
+	width: 100px ! important;
+}
