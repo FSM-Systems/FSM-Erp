@@ -65,6 +65,7 @@ If deleting from a main page then **dbtable** is the appropriate tag to use. If 
 ### Autocompletes
 Create the route that returns label and value in JSON format in the autocomplete.js routes files
 The display element will have to be called like the name of the field with an added "_txt" concatenated string after it.
+The element for whoch nwe nned an autocomplete required to have the **autocomplete** class added to it
 
 Place a hidden field under the display element:
 
