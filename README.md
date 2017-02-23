@@ -64,8 +64,8 @@ If deleting from a main page then **dbtable** is the appropriate tag to use. If 
 
 ### Autocompletes
 Create the route that returns label and value in JSON format in the autocomplete.js routes files
-The display element will have to be called like the name of the field with an added "_txt" concatenated string after it.
-The element for which we need an autocomplete is required to have the **.autocomplete** class added to it and the main element (with _txt) has to have the class **.nodb** added to it otherwise the library will try and insert/update this into the database resulting in an error.
+The display element will have to be called like the name of the field with an added "\_txt" concatenated string after it.
+The element for which we need an autocomplete is required to have the **.autocomplete** class added to it and the main element (with \_txt) has to have the class **.nodb** added to it otherwise the library will try and insert/update this into the database resulting in an error.
 
 >\<input type="text" class="autocomplete nodb" ....>
 
@@ -93,7 +93,9 @@ For warehouse items there is a special class called **showunits** that will add 
 
 You can then use the hidden element to update the database field in the table by following the update_db_field method (simply add the  **.update** class, the **col**, **colid**, and **colidval** attributes). The autocomplete function will trigger the **.change()** event automatically on the hidden field so the update can take place.
 
-Do not use the _txt field as this will send the text and make the update fail unless the field you are actually updating is of text or varchar type. If you are using foreign keys to identify the item then use the hidden input to trigger the update as the foreign key will be an integer value referencing the main table.
+Do not use the \_txt field as this will send the text and make the update fail unless the field you are actually updating is of text or varchar type. If you are using foreign keys to identify the item then use the hidden input to trigger the update as the foreign key will be an integer value referencing the main table.
+
+**Use autocompletes when data has to be pulled from the server. You can use \<select> elements only if you declare the options in the code.**
 
 ### Searchboxes
 
@@ -106,5 +108,5 @@ Adding a searchbox to any table requires to include **views/addons/searchbox.pug
 
 The suggestion is to use views to show data in main oages as this will make things more clear. You can then reference the columns with human readable name and use them in the **fields** list easily.
 
-Sample element creation code (pug template style)
->\input(type="hidden" id="searchparam" value="in_stock_items" searchtable="vw_warehouse_stock" fields="widescription,wisku,wdescription,emdescription")
+Sample element creation code (pug template language style)
+>input(type="hidden" id="searchparam" value="in_stock_items" searchtable="vw_warehouse_stock" fields="widescription,wisku,wdescription,emdescription")
