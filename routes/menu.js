@@ -71,19 +71,9 @@ router.get('/warehouse_setup', function (req, res, next) {
 
 // Configure and add new warehouse Items
 router.get('/warehouse_items_setup', function (req, res, next) {
-	function renderit() {
-		
-	}
-	// prepare data for template
 	// Items
-	db.query('select * from warehouse_items order by wiid', function (err, result) {
-		// Units
-		db.query('select * from warehouse_units order by wuid', function (err, result2) {
-			// Models
-			db.query('select * from equipment_models order by emid', function (err, result3) {
-				res.render('warehouse_items_setup', { whi: result.rows, units: result2.rows, models: result3.rows, pagename: 'Warehouse Items Setup' })
-			})
-		})
+	db.query('select * from vw_warehouse_items order by wiid', function (err, result) {
+		res.render('warehouse_items_setup', { whi: result.rows, pagename: 'Warehouse Items Setup' })
 	})
 });
 
