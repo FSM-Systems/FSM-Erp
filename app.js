@@ -21,8 +21,8 @@ var app = express()
 
 // Routes
 var index = require('./routes/index');
-var dbapi = require('./routes/dbapi'); // Container the routes to access and modify DB data
-var autocompleteapi = require('./routes/autocompletes'); // Container the routes to access and modify DB data
+var dbapi = require('./routes/dbapi'); // Contains the routes to access and modify DB data
+var autocompleteapi = require('./routes/autocompletes'); // Contains the routes to access and modify DB data
 var newitemsapi = require('./routes/newitemsapi'); // Contains the routes to divs that add new items (templates)
 var menuapi = require('./routes/menu'); // Routes for the main menu
 var btnsetup = require('./routes/btn-setup') // Routes for the setup buttons, when editing details of a line
@@ -104,7 +104,6 @@ var session_test = function (req, res, next) {
 	// Mainly used when cleint tries to access other pages in the app without having gone through auth page
 	if (testsession == true && (req.session.loggedin == false || typeof req.session.loggedin == 'undefined')) {
          res.redirect('/?expired=true');
-         //res.send('hhhhhhh')
     } else{
         next();
     }
