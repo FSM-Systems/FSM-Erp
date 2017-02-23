@@ -73,7 +73,7 @@ script.
 			// For setup button load the page that is specified in the attribute setuplink of the button iself
 			$('#divnewitem').fadeIn();
 			$('#divnewitemdet').empty().load($(this).attr("setuplink") + "/param/" + $(this).attr("param") ); // Since this function can be used anywhere we use a generic attr param to apss parameters. The coder will then use it in AJAX calls etc
-		})		
+		})
 		
 		// - Logout function
 		$("#logout").click(function () {
