@@ -15,6 +15,7 @@ block content
 				th Quantity
 				th Taken By
 				th Recorded By
+				th
 				
 		tbody
 			if fuel.length == 0
@@ -58,6 +59,10 @@ block content
 					td 
 						div.input-group
 							span #{fr.user}	
+					td
+						div.btn-group.pull-right
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="frid" dbcolidval=fr.frid id="btn_del_" + fr.frid)
+								span.glyphicon.glyphicon-trash(aria-hidden="true")
 								
 		input( type="hidden" id="apppage" value="/menu/fuel_records")
 		input( type="hidden" id="dbtable" value="fuel_register")
