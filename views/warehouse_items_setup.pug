@@ -46,23 +46,13 @@ block content
 								span.glyphicon.glyphicon-usd(aria-hidden="true")
 							input.update.form-control.input-sm(type="number" col="wi_unit_price" colid="wiid"  colidval=w.wiid id="u_" + w.wiid value=w.wi_unit_price)
 					td 
-						div.input-group
-							select.form-control.input-sm.update(col="wi_unit" colid="wiid" colidval=w.wiid  id="wi_unit_" + w.wiid)
-								option(selected="selected" disabled) Unit of Measure
-									for u in units
-										if u.wuid === w.wi_unit
-											option(value=u.wuid selected) #{u.wuunit}
-										else
-											option(value=u.wuid) #{u.wuunit}
+						input.form-control.input-sm.autocomplete.size-80(type="text" id="wi_unit_" + w.wiid + "_txt" ac-source="warehouse_units" value=w.wuunit)
+						input.update(type="hidden" col="wi_unit" colid="wiid" colidval=w.wiid  id="wi_unit_" + w.wiid)
 					td 
 						div.input-group
-							select.form-control.input-sm.update(col="wiforequip" colidval=w.wiid colid="wiid" id="wiforequip_" + w.wiid)
-								option(selected="selected" disabled) For Equipment
-									for m in models
-										if m.emid === w.wiforequip
-											option(value=m.emid selected) #{m.emdescription}
-										else
-											option(value=m.emid) #{m.emdescription}
+							input.form-control.input-sm.autocomplete(type="text" id="wiforequip_" + w.wiid + "_txt" ac-source="equipment_models" value=w.emdescription)
+							input.update(type="hidden" col="wiforequip" colid="wiid" colidval=w.wiid  id="wiforequip_" + w.wiid)
+							//input.update(type="hidden" col="ginissuedto" colid="ginid" colidval=g.ginid id="t" + g.ginid) 
 					td 
 						div.input-group.pull-right
 							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="wiid" dbcolidval=w.wiid id="btn_del_" + w.wiid)
