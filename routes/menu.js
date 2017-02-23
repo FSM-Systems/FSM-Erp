@@ -7,11 +7,10 @@ var config = require('../appconfig');
 router.get('/mainmenu/menugroup/:menugroup', function (req, res, next) {
 	// Create the main menu from DB based on permissions of user
 	db.query("select * from menu where mactive=true \
-					and mgroup=$2 and mid=any (select unnest(regexp_split_to_array(lpermissions, ',')::int[]) \
-					from login where lid=$1) order by morder", [req.session.user_id, req.params.menugroup], function (err, result) { // Main menu based on permissions and menugroup
-		// Send to client as JSON
+				and mgroup=$2 and mid=any (select unnest(regexp_split_to_array(lpermissions, ',')::int[]) \
+				from login where lid=$1) order by morder", [req.session.user_id, req.params.menugroup], function (err, result) { // Main menu based on permissions and menugroup
 		res.render('mainmenu', { menuitems: result.rows });
-	})	
+	})
 })
 
 //System user menu option
@@ -22,15 +21,15 @@ router.get('/system_users_setup', function (req, res, next) {
 	})
 })
 
-// Menu user menu option
+
 router.get('/system_menu_setup', function (req, res, next) {
-	// Get all users and load in table on page
 	db.query('select * from menu order by morder', function (err, result) {
 		db.query('select * from menu_groups order by mgdescription', function (err, result2) {
-			res.render('system_menu_setup', { menu: result.rows, groups: result2.rows, pagename: 'Menu Options Management' })
+			res.render('system_menu_setup', { menu: result.rows, groups: result2.rows, pagename: 'Menu Options Management' })	
 		})
 	})
-});
+})
+
 
 // Desktop Items menu option (menu_groups)
 router.get('/desktop_icons_setup', function (req, res, next) {
@@ -131,6 +130,13 @@ router.get('/goods_issue_notes', function (req, res, next) {
 router.get('/suppliers', function (req, res, next) {
 	db.query('select * from suppliers', function (err, result) {
 		res.render('suppliers', { title: 'SUPPLIERS', suppliers: result.rows });
+	})
+})
+
+// Fuel Register
+router.get('/fuel_records', function (req, res, next) {
+	db.query('select * from vw_fuel_register', function (err, result) {
+		res.render('fuel_records', { title: 'FUEL RECORDS', fuel: result.rows });
 	})
 })
 

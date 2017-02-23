@@ -65,4 +65,9 @@ router.get('/new_supplier', function (req, res, next) {
 	res.render('new_item/new_supplier', { title: 'CREATE A NEW SUPPLIER' } );
 })
 
+// New fuel record
+router.get('/new_fuel_record', function (req, res, next) {
+	res.render('new_item/new_fuel_record', { title: 'CREATE A NEW FUEL RECORD' } );
+})
+
 module.exports = router;

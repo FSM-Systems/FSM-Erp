@@ -1,0 +1,66 @@
+block content
+	// - Add searchbox
+	include addons/searchbox.pug
+	input(type="hidden" id="searchparam" searchtable="vw_fuel_register" fields="enumberplate,edescription,frreceiptno,ldescription,user" render="fuel_records" arrayname="fuel")
+	
+	table.table.table-hover
+		thead
+			tr 
+				th.text-center ID
+				th Date
+				th Receipt No 
+				th Equipment
+				th Price
+				th Total
+				th Quantity
+				th Taken By
+				th Recorded By
+				
+		tbody
+			if fuel.length == 0
+				tr
+					td(colspan="100")
+						No results, please add a new item
+					
+			for fr in fuel
+				tr
+					td #{fr.frid}
+					td 
+						div.input-group
+							span #{fr.date}
+					td 
+						div.input-group
+							span #{fr.frreceiptno}
+					td 
+						div.input-group
+							span #{fr.enumberplate} - #{fr.edescription}
+					td 
+						div.input-group
+							- if (fr.error == true)
+								span(style="color: red; font-weight: bold") X #{fr.frprice}
+							- else
+								span #{fr.frprice}
+					td 
+						div.input-group
+							- if (fr.error == true)
+								span(style="color: red; font-weight: bold") X #{fr.frtotal}
+							- else
+								span #{fr.frtotal}			
+					td 
+						div.input-group
+							- if (fr.error == true)
+								span(style="color: red; font-weight: bold") --> #{fr.frqty}
+							- else
+								span #{fr.frqty}
+					td 
+						div.input-group
+							span #{fr.ldescription}	
+					td 
+						div.input-group
+							span #{fr.user}	
+								
+		input( type="hidden" id="apppage" value="/menu/fuel_records")
+		input( type="hidden" id="dbtable" value="fuel_register")
+		
+	// - Add pagination
+	include addons/datatable.pug
