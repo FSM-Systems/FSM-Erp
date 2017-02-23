@@ -16,54 +16,8 @@ html(lang="en")
 	body
 		block content
 		
-		// NProgress ajax jQuery
-		script.
-			$(document).ready(function() {
-				// - Setup NProgress bar
-				NProgress.configure({ showSpinner: false });
-				$(document).ajaxStart(function(){
-					NProgress.start()
-				});
-				
-				$(document).ajaxStop(function(){
-					NProgress.done()
-				});
-				
-				// - Initialize Datepickers
-				$(document).on("focus", ".datepicker", function () {
-					$(this).datepicker({dateFormat: "dd/mm/yy"});
-				});
-				
-				// - Initialize tooltips
-				$('body').tooltip({
-					selector: '.mainmenulink, .btn, .logo, input',
-					container: 'body',
-					//'delay': { show: 0, hide: 100 }, // Delay showing tooltip as it can be annoying..
-					trigger: 'hover',
-				});
-				
-				// Initialize popovers 
-				var popOverSettings = {
-					placement: 'bottom',
-					container: 'body',
-					html: true,
-					selector: '[data-toggle="popover"]', //Sepcify the selector here
-					content: function () {
-						return $('#popover-content').html();
-					},
-				}
-				$('body').popover(popOverSettings)
-				
-				// Close popover when clicking in body
-				$('body').on('click', function (e) {
-				    $('[data-toggle=popover]').each(function () {
-				        // hide any open popovers when the anywhere else in the body is clicked
-				        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-				            $(this).popover('hide');
-				        }
-				    });
-				});
-			})
+		// - Date picker and progress NProgress bar settings
+		include addons/datepicker_and_progressbar.pug
 			
 		// - jQuery scripts
 		// - Include the database scripts to updat/insert/delete
