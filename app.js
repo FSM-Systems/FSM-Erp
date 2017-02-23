@@ -10,6 +10,8 @@ var redis  = require("redis");
 var session = require("express-session");
 var RedisStore = require('connect-redis')(session);
 var client  = redis.createClient();
+// CSRF 
+var csrf = require('csurf');
 
 // Add compression to app for performance
 var compression = require('compression')
@@ -55,13 +57,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'sasl76324mnasb_sdfsds*anmsbda',
     //cookie: { maxAge: parseInt(config.session_time) }, // 240 minutes session - 1 minute = 60000 millisec 
-    //cookie: { maxAge: null }, 
+    cookie: { maxAge: parseInt(config.session_time) }, 
     // create new redis store.
     store: new RedisStore({ host: 'localhost', port: 6379, client: client, ttl : 260}),
     saveUninitialized: false,
     resave: false
 	})
 );
+
+// Add CSRF for app
+app.use(csrf());
+
+app.use(function(req, res, next) {
+  res.locals._csrf = req.csrfToken();
+  next();
+});
 
 // Expose sessions to all views so we can use them anywhere by calling session.<var>
 app.use(function(req,res,next){
@@ -94,6 +104,7 @@ var session_test = function (req, res, next) {
 	// Mainly used when cleint tries to access other pages in the app without having gone through auth page
 	if (testsession == true && (req.session.loggedin == false || typeof req.session.loggedin == 'undefined')) {
          res.redirect('/?expired=true');
+         //res.send('hhhhhhh')
     } else{
         next();
     }

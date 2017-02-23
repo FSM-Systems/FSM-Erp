@@ -61,6 +61,7 @@ router.post('/insert_db_field', function (req, res, next) {
 	delete formobj.dbtable;
 	delete formobj.returnid;
 	delete formobj.apppage;
+	delete formobj._csrf;
 	
 	// Build the SQL String with function
 	var SQL = create_insert_SQL(formobj, table, returnid);		

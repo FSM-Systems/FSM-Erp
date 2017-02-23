@@ -22,9 +22,8 @@ $(document).ready(function () {
 				data: {
 					dbcolid: $(this).attr("dbcolid"),
 					dbcolidval: $(this).attr("dbcolidval"),
-					//table: btn.attr("dbtable")
-					//table: $("#dbtable").val()
 					table: table,
+					_csrf: $("#_csrf").val(),
 				},
 				success: function (data) {
 					if (data == "OK") {

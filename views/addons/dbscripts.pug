@@ -1,10 +1,13 @@
-// Function to update single field in DB
+// - We add the CSRF token here in a hidden input so that all scripts in this page will be able to access it
+input(type="hidden" name="_csrf" id="_csrf" value=_csrf)
+
+// - Function to update single field in DB
 script(src="/javascripts/updatedb_function.js" type="text/javascript")
 		
-// - Fundtion to delete items from DB		
+// - - Fundtion to delete items from DB		
 script(src="/javascripts/deletedb_function.js" type="text/javascript")
 
-// Function to insert items in DB
+// - Function to insert items in DB
 script(src="/javascripts/insertdb_function.js" type="text/javascript")
 
-// Checkbox handling function
+// - Checkbox handling function

@@ -10,12 +10,12 @@ block content
 				form#login
 					div.form-group
 						// - label(for="username") Username
-						input.form-control#username(type="text" placeholder="Username" required)
+						input.form-control#username(type="text" name="username" placeholder="Username" required)
 	
 					div.form-group(id="password")
 						// - label(for="password") Password
-						input.form-control#pw(type="password" placeholder="Password" required)
-			
+						input.form-control#pw(type="password" name="pw" placeholder="Password" required)
+					input(type="hidden" name="_csrf" value=_csrf)
 					button.btn.btn-default#auth AUTHENTICATE
 					
 		div.row#warnings
@@ -63,10 +63,7 @@ block content
 								$.ajax({
 									type: "POST",
 									url: "/auth",
-									data: {
-										username: $("#username").val(),								
-										pw: $("#pw").val()								
-									},
+									data: $("#login").find(":input").serializeArray(),
 									success: function (data) {
 										// Route based on response from server
 										switch(data) {

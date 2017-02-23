@@ -21,7 +21,11 @@ $(document).ready(function () {
 				dbcolval = false;
 			}
 		} else {
-			dbcolval = $(this).val();
+			if ($(this).val() == "") {
+				dbcolval = null;	
+			} else {
+				dbcolval = $(this).val();
+			}
 		}
 		$.ajax({
 			type: 'POST',
@@ -31,7 +35,8 @@ $(document).ready(function () {
 				dbcol: $(this).attr("col"),
 				dbcolid: $(this).attr("colid"),
 				dbcolval: dbcolval,
-				dbcolidval: $(this).attr("colidval")
+				dbcolidval: $(this).attr("colidval"),
+				_csrf: $("#_csrf").val(),
 			},
 			success: function (data) {
 				if (data == "OK") {
