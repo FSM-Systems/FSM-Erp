@@ -10,12 +10,9 @@ config.pgport = '5432';
 // Company Details
 config.applogo = 'logotext.png'; // Logo for main application has to be stored in /public/images
 config.full_logo = 'logo.png'; // Logo for index page
-config.company_name = 'FSM-Erp'; // Comany Name
+config.company_name = 'FSM-Erp'; // Company Name
 
 // Session settings
-config.session_time = 240 * 60000;
-
-// Pagination settings
-config.max_results = 10;
+config.session_time = 6 * 60 * 60000;
 
 module.exports = config;
