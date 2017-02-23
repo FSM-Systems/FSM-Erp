@@ -119,7 +119,7 @@ The suggestion is to use views to show data in main oages as this will make thin
 Sample element creation code (pug template language style)
 >input(type="hidden" id="searchparam" value="in_stock_items" searchtable="vw_warehouse_stock" fields="widescription,wisku,wdescription,emdescription")
 
-### Table formatting style
+### Table formatting
 Tables are declared with the bootstrap classes **table, table-condensed ..etc**. This will create a normal table. To make add pagination to the table the jQuery Datatables plugin is used. Once the table has been creatd simply add:
 
 >include addons/datatable.pug
