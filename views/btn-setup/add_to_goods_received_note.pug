@@ -11,7 +11,12 @@ block content
 					div.panel-body
 						form.form-horizontal(id="frmnewitem")
 							div.form-group
-								label.col-sm-4.control-label(for="gindsku") Item Code:
+								label.col-sm-4.control-label(for="gindwid_txt") Warehouse:
+								div.col-sm-8
+									input.form-control.input-sm.nodb.autocomplete(type="text" ac-source="warehouses" name="gindwid_txt" id="gindwid_txt" placeholder="From Warehouse" required)
+									input(type="hidden" id="gindwid" name="gindwid")
+							div.form-group
+								label.col-sm-4.control-label(for="gindsku_txt") Item Code:
 								div.col-sm-8
 									input.form-control.input-sm.nodb.autocomplete(type="text" ac-source="warehouse_items" name="gindsku_txt" id="gindsku_txt" placeholder="Item Code or Description" required)
 									input(type="hidden" id="gindsku" name="gindsku")
@@ -42,8 +47,8 @@ block content
 						tr
 							th.text-left Item
 							th.text-left Description
+							th.text-left Warehouse
 							th.text-right Quantity
-							th.text-left Unit
 							th
 					tbody
 						if items.length == 0
@@ -56,10 +61,10 @@ block content
 									span #{i.wisku}
 								td.text-left
 									span #{i.widescription}
-								td.text-right
-									span #{i.gindqty}
 								td.text-left
-									span #{i.wuunit}
+									span #{i.wdescription}
+								td.text-right
+									span #{i.gindqty} - #{i.wuunit}
 								td
 									button.btn.btn-danger.btn-sm.btn-delete.pull-right(isdetail="true" dbcolid="gindid" dbcolidval=i.gindid id="btn_del_" + i.gindid)
 										span.glyphicon.glyphicon-trash(aria-hidden="true")
