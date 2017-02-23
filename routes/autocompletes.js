@@ -7,7 +7,14 @@ var db = require('../db.js');
 
 // Warehouse Items 
 router.get('/warehouse_items', function (req, res, next) {
-	db.query("select wisku || ' - ' || widescription as label, wiid as value, wuunit as unit from warehouse_items left join warehouse_units on wi_unit=wuid where (widescription ilike '%' || $1 || '%' or wisku ilike '%' || $1 || '%')", [req.query.term], function (err, result) {
+	db.query("select wisku || ' - ' || widescription as label, wiid as value, wuunit as unit from vw_warehouse_items lwhere (widescription ilike '%' || $1 || '%' or wisku ilike '%' || $1 || '%')", [req.query.term], function (err, result) {
+		res.json(result.rows)
+	})
+})
+
+// Warehouse Items - filtered
+router.get('/warehouse_items/filter/:filter/filterval/:filterval', function (req, res, next) {
+	db.query("select wisku || ' - ' || widescription as label, wiid as value, wuunit as unit from vw_warehouse_items where " + request.params.afilter + "=$2 (widescription ilike '%' || $1 || '%' or wisku ilike '%' || $1 || '%') and ", [req.query.term, request.params.afilterval], function (err, result) {
 		res.json(result.rows)
 	})
 })
@@ -50,6 +57,13 @@ router.get('/equipment_with_plateno', function (req, res, next) {
 // Equipment (only description)
 router.get('/equipment_models', function (req, res, next) {
 	db.query("select emdescription as label, emid as value from equipment_models where emdescription ilike '%' || $1 || '%'", [req.query.term], function (err, result) {
+		res.json(result.rows)
+	})
+})
+
+// Desktop icon types
+router.get('/menu_groups', function (req, res, next) {
+	db.query("select mgid as value, mgdescription as label from menu_groups where mgdescription ilike '%' || $1 || '%'", [req.query.term], function (err, result) {
 		res.json(result.rows)
 	})
 })
