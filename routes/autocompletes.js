@@ -12,6 +12,13 @@ router.get('/warehouse_items', function (req, res, next) {
 	})
 })
 
+// Warehouse Units 
+router.get('/warehouse_units', function (req, res, next) {
+	db.query("select wuunit as label, wuid as value from warehouse_units where (wuunit ilike '%' || $1 || '%')", [req.query.term], function (err, result) {
+		res.json(result.rows)
+	})
+})
+
 // Warehouses 
 router.get('/warehouses', function (req, res, next) {
 	db.query("select wdescription as label, wid as value from warehouses where wdescription ilike '%' || $1 || '%'", [req.query.term], function (err, result) {
@@ -36,6 +43,13 @@ router.get('/equipment', function (req, res, next) {
 // Equipment with number plate
 router.get('/equipment_with_plateno', function (req, res, next) {
 	db.query("select enumberplate || ' - ' || edescription as label, eid as value from equipment where edescription ilike '%' || $1 || '%' or upper(enumberplate) ilike '%' || $1 || '%'", [req.query.term], function (err, result) {
+		res.json(result.rows)
+	})
+})
+
+// Equipment (only description)
+router.get('/equipment_models', function (req, res, next) {
+	db.query("select emdescription as label, emid as value from equipment_models where emdescription ilike '%' || $1 || '%'", [req.query.term], function (err, result) {
 		res.json(result.rows)
 	})
 })
