@@ -8,7 +8,8 @@ block content
 			tr 
 				th.text-center ID
 				th Date
-				th Receipt No 
+				th Hours/KM
+				th Ref 
 				th Equipment
 				th Price
 				th Total
@@ -29,6 +30,9 @@ block content
 					td 
 						div.input-group
 							span #{fr.date}
+					td 
+						div.input-group
+							span #{fr.frhours_km}
 					td 
 						div.input-group
 							span #{fr.frreceiptno}

@@ -26,12 +26,15 @@ block content
 								div.col-sm-6
 									input.form-control.input-sm(type="text" name="frreceiptno" id="frreceiptno" placeholder="Receipt Number" required)
 							div.form-group
-								div.col-sm-4
+								div.col-sm-6
 									input.form-control.input-sm(type="number" name="frprice" id="frprice" placeholder="Price per Litre" required)
-								div.col-sm-4
+								div.col-sm-6
 									input.form-control.input-sm(type="number" name="frtotal" id="frtotal" placeholder="Total Price" required)
-								div.col-sm-4
+							div.form-group
+								div.col-sm-6
 									input.form-control.input-sm(type="number" name="frqty" id="frqty" placeholder="Fuel Quantity Litres" required)
+								div.col-sm-6
+									input.form-control.input-sm(type="number" name="frhours_km" id="frhours_km" placeholder="Hours or KM" required)
 							div.form-group
 								input(type="hidden" name="dbtable" value="fuel_register")
 								input(type="hidden" name="returnid" value="frid")
