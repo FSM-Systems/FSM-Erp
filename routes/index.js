@@ -5,13 +5,7 @@ var config = require('../appconfig');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index', { title: config.company_name, full_logo: config.full_logo, loggedout: req.query.loggedout, expired: req.query.expired, wrongcred: req.query.wrongcred })
-	
-	// here we destroy the session when the user click on logout button
-	// The logout button redirects here and then we destroy session after rendering page
-	if (req.query.loggedout == "true") {
-		req.session.destroy();	
-	}
+	res.render('index', { title: config.company_name, full_logo: config.full_logo, expired: req.query.expired, wrongcred: req.query.wrongcred})
 });
 
 router.post('/auth', function (req, res, next) { // Pass the pool object so it can be used in the function
@@ -42,14 +36,10 @@ router.get('/main/menugroup/:menugroup', function (req, res, next) {
 	res.render('main', { title: config.company_name + ' Admin Console', logo: config.applogo, session: req.session, menugroup: req.params.menugroup }) 
 })
 
-// Swtup the desktop with icons
-//router.post('/desktop', function (req, res, next) {
-	//db.query("select * from menu_groups ")
-//})
-
 // Logout from system
 router.get('/logout', function (req, res, next) {
-	//Recirect to / for loggin out and destroying the current session
+	req.session.destroy();
+	// Redirect to / for logging out and destroying the current session
 	res.redirect('/?loggedout=true')
 })
 

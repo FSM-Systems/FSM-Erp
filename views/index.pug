@@ -1,48 +1,45 @@
 extends layout
 
 block content
-	div(class="container-fluid")
-		div(class="row")
+	div.container-fluid
+		div.row
 			div.centered.loginform#loginform
-				img(src="images/" + full_logo)
-				div.row
-					| &nbsp;
-				form#login
-					div.form-group
-						// - label(for="username") Username
-						input.form-control#username(type="text" name="username" placeholder="Username" required)
-	
-					div.form-group(id="password")
-						// - label(for="password") Password
-						input.form-control#pw(type="password" name="pw" placeholder="Password" required)
-					input(type="hidden" name="_csrf" value=_csrf)
-					button.btn.btn-default#auth AUTHENTICATE
+				div.panel.panel-default
+					div.panel-heading
+						img(src="images/" + full_logo style="height: 40px;")
+					div.panel-body
+						form#login
+							div.form-group
+								div.input-group
+									span.input-group-addon @
+									input.form-control#username(type="text" name="username" placeholder="Username" required)
+							div.form-group(id="password")
+								div.input-group
+									span.input-group-addon #
+									input.form-control#pw(type="password" name="pw" placeholder="Password" required)
+							input(type="hidden" name="_csrf" value=_csrf)
+							button.btn.btn-primary#auth AUTHENTICATE
 					
 		div.row#warnings
 				if expired == "true"
-					div#alert
-						div.alert.alert-warning.text-center(role="alert")
+					div#alert(style="display: none")
+						div.alert.alert-info.text-center(role="alert")
 							span 
-								b Your session is not valid or has expired! Please authenticate!
+								b Your session is not valid, it has expired or you logged out! Please authenticate!
 							button.close(type="button" data-dismiss="alert" aria-label="Close")
 								span(aria-hidden="true") &times;
 				if wrongcred == "true"
-					div#alert
+					div#alert(style="display: none")
 						div.alert.alert-danger.text-center(role="alert")
 							span 
 								b Wrong username or password!
 							button.close(type="button" data-dismiss="alert" aria-label="Close")
 								span(aria-hidden="true") &times;
-				if loggedout == "true"
-					div#loggedout
-						div.alert.alert-info.text-center.alert-dismissible(role="alert")
-							span 
-								b You have successfully logged out.
-							button.close(type="button" data-dismiss="alert" aria-label="Close")
-								span(aria-hidden="true") &times;
 				
 				script.
 					$(document).ready(function () {
+						// Slide in and out alerts
+						$("#alert").slideDown().delay(3000).slideUp();
 						// Prevent form submission
 						$("#login").submit(function (event) {
 							event.preventDefault()
@@ -72,13 +69,6 @@ block content
 												break;
 											case "NOTOK":
 												window.location.href = "/?wrongcred=true";
-											//	// Add line to login form if t does not exists
-											//	if ($("#alert").length == 0) {
-											//		$("#warnings").append('\
-											//			<br><div id="alert" class="alert alert-danger text-center" role="alert">Wrong Username or Password! Please try again!	</div>\
-											//		');
-											//	}
-												//$("#alert").hide().fadeIn();
 												break;
 											case "DBERR":
 												alert("DATABASE ERROR " + data);
