@@ -7,7 +7,7 @@ var db = require('../db.js');
 
 // Warehouse Items 
 router.get('/warehouse_items', function (req, res, next) {
-	db.query("select wisku || ' - ' || widescription as label, wiid as value, wuunit as unit from vw_warehouse_items lwhere (widescription ilike '%' || $1 || '%' or wisku ilike '%' || $1 || '%')", [req.query.term], function (err, result) {
+	db.query("select wisku || ' - ' || widescription as label, wiid as value, wuunit as unit from vw_warehouse_items where (widescription ilike '%' || $1 || '%' or wisku ilike '%' || $1 || '%')", [req.query.term], function (err, result) {
 		res.json(result.rows)
 	})
 })
