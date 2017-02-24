@@ -6,7 +6,7 @@ var config = require('../appconfig');
 // Load main left menu
 router.get('/mainmenu/menugroup/:menugroup', function (req, res, next) {
 	// Create the main menu from DB based on permissions of user
-	db.query("select * from menu where mactive=true \
+	db.query("select * from vw_menu_setup where mactive=true \
 				and mgroup=$2 and mid=any (select unnest(regexp_split_to_array(lpermissions, ',')::int[]) \
 				from login where lid=$1) order by morder", [req.session.user_id, req.params.menugroup], function (err, result) { // Main menu based on permissions and menugroup
 		res.render('mainmenu', { menuitems: result.rows });
@@ -40,12 +40,7 @@ router.get('/desktop_icons_setup', function (req, res, next) {
 // Equipment user menu option
 router.get('/equipment_setup', function (req, res, next) {
 	// Get all users and load in table on page
-	db.query('select eid, enumberplate, eactive, edescription, \
-			to_char(eroadlicense, \'dd/mm/yyyy\') as eroadlicense,\
-			to_char(einsurance, \'dd/mm/yyyy\') as einsurance,\
-			to_char(etra, \'dd/mm/yyyy\') as etra, \
-			to_char(epurchased, \'dd/mm/yyyy\') as epurchased \
-			from equipment order by eid', function (err, result) {
+	db.query('select * from vw_equipment_setup', function (err, result) {
 		res.render('equipment_setup', { equipment: result.rows, pagename: 'Equipment Management' })
 	})
 })
@@ -126,6 +121,11 @@ router.get('/fuel_records', function (req, res, next) {
 	db.query('select * from vw_fuel_register', function (err, result) {
 		res.render('fuel_records', { title: 'FUEL RECORDS', fuel: result.rows });
 	})
+})
+
+// Import from excel
+router.get('/import_from_excel', function (req, res, next) {
+	res.render('import_from_excel')
 })
 
 module.exports = router;
