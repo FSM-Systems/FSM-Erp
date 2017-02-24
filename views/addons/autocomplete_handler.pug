@@ -37,7 +37,7 @@ script.
 				$.ajax({
 					url: "/autocompletes/" + datasource, // get the source route that returns JSON from the attribute ac-source of the element 
 					data: {
-						term: request.term
+						term: request.term,
 					},
 					success: function(data) {
 						//console.log(data)
