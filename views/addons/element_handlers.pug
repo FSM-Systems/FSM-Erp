@@ -25,7 +25,13 @@ script.
 			$("#refreshpage").attr("refreshlink", $(this).attr("link"));
 			
 			// Set link for newitem button to open page for inserting new things in DB
-			$("#newitem").attr("dblink", $(this).attr("newitemlink"))
+			// If the link is there. If the new item link is null then disable button.
+			if ($(this).attr("newitemlink").length > 10) { // We put 10 here as /new_item/ is automatically prepended to the link
+				$("#newitem").show();
+				$("#newitem").attr("dblink", $(this).attr("newitemlink"))
+			} else {
+				$("#newitem").hide();
+			}
 
 			$("#workspace").empty().load($(this).attr("link"));
 			// Unhide new item button and refresh button
