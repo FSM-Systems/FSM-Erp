@@ -1,5 +1,5 @@
 # FSM-Erp
-A simple management tool for small companies
+A simple management tool for small companies. 
 
 Containes modules for:
 - Maintenance
@@ -9,3 +9,8 @@ Containes modules for:
 - HR
 
 Modules can be added and customized. Refere to the [wiki] (https://github.com/FSM-Systems/FSM-Erp/wiki) for more information.
+
+### Components used:
+- Express.js
+- jQuery
+- Boostrap
