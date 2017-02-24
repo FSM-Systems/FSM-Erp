@@ -55,7 +55,8 @@ block content
 							dbcol: 'lpermissions',
 							dbcolid: 'lid',
 							dbcolval: perms,
-							dbcolidval: !{userid}
+							dbcolidval: !{userid},
+							_csrf: "!{_csrf}"
 						},
 						success: function (data) {
 							if (data == "OK") {
