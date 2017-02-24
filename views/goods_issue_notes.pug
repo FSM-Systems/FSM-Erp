@@ -34,7 +34,8 @@ block content
 						input.update(type="hidden" col="ginissuedby" colid="ginid" colidval=g.ginid id="b" + g.ginid)  
 						//span #{g.by}
 					td.text-left 
-						textarea.form-control.update(col="ginnotes" colid="ginid" colidval=g.ginid id="nt_" + g.ginid) #{g.notes}
+						//textarea.form-control.update(col="ginnotes" colid="ginid" colidval=g.ginid id="nt_" + g.ginid) #{g.notes}
+						input.form-control.input-sm.update(col="ginnotes" colid="ginid" colidval=g.ginid id="nt_" + g.ginid value=g.notes title=g.notes)
 					td
 						div.btn-group.pull-right
 							button.btn.btn-default.btn-sm.btn-setup(id='btn_' + g.ginid data-toggle="tooltip" setuplink="/btn-setup/add_to_goods_received_note" param=g.ginid data-placement="bottom" title="Add items to this goods issue note No " + g.ginid)
