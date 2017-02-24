@@ -32,7 +32,7 @@ script.
 			} else {
 				$("#newitem").hide();
 			}
-
+			// Load the page selected in the workspace div
 			$("#workspace").empty().load($(this).attr("link"));
 			// Unhide new item button and refresh button
 			$("#newitem").removeClass("hide");
