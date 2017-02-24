@@ -23,10 +23,8 @@ router.get('/system_users_setup', function (req, res, next) {
 
 
 router.get('/system_menu_setup', function (req, res, next) {
-	db.query('select * from menu order by morder', function (err, result) {
-		db.query('select * from menu_groups order by mgdescription', function (err, result2) {
-			res.render('system_menu_setup', { menu: result.rows, groups: result2.rows, pagename: 'Menu Options Management' })	
-		})
+	db.query('select * from vw_menu_setup order by morder', function (err, result) {
+		res.render('system_menu_setup', { menu: result.rows, pagename: 'Menu Options Management' })	
 	})
 })
 
