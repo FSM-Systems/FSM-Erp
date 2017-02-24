@@ -30,7 +30,8 @@ script.
 								dbcol: dbcolname,
 								dbcolid: dbcolidname,
 								dbcolval: ordercount,
-								dbcolidval: dbid
+								dbcolidval: dbid,
+								_csrf: $("#_csrf").val(),
 							},
 							success: function (data) {
 								//console.log(data) // DEBUG: simple just log to console the error from database otherwise page could be too heavy 
