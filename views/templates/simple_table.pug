@@ -1,0 +1,29 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	table.table.table-hover.table-condensed(style="width: 60%")
+		thead
+			tr 
+				th.text-center head1
+				th Model head2
+				th
+		
+		tbody
+			if <object from route>.length == 0 
+				tr
+					td(colspan="100") No results, please add a new item // Show no results message 
+			for <variable> in <object from route> // loop through object
+				tr
+					td #{<id>}
+					td 
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-bed(aria-hidden="true")
+								input.update.form-control.input-sm(type="text" col="<column in db>" colid="<id column name>" colidval=<variable>.<id column in db> id="em_" + <variable>.<id column in db> value=<variable>.<value column in db>)
+					td 
+						div.input-group.pull-right
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="<id in database>" dbcolidval=<variable>.<id column in db> id="btn_del_" + <variable>.<id column in db>)
+								span.glyphicon.glyphicon-trash(aria-hidden="true") // delete button
+								
+	input( type="hidden" id="apppage" value="<page to reload>") 
+	input( type="hidden" id="dbtable" value="<table name in database>") 
