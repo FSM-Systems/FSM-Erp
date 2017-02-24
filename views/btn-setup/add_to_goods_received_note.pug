@@ -30,6 +30,7 @@ block content
 								input(type="hidden" name="gind_ginid" value=ginid)
 								input(type="hidden" name="gind_user" id="gind_user" value=session.user_id)
 								input(type="hidden" id="apppage-det" value="/btn-setup/add_to_goods_received_note/param/" + ginid)
+								input(type="hidden" name="_csrf" value=_csrf)
 								button.btn.btn-success(type="button" id="btninsert-det") ADD TO GOODS REQUEST
 				// - Confirm goods issue note button
 				div.panel.panel-info
