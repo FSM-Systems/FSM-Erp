@@ -1,0 +1,23 @@
+script.
+	$(document).ready(function () {
+		// Create a unique name
+		function Generator() {};
+		Generator.prototype.rand =  Math.floor(Math.random() * 26) + Date.now();
+		Generator.prototype.getId = function() {
+			return this.rand++;
+		};
+		
+		var idGen =new Generator();
+		
+		// Dropzone class:
+		var myDropzone = new Dropzone(".dropzone", 
+			{ 
+				url: "/api/upload/file_upload/name/" + idGen.getId(),
+				paramName: "file",
+				headers: {
+					'csrf-token': $('#_csrf').val(),
+				},
+				createImageThumbnails: false,
+			}
+		);	
+	})
