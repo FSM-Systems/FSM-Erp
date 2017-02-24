@@ -12,6 +12,8 @@ var RedisStore = require('connect-redis')(session);
 var client  = redis.createClient();
 // CSRF 
 var csrf = require('csurf');
+// Express upload files
+var fileUploads = require('express-fileupload')
 
 // Add compression to app for performance
 var compression = require('compression')
@@ -25,7 +27,8 @@ var dbapi = require('./routes/dbapi'); // Contains the routes to access and modi
 var autocompleteapi = require('./routes/autocompletes'); // Contains the routes to access and modify DB data
 var newitemsapi = require('./routes/newitemsapi'); // Contains the routes to divs that add new items (templates)
 var menuapi = require('./routes/menu'); // Routes for the main menu
-var btnsetup = require('./routes/btn-setup') // Routes for the setup buttons, when editing details of a line
+var btnsetup = require('./routes/btn-setup'); // Routes for the setup buttons, when editing details of a line
+var uploadapi = require('./routes/uploadapi'); // upload API for uploading files to server
 // App config
 var config = require('./appconfig.js') // Application configuration
 
@@ -40,6 +43,9 @@ app.set('view engine', 'pug');
 
 // Use compression for better performance
 app.use(compression())
+
+// File uploads
+app.use(fileUploads())
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -57,11 +63,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'sasl76324mnasb_sdfsds*anmsbda',
     //cookie: { maxAge: parseInt(config.session_time) }, // 240 minutes session - 1 minute = 60000 millisec 
-    cookie: { maxAge: parseInt(config.session_time) }, 
+    cookie: { maxAge: config.session_time }, 
     // create new redis store.
     store: new RedisStore({ host: 'localhost', port: 6379, client: client, ttl : 260}),
     saveUninitialized: false,
-    resave: false
+    resave: false,
+    rolling: true
 	})
 );
 
@@ -111,6 +118,7 @@ var session_test = function (req, res, next) {
 // Use the session_test function in our application
 app.use(session_test)
 
+// Base route
 app.use('/', index);
 // Add API Route keeps logic clean
 // Database actions
@@ -123,6 +131,8 @@ app.use('/menu', menuapi)
 app.use('/autocompletes', autocompleteapi)
 // Routes for the btn-setup, for editing the details of a line
 app.use('/btn-setup', btnsetup)
+// Upload files api
+app.use('/api/upload', uploadapi)
 
 // Add scripts for use in html code
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
