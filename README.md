@@ -10,7 +10,13 @@ Containes modules for:
 
 Modules can be added and customized. Refere to the [wiki] (https://github.com/FSM-Systems/FSM-Erp/wiki) for more information.
 
-### Components used:
+### Libraries and Frameworks used:
 - Express.js
 - jQuery
 - Boostrap
+
+### Required software
+- NodeJS v6.x (LTS)
+- PostgreSQL 9.4 or higher
+- Nginx 
+- Redis
