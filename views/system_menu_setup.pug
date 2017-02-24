@@ -1,6 +1,9 @@
 // This is the template for building the main menu. It fetches JSON data from the express server and populates the template
 
 block content
+	// - Add searchbox
+	include addons/searchbox.pug
+	input(type="hidden" id="searchparam" searchtable="vw_menu_setup" fields="mlink,mdescription,mnewitemlink,mlongdescription,mgdescription" render="system_menu_setup" arrayname="menu")
 	div
 		br
 		span 
@@ -13,9 +16,9 @@ block content
 				th.text-center ID
 				th.help(data-toggle="popover" data-placement="bottom" title="Menu Option Description Help" data-content="Name displayed in the left navigation menu") Menu Description
 				th.help(data-toggle="popover" data-placement="bottom" title="Express.js API Help" data-content="Link to the route that will load the page in #workspace div. Just use the name of the route as /menu/ will be added automatically as this is the route handling the link.") Express.js API Link
-				th.help(data-toggle="popover" data-placement="bottom" title="API New item link Help" data-content="Link to the route that loads the page in the New Item div. Just use the name of the route as /new_item/ will be added automatically as this is the route handling the link") API New item link
-				th.help(data-toggle="popover" data-placement="bottom" title="Detail of Menu Item Help" data-content="Long description of the menu function. Appears on menu tooltip") Detail of Menu Item
-				th.help(data-toggle="popover" data-placement="bottom" title="Menu Group Help"  data-content="The Desktop Icon does this menu item belong to. Will be a sub selecton of the icon in /desktop when /main opens") Menu Group
+				th.help(data-toggle="popover" data-placement="bottom" title="API New item link Help" data-content="Link to the route that loads the page in the New Item div. Just use the name of the route as /new_item/ will be added automatically as this is the route handling the link. If blank no newitem button will display") API New item link
+				th.help(data-toggle="popover" data-placement="bottom" title="Detail of Menu Item Help" data-content="Long description of the menu function. Appears on menu tooltip.") Detail of Menu Item
+				th.help(data-toggle="popover" data-placement="bottom" title="Menu Group Help"  data-content="The Desktop Icon does this menu item belong to. Will be a sub selecton of the icon in /desktop when /main opens.") Menu Group
 				th.help.text-center(data-toggle="popover" data-placement="bottom" title="Active Help" data-content="Show or hide this item in the menu?") Active?
 				th
 		
