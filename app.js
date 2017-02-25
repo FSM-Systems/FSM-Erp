@@ -65,10 +65,12 @@ app.use(session({
     //cookie: { maxAge: parseInt(config.session_time) }, // 240 minutes session - 1 minute = 60000 millisec 
     cookie: { maxAge: config.session_time }, 
     // create new redis store.
-    store: new RedisStore({ host: 'localhost', port: 6379, client: client, ttl : 260}),
+    //store: new RedisStore({ host: 'localhost', port: 6379, client: client, ttl : 260}),
+    store: new RedisStore(),
     saveUninitialized: false,
     resave: false,
-    rolling: true
+    rolling: true,
+    unset: 'destroy',
 	})
 );
 
@@ -92,7 +94,8 @@ app.use(function(req,res,next){
 var session_test = function (req, res, next) {
 	var arrnosessiontest = 
 		[
-		'/', '/?expired=true', 
+		'/', 
+		'/?expired=true', 
 		'/?wrongcred=true', 
 		'/scripts/nprogress/nprogress.js', 
 		'/auth', 
