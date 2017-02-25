@@ -2,7 +2,7 @@
 block content
 	// - Add searchbox
 	include addons/searchbox.pug
-	input(type="hidden" id="searchparam" searchtable="goods_issue_notes" fields="enumberplate,eidescription" render="goods_issue_notes" arrayname="gin")
+	input(type="hidden" id="searchparam" searchtable="vw_goods_issued_notes" fields="ginby,ginto,notes" render="goods_issue_notes" arrayname="gin")
 	
 	table.table.table-condensed.table-striped
 		thead
@@ -26,13 +26,13 @@ block content
 					td.text-left
 						span #{g.date}
 					td.text-left
-						input.form-control.input-sm.autocomplete(type="text" ac-source="users" id="t" + g.ginid + "_txt" value=g.to)
+						input.form-control.input-sm.autocomplete(type="text" ac-source="users" id="t" + g.ginid + "_txt" value=g.ginto)
 						input.update(type="hidden" col="ginissuedto" colid="ginid" colidval=g.ginid id="t" + g.ginid) 
-						//span #{g.to}
+						//span #{g.ginto}
 					td.text-left
-						input.form-control.input-sm.autocomplete(type="text" ac-source="users" id="b" + g.ginid + "_txt" value=g.by)
+						input.form-control.input-sm.autocomplete(type="text" ac-source="users" id="b" + g.ginid + "_txt" value=g.ginby)
 						input.update(type="hidden" col="ginissuedby" colid="ginid" colidval=g.ginid id="b" + g.ginid)  
-						//span #{g.by}
+						//span #{g.ginby}
 					td.text-left 
 						//textarea.form-control.update(col="ginnotes" colid="ginid" colidval=g.ginid id="nt_" + g.ginid) #{g.notes}
 						input.form-control.input-sm.update(col="ginnotes" colid="ginid" colidval=g.ginid id="nt_" + g.ginid value=g.notes title=g.notes)
