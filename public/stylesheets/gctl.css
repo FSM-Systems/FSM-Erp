@@ -24,19 +24,6 @@ html, body, * {
 	cursor: pointer;
 }
 
-/* Header tools */
-.header-vertical-align {
-	/height: 45px;
-	/line-height: 45px;
-}
-
-.gctl-header {
-	background-color: #f6f6f6;
-	border-bottom-color: lightgray;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-}
-
 /* Tooltip overide settings*/
 div.tooltip-inner {
 	max-width: 500px;
@@ -64,10 +51,6 @@ label.help:hover {
 	position: absolute;
 	cursor: pointer;
 	top: 4px;
-}
-
-.logo:hover {
-	opacity: 0.7;
 }
 
 /* menu css */

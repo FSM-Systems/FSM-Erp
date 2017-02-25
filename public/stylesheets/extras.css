@@ -14,3 +14,14 @@
 .size-100 {
 	width: 100px ! important;
 }
+
+.ui-autocomplete {
+	font-size: 12px;
+}
+
+.ui-menu-item .ui-menu-item-wrapper:hover {
+	color: red;
+	border-top-color: white;
+	border-bottom-color: white;
+	font-weight: 700;
+}
