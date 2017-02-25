@@ -35,3 +35,12 @@ table thead th {
 	margin-top: 10px;
 	cursor: pointer;
 }
+
+.head {
+	background-image: linear-gradient(180deg, #e2e2e2, #ffffff);
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 60px;
+	line-height: 60px;
+	vertical-align: middle;
+}
