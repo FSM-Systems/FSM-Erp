@@ -34,7 +34,7 @@ script.
 		
 		$("#btn-search").click(function () {
 			if($("#frmsearch").valid() == true) {
-				$("#workspace").load("/api/db/searchterm/table/" + $("#searchparam").attr("searchtable") + "/term/" + $("#srch").val() + '/fields/' + $("#searchparam").attr("fields") + '/render/' + $("#searchparam").attr("render") + '/arrayname/' + $("#searchparam").attr("arrayname"))
+				$("#workspace").load("/api/db/searchterm/table/" + $("#searchparam").attr("searchtable") + "/term/" + $("#srch").val().replace(" ","_") + '/fields/' + $("#searchparam").attr("fields") + '/render/' + $("#searchparam").attr("render") + '/arrayname/' + $("#searchparam").attr("arrayname"))
 				// Enable clear search button
 				$("#btn-clear").attr("disabled", false)
 			}
