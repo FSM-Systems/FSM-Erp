@@ -9,14 +9,18 @@ script.
 		
 		var idGen =new Generator();
 		
-		// Dropzone class:
+		// - Dropzone class:
+		// - Get the upload route (we can have different based on operation we want to do) and upload directory on server to use from the button attribute
+		// - file name is randomized
+		// We also set what type of files we can upload from the accepted_Extensions attribute
 		var myDropzone = new Dropzone(".dropzone", 
 			{ 
-				url: "/api/upload/file_upload/name/" + idGen.getId(),
+				url: "/api/upload/" + $("#btn-dropzone").attr("uploadroute") + "/name/" + idGen.getId() + "/uploaddir/" + $("#btn-dropzone").attr("uploaddir"),
 				paramName: "file",
 				headers: {
 					'csrf-token': $('#_csrf').val(),
 				},
+				acceptedFiles: $("#btn-dropzone").attr("accepted_extensions"),
 				createImageThumbnails: false,
 			}
 		);	

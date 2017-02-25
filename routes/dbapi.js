@@ -89,7 +89,7 @@ router.get('/searchterm/table/:table/term/:term/fields/:fields/render/:render/ar
 	var fields = req.params.fields.split(",");
 	var strfields = '';
 	for(var f = 0; f < fields.length; f++) {
-		strfields += '(' + fields[f] + ' ilike \'%' + req.params.term + '%\') or ';
+		strfields += '(' + fields[f] + ' ilike \'%' + req.params.term.replace("_"," ") + '%\') or ';
 	}
 	// Clean up the where clause from the last or
 	strfields = strfields.substr(0, strfields.length - 4);
