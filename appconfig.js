@@ -13,6 +13,6 @@ config.full_logo = 'logo.png'; // Logo for index page
 config.company_name = 'FSM-Erp'; // Company Name
 
 // Session settings
-config.session_time = 6 * 60 * 60000;
+config.session_time = 6 * 60 * 60000; // 6 hours
 
 module.exports = config;
