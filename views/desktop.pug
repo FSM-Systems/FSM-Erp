@@ -9,28 +9,27 @@ block content
 	// Create sthe desktop with rows of 6 icons
 	div.container-fluid
 		include header.pug
-		
-		div.container
-			div.row
-				each d in desktop
-					div.col-md-2.text-center.desktop-panel
-						if d.mgtype
-							div.dsk-panel(class="panel " + d.mgtype id=d.mgid disabled="disabled")
-								div.panel-heading
-									h4.panel-title #{d.mgdescription}
-								div.panel-body
-									img.desktop-icon(src="/icons/" + d.mgicon)
-						else 
-							div.dsk-panel.panel.panel-info(id=d.mgid)
-								div.panel-heading
-									h4.panel-title #{d.mgdescription}
-								div.panel-body
-									img.desktop-icon(src="/icons/" + d.mgicon)
-								
-					- count++
-					
-				if ( count % 5 == 0 ) 
-					div.row
+
+		div.row
+			each d in desktop
+				div.col-md-2.text-center.desktop-panel
+					if d.mgtype
+						div.dsk-panel(class="panel " + d.mgtype id=d.mgid disabled="disabled")
+							div.panel-heading
+								h4.panel-title #{d.mgdescription}
+							div.panel-body
+								img.desktop-icon(src="/icons/" + d.mgicon)
+					else 
+						div.dsk-panel.panel.panel-info(id=d.mgid)
+							div.panel-heading
+								h4.panel-title #{d.mgdescription}
+							div.panel-body
+								img.desktop-icon(src="/icons/" + d.mgicon)
+							
+				- count++
+				
+			if ( count % 5 == 0 ) 
+				div.row
 					
 	script.
 		$(document).ready(function () {
