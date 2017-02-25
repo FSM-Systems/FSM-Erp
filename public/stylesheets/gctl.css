@@ -42,13 +42,6 @@ div.tooltip-inner {
 	max-width: 500px;
 }
 
-/* Table dbtable header for popover, when class help is added th become red so we know that there is a help popover */
-.help th:hover {
-	color: tomato;
-	text-decoration: underline; 
-	font-weight: 400;
-}
-
 /* Remove outlines such as in chrome */
 input:focus {
     outline: 0;
@@ -84,6 +77,7 @@ label.help:hover {
 	border-right-color: white;
 	margin-left: -15px;
 	height: 100%;
+	width: 200px;
 }
 
 .mainmenu tr td {
@@ -91,10 +85,10 @@ label.help:hover {
 }
 
 .mainmenu tr td:hover {
-	border-right-color: blue;
+	border-right-color: black;
 	border-right-style: solid;
 	border-right-width: 2px;
-	color: green;
+	color: black;
 	cursor: pointer;
 	background-color: #f7faff; /*#f9eafc*/
 }
@@ -111,26 +105,6 @@ label.help:hover {
 
 .mainmenu tr td span {
 	padding-left: 2px;
-}
-
-/* 
-Boostrap alerts CSS
-fixed, centered on top
-*/
-.alert {
-  position: fixed;
-  top: 5px;
-  margin-left: 25%; 
-  width: 50%;
-  z-index: 10000;
-}
-/* Boostrap Table Exta CSS */
-.table {
-	margin: 0 auto;
-}
-
-table th.help {
-	cursor: pointer;
 }
 
 /* Footer div for additions to DB*/
@@ -158,17 +132,6 @@ table th.help {
 	border-width: 2px;
 	background-color: #ffcccf;
 	font-weight: bold;
-}
-
-/* Sortale tables CSS */
-.sortable tr {
-	cursor: all-scroll;
-}
-
-/* Desktop CSS */
-.desktop-panel {
-	margin-top: 10px;
-	cursor: pointer;
 }
 
 /* Shadow only for desktop icons panel as otherwise it would appear everywhere and it's annoying! */
