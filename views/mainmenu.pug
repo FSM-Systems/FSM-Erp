@@ -8,4 +8,4 @@ block content
 		for m in menuitems
 			tr
 				td(class="mainmenulink" link='/menu/' + m.mlink newitemlink="/new_item/" + m.mnewitemlink data-toggle="tooltip" data-placement="right" title=m.mlongdescription)
-					span #{m.mdescription}
+					| #{m.mdescription}

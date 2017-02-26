@@ -55,9 +55,9 @@ label.help:hover {
 
 /* menu css */
 .mainmenu {
-	border-right-width: 2px;
+	border-right-width: 1px;
 	border-right-style: solid;
-	border-right-color: white;
+	border-right-color: lightgray;
 	margin-left: -15px;
 	height: 100%;
 	width: 200px;
@@ -67,23 +67,24 @@ label.help:hover {
 	padding: 10px;
 }
 
-.mainmenu tr td:hover {
-	border-right-color: black;
+.mainmenu tr td:hover:not(.mainmenu_item_selected) {
+	border-right-color: red;
 	border-right-style: solid;
-	border-right-width: 2px;
+	border-right-width: 3px;
 	color: black;
 	cursor: pointer;
-	background-color: #f7faff; /*#f9eafc*/
+	background-color: #f0f0f0; /*#f9eafc*/
+	font-weight: 700 ! important;
 }
 
 /* Selected menu item*/
 .mainmenu_item_selected {
 	border-right-color: black;
 	border-right-style: solid;
-	border-right-width: 2px;
-	background-color: gray; /*#f7faff*/
+	border-right-width: 3px;
+	background-color: lightgray; /*#f7faff*/
 	font-weight: 700;
-	color: white;
+	color: black;
 }
 
 .mainmenu tr td span {
