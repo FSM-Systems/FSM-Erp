@@ -74,7 +74,6 @@ label.help:hover {
 	color: black;
 	cursor: pointer;
 	background-color: #f0f0f0; /*#f9eafc*/
-	font-weight: 700 ! important;
 }
 
 /* Selected menu item*/
