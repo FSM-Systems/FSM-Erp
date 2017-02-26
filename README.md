@@ -6,7 +6,8 @@ Containes modules for:
 - Workshop
 - Stores
 - Fuel
-- HR
+- HR Management
+- Company Correspondence
 
 Modules can be added and customized. Refere to the [wiki] (https://github.com/FSM-Systems/FSM-Erp/wiki) for more information.
 
