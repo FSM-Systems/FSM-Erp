@@ -8,29 +8,19 @@
 
 form.form-inline(id="frmsearch")
 	div.row
-		div.col-sm-3
-		div.col-sm-4
-			div.form-group.pull-right
-				div.input-group
-					div.input-group-addon Search for items in data
-					input.input-sm.form-control(type="text" id="srch" placeholder="Type text to search ..." style="width: 300px;" value=term required)
-		div.col-sm-1
-			button.btn.btn-primary.btn-sm.btn-primary-spacing(type="button" id="btn-search") SEARCH DB
-		div.col-sm-1
-			if term
-				button.btn.btn-info.btn-sm.btn-primary-spacing(type="button" id="btn-clear") CLEAR SEARCH
-			else
-				button.btn.btn-info.btn-sm.btn-primary-spacing(type="button" id="btn-clear" disabled="true") CLEAR SEARCH
-		div.col-sm-3
+		div.input-group
+			input.input-sm.form-control(type="text" id="srch" placeholder="Type text to search ..." style="width: 300px;" value=term required)
+	
+		button.btn.btn-primary.btn-sm.btn-primary-spacing(type="button" id="btn-search") SEARCH DB
+	
+		if term
+			button.btn.btn-info.btn-sm.btn-primary-spacing(type="button" id="btn-clear") CLEAR SEARCH
+		else
+			button.btn.btn-info.btn-sm.btn-primary-spacing(type="button" id="btn-clear" disabled="true") CLEAR SEARCH
 	
 script. 
 	$(document).ready(function () {
-		$("#frmsearch").validate({
-			errorClass: 'customerror',
-			errorPlacement: function(error,element) {
-				return true; // No labels for the error fields. Just highlight with error class! Looks better and more fluid
-			}		
-		});
+		$("#frmsearch").validate();
 		
 		$("#btn-search").click(function () {
 			if($("#frmsearch").valid() == true) {

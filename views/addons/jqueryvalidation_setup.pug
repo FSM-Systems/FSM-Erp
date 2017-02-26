@@ -1,0 +1,7 @@
+script.
+	jQuery.validator.setDefaults({
+		errorClass: 'customerror',
+			errorPlacement: function(error,element) {
+			return true; // No labels for the error fields. Just highlight with error class! Looks better and more fluid
+		}	
+	});
