@@ -22,13 +22,12 @@
 .ui-menu-item .ui-menu-item-wrapper:hover {
 	color: black;
 	border-color: #dddddd ! important;
-	border-bottom-color: black ! important;
 	font-weight: 700;
 }
 
 /* Set backround if dropdown list in autocomplete */ 
 .ui-widget-content .ui-state-active {
-	background: orange; ! important;
+	background: #ffbb33; ! important;
 }
 
 .bold {
