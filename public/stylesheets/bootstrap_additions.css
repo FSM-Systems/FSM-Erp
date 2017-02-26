@@ -18,6 +18,11 @@ table th.help {
 table thead th {
 	font-weight: 700 ! important;
 }
+
+table tr:hover {
+	cursor: pointer; /* change cursor when hovering table rows */ 
+}
+
 /* Table dbtable header for popover, when class help is added th become red so we know that there is a help popover */
 .help th:hover {
 	color: tomato;
