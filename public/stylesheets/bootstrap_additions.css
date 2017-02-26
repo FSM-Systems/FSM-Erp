@@ -49,3 +49,8 @@ table tr:hover {
 	line-height: 60px;
 	vertical-align: middle;
 }
+
+/* Button Spacing */
+.btn-space {
+    margin-right: 5px;
+}
