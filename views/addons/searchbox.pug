@@ -9,14 +9,14 @@
 form.form-inline(id="frmsearch")
 	div.row
 		div.input-group
-			input.input-sm.form-control(type="text" id="srch" placeholder="Type text to search ..." style="width: 300px;" value=term required)
+			input.form-control.input-sm.btn-space(type="text" id="srch" placeholder="Type text to search ..." style="width: 300px;" value=term required)
 	
-		button.btn.btn-primary.btn-sm.btn-primary-spacing(type="button" id="btn-search") SEARCH DB
+		button.btn.btn-primary.btn-sm.btn-space(type="button" id="btn-search") SEARCH DB
 	
 		if term
-			button.btn.btn-info.btn-sm.btn-primary-spacing(type="button" id="btn-clear") CLEAR SEARCH
+			button.btn.btn-info.btn-sm(type="button" id="btn-clear") CLEAR SEARCH
 		else
-			button.btn.btn-info.btn-sm.btn-primary-spacing(type="button" id="btn-clear" disabled="true") CLEAR SEARCH
+			button.btn.btn-info.btn-sm(type="button" id="btn-clear" disabled="true") CLEAR SEARCH
 	
 script. 
 	$(document).ready(function () {
