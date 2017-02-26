@@ -2,7 +2,7 @@ script.
 	$(document).ready(function () {
 		// - Dropzone class:
 		// - Get the upload route (we can have different based on operation we want to do) and upload directory on server to use from the button attribute
-		// We also set what type of files we can upload from the accepted_Extensions attribute
+		// - We also set what type of files we can upload from the accepted_Extensions attribute
 		var myDropzone = new Dropzone(".dropzone", 
 			{ 
 				url: "/api/upload/" + $("#btn-dropzone").attr("uploadroute") + "/uploaddir/" + $("#btn-dropzone").attr("uploaddir"),
@@ -12,6 +12,18 @@ script.
 				},
 				acceptedFiles: $("#btn-dropzone").attr("accepted_extensions"),
 				createImageThumbnails: false,
+				success: function (file, response) {
+					//alert(response)
+					if (response == "OK") {
+						// - What to do after successfull upload
+						// - Save link as we are emptying the page so we cannot find it anymore
+						var link = $("#btn-dropzone").attr("success_route");
+						// - Set link for refresh page button so we can reload the currently new laoded page and not import from excel page...
+						$("#refreshpage").attr("refreshlink", link);
+						// - Load the temp excel imported file
+						$("#workspace").empty().load(link)
+					}
+				}
 			}
 		);	
 	})
