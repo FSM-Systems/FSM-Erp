@@ -20,12 +20,24 @@ router.get('/user_permissions/param/:param', function (req, res, next) {
 	})
 })
 
+// Add stock items to goods issued notes
 router.get('/add_to_goods_received_note/param/:param', function (req, res, next) {
 	db.query('select * from vw_goods_issued_notes_details where gind_ginid=$1', [req.params.param], function (err, result) {
 		res.render('btn-setup/add_to_goods_received_note.pug', {
 			title: 'Add items to Goods Received Notes',	
 			ginid: req.params.param,
 			items: result.rows,
+		})
+	})
+})
+
+// Set per user permissions for a single menu item (usefull when just created it)
+router.get('/single_permission_per_user/param/:param', function (req, res, next) {
+	db.query('select lid, ldescription, lpermissions from login order by ldescription', function (err, result) {
+		res.render('btn-setup/single_permission_per_user', {
+				users: result.rows,
+				menu_id: req.params.param, // Send the id of the menu item to page so we can compare with the permissions of user and check the input checkbox
+				title: 'Assign this permission to a user:'		
 		})
 	})
 })

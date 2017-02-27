@@ -6,7 +6,7 @@ block content
 				strong #{title} for #{username} - UID: #{userid}
 		div.row
 			each p in menu
-				div(class="col-md-3 text-left")
+				div.col-md-3.text-left
 					input.perms(type="checkbox" id="menu_" + p.mid)
 					label(for="menu_" + p.mid) &nbsp;#{p.mdescription}
 				- count++
@@ -25,11 +25,12 @@ block content
 				$(".perms").each(function () {
 					var ck = $(this)
 					var arruserperms = "!{userperms}".split(',');
-					for (var i = 0; i < arruserperms.length; i++) {
-						if (arruserperms[i] == ck.attr("id").replace("menu_","")) {
+					$.each(arruserperms, function (index, value) {
+						console.log(value)
+						if (value == ck.attr("id").replace("menu_","")) {
 							ck.prop("checked", true);
-						}		
-					}
+						}
+					})
 				})
 				
 				// - Select all button

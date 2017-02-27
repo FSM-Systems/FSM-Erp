@@ -1,0 +1,75 @@
+block content
+	- var count = 0;
+	div.container
+		div.row
+			span.bold.underline #{title}
+			br
+			br
+		div.row
+			each u in users
+				div.col-md-3.text-left
+					input.perms(type="checkbox" name="user_" + u.lid id="user_" + u.lid user_permissions=u.lpermissions)
+					label(for="user_" + u.lid) &nbsp;#{u.ldescription} 
+				- count++
+				if ( count % 4 == 0 )
+					div.row
+	
+	script.
+		$(document).ready(function () {
+			// update the permission for the user
+			$(".perms").change(function () {
+				// If user has no permissions create empty array. 
+				if ($(this).attr("user_permissions")) {
+					var arruserperms = $(this).attr("user_permissions").split(',');
+				} else {
+					var arruserperms = [];	
+				}
+				var ck = $(this);
+				if (ck.is(":checked")) {
+					// Add element to arruserperms
+					//ck.attr("user_permissions") + "," + "!{menu_id}"
+					arruserperms.push(!{menu_id})
+				} else {
+					// Remove element (this menu id) from arruserperms
+					arruserperms.splice(arruserperms.indexOf(!{menu_id}),1);
+				}
+				var newperms = arruserperms.toString();
+				// - We are doing custom AJAX here as we are updating permissions
+				$.ajax({
+					type: 'POST',
+					url: '/api/db/update_db_field',
+					data: {
+						table: 'login',
+						dbcol: 'lpermissions',
+						dbcolid: 'lid',
+						dbcolval: newperms,
+						dbcolidval: ck.attr("id").replace("user_",""),
+						_csrf: $("#_csrf").val(),
+					},
+					success: function (data) {
+						if (data == "OK") {
+							$("#succesfull_db").slideDown().delay(600).slideUp();
+						} else {
+							input.addClass("customerror");
+							input.val(input.attr("oldvalue")) // - Revert to old value if error
+							alert(JSON.stringify(data)) 
+						}
+					}, 
+					error: function () {
+						$("#error_db").slideDown().delay(1000).slideUp();
+					}					
+				})	
+			})
+				
+			// - Set input checked if the permission is already bound to the user
+			$(".perms").each(function () {
+				var arruserperms = $(this).attr("user_permissions").split(',');
+				var ck = $(this)
+				// Since this in done on a per user basis, we are saving the permissions of the specific user as an attribute in the element and then we are retrieving it here.
+				$.each(arruserperms, function (index, value) {
+					if (value == "!{menu_id}") { // We received the clicked menu item id and compare it withthe users permissions. If its in permissions check it the input.
+						ck.prop("checked", true);
+					}
+				})
+			})
+		})
