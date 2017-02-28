@@ -27,7 +27,8 @@ router.get('/template', function (req, res, next) {
 
 // Goods issued notes
 router.get('/print_report/rep_template/:rep_template/rep_name/:rep_name/view/:view/param_name/:param_name/param/:param', function (req, res, next) {
-	db.query('select * from ' + req.params.view + ' where ' + req.params.param_name + '=$1', [req.params.param], function (err, result) {
+	var strSQL = 'select * from ' + req.params.view + ' where ' + req.params.param_name + '=$1';
+	db.query(strSQL, [req.params.param], function (err, result) {
 		res.render(req.params.rep_template, {
 			report_data: result.rows,	
 			report_name:req.params.rep_name,	

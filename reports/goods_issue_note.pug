@@ -20,6 +20,8 @@ block content
 					dd #{ref}
 					dt Date:
 					dd #{report_data[0].date}
+					dt Printed By
+					| #{session.user_description} - #{moment(Date.now()).format('DD/MM/YYYY @ HH:mm')}
 
 		
 		div.row
