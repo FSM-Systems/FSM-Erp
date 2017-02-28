@@ -18,7 +18,7 @@ block content
 				th.help(data-toggle="popover" data-placement="bottom" title="Express.js API Help" data-content="Link to the route that will load the page in #workspace div. Just use the name of the route as /menu/ will be added automatically as this is the route handling the link.") Express.js API Link
 				th.help(data-toggle="popover" data-placement="bottom" title="API New item link Help" data-content="Link to the route that loads the page in the New Item div. Just use the name of the route as /new_item/ will be added automatically as this is the route handling the link. If blank no newitem button will display") API New item link
 				th.help(data-toggle="popover" data-placement="bottom" title="Detail of Menu Item Help" data-content="Long description of the menu function. Appears on menu tooltip.") Detail of Menu Item
-				th.help(data-toggle="popover" data-placement="bottom" title="Menu Group Help"  data-content="The Desktop Icon does this menu item belong to. Will be a sub selecton of the icon in /desktop when /main opens.") Menu Group
+				th.help(data-toggle="popover" data-placement="bottom" title="Menu Group Help"  data-content="The Desktop Icon does this menu item belong to. Will be a sub selecton of the icon in /desktop when /main opens.") Group
 				th.help.text-center(data-toggle="popover" data-placement="bottom" title="Active Help" data-content="Show or hide this item in the menu?") Active?
 				th
 		
@@ -54,7 +54,7 @@ block content
 					td
 						input.update.form-control.order.input-sm(type="hidden" col="morder" colid="mid" colidval=m.mid id="mn_" + m.mid value=m.morder) 
 						div.input-group
-							input.form-control.input-sm.autocomplete.size-120(id="mg_" + m.mid + "_txt" ac-source="menu_groups" value=m.mgdescription)
+							input.form-control.input-sm.autocomplete.size-80(id="mg_" + m.mid + "_txt" ac-source="menu_groups" value=m.mgdescription data-toggle="tooltip" data-placement="bottom" title=m.mgdescription)
 							input.update(type="hidden" id="mg_" + m.mid col="mgroup" colid="mid" colidval=m.mid )
 
 											
@@ -63,8 +63,10 @@ block content
 							input.update(type="checkbox" checked col="mactive" colid="mid" colidval=m.mid id="mnc_"  + m.mid)
 						else
 							input.update(type="checkbox" col="mactive" colid="mid" colidval=m.mid id="mnc_" + m.mid)
-					td 
-						div.input-group.pull-right
+					td
+						div.btn-group.pull-right
+							button.btn.btn-info.btn-sm.btn-setup(setuplink="/btn-setup/single_permission_per_user" param=m.mid)
+								span.glyphicon.glyphicon-cog(aria-hidden="true")
 							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="mid" dbcolidval=m.mid id="btn_del_" + m.mid)
 								span.glyphicon.glyphicon-trash(aria-hidden="true")
 								
