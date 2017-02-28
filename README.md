@@ -9,6 +9,8 @@ Containes modules for:
 - HR Management and Attendance
 - Company Correspondence
 
+includes a reporting engine to create custom reports and a set of standard reports.
+
 Modules can be added and customized. Refer to the [wiki] (https://github.com/FSM-Systems/FSM-Erp/wiki) for more information.
 
 ### Libraries and Frameworks used:
