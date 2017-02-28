@@ -24,6 +24,10 @@
 	padding: 10px;
 }
 
+.padding-15 {
+	padding: 15px;
+}
+
 .ui-autocomplete {
 	font-size: 12px;
 }
