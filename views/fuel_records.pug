@@ -42,19 +42,19 @@ block content
 					td 
 						div.input-group
 							- if (fr.error == true)
-								span(style="color: red; font-weight: bold") X #{fr.frprice}
+								span(style="color: red; font-weight: bold" title="This record has a mistake") X #{fr.frprice}
 							- else
 								span #{fr.frprice}
 					td 
 						div.input-group
 							- if (fr.error == true)
-								span(style="color: red; font-weight: bold") X #{fr.frtotal}
+								span(style="color: red; font-weight: bold" title="This record has a mistake") X #{fr.frtotal}
 							- else
 								span #{fr.frtotal}			
 					td 
 						div.input-group
 							- if (fr.error == true)
-								span(style="color: red; font-weight: bold") --> #{fr.frqty}
+								span(style="color: red; font-weight: bold" title="This record has a mistake") --> #{fr.frqty}
 							- else
 								span #{fr.frqty}
 					td 

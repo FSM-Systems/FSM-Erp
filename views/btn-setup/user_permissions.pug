@@ -5,25 +5,28 @@ block content
 				span
 					strong #{title} for #{username} - UID: #{userid}
 			div.row
-				- var oldmenu = ""; // Create var for menu. When menu changes then print it on screen as header of the group of menu items
-				mixin permline(mid, description)
-					div.col-md-3.text-left
-						input.perms(type="checkbox" name="menu_" + mid  id="menu_" + mid)
-						label(for="menu_" + mid) &nbsp;#{description}
-					
-				each p in menu
-					- if ( p.mgdescription != oldmenu )
-						- oldmenu = p.mgdescription;
-						div.panel.panel-info
-							div.panel-heading
-								span.underline Menu Group: #{p.mgdescription}
-							div.panel-body
-								div.row
-								each i in menu
-									- if ( i.mgdescription == p.mgdescription )
-										+permline(i.mid, i.mdescription)
-										- if (count % 4 == 0 )
-												- count = 0;
+				div.col-md-1
+				div.col-md-10
+					- var oldmenu = ""; // Create var for menu. When menu changes then print it on screen as header of the group of menu items
+					mixin permline(mid, description)
+						div.col-md-3.text-left
+							input.perms(type="checkbox" name="menu_" + mid  id="menu_" + mid)
+							label(for="menu_" + mid) &nbsp;#{description}
+						
+					each p in menu
+						- if ( p.mgdescription != oldmenu )
+							- oldmenu = p.mgdescription;
+							div.panel.panel-info
+								div.panel-heading
+									span.underline #{p.mgdescription}
+								div.panel-body
+									div.row
+									each i in menu
+										- if ( i.mgdescription == p.mgdescription )
+											+permline(i.mid, i.mdescription)
+											- if (count % 4 == 0 )
+													- count = 0;
+				div.col-md-1
 						
 		script.
 			$(document).ready(function () {
