@@ -1,23 +1,29 @@
 block content
 	- var count = 0
-	div.container
-		div.row
-			span
-				strong #{title} for #{username} - UID: #{userid}
-		div.row
-			each p in menu
-				div.col-md-3.text-left
-					input.perms(type="checkbox" id="menu_" + p.mid)
-					label(for="menu_" + p.mid) &nbsp;#{p.mdescription}
-				- count++
-						
-				if ( count % 4 == 0 )
-					div.row
+		div.container
+			div.row
+				span
+					strong #{title} for #{username} - UID: #{userid}
+			div.row
+				- var oldmenu = ""; // Create var for menu. When menu changes then print it on screen as header of the group of menu items
+				mixin permline(mid, description)
+					div.col-md-3.text-left
+						input.perms(type="checkbox" name="menu_" + mid  id="menu_" + mid)
+						label(for="menu_" + mid) &nbsp;#{description}
 					
-		div.row
-			button.btn.btn-default(id="select_all") Select All 
-			span &nbsp;
-			button.btn.btn-default(id="update_perms") Update Permissions
+				each p in menu
+					- if ( p.mgdescription != oldmenu )
+						- oldmenu = p.mgdescription;
+						div.panel.panel-info
+							div.panel-heading
+								span.underline Menu Group: #{p.mgdescription}
+							div.panel-body
+								div.row
+								each i in menu
+									- if ( i.mgdescription == p.mgdescription )
+										+permline(i.mid, i.mdescription)
+										- if (count % 4 == 0 )
+												- count = 0;
 						
 		script.
 			$(document).ready(function () {
@@ -26,21 +32,15 @@ block content
 					var ck = $(this)
 					var arruserperms = "!{userperms}".split(',');
 					$.each(arruserperms, function (index, value) {
-						console.log(value)
 						if (value == ck.attr("id").replace("menu_","")) {
 							ck.prop("checked", true);
 						}
 					})
 				})
-				
-				// - Select all button
-				$("#select_all").click(function () {
-					$(".perms").prop("checked", true);
-				})
 					
 				// -  This page has its own button handler as the data is slightly different from the rest of the application
-				// -  We are using a JSON array to store in the DB 
-				$("#update_perms").click(function () {
+				// - Update perms when user checks r unchecks checkbox
+				$(".perms").change(function () {
 					// -  Loop through the checkboxes and create a string of perms to pass to postgres
 					var perms = '';
 					$("input.perms:checked").each( function () {
