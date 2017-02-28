@@ -33,7 +33,7 @@ router.get('/desktop', function (req, res, next) {
 
 // Main page after login
 router.get('/main/menugroup/:menugroup', function (req, res, next) {
-	res.render('main', { title: config.company_name + ' Admin Console', logo: config.applogo, session: req.session, menugroup: req.params.menugroup }) 
+	res.render('main', { title: config.company_name, logo: config.applogo, session: req.session, menugroup: req.params.menugroup }) 
 })
 
 // Logout from system
