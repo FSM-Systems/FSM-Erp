@@ -1,60 +1,60 @@
 script.
 	$(document).ready(function () {
-		// - Load main menu 
-		// when we open main we are coming from desktop
-		// in desktop when clicking we are passig the group (Eg. Equipment, System Setup etc to the page)
-		// We have to then pass it on here when loading the menu so that we filter ans show only the items that belong to this group
+		//- Load main menu 
+		//- when we open main we are coming from desktop
+		//- in desktop when clicking we are passig the group (Eg. Equipment, System Setup etc to the page)
+		//- We have to then pass it on here when loading the menu so that we filter ans show only the items that belong to this group
 		$("#leftmenu").load("/menu/mainmenu/menugroup/!{menugroup}") 
 		
-		// To main page on logo click
+		//- To main page on logo click
 		$(".logo").click(function () {
 			window.location.href = "/desktop";			
 		});
 		
-		// - Menu Handler
+		//- Menu Handler
 		$(document).on("click", ".mainmenulink", function () {
-			// Hide new item div on menu click
+			//- Hide new item div on menu click
 			$('#divnewitem').fadeOut()
 			
-			// Remove selected class from all links
+			//- Remove selected class from all links
 			$(".mainmenulink").removeClass("mainmenu_item_selected");
-			// Apply class so Items shows as selected
+			//- Apply class so Items shows as selected
 			$(this).addClass("mainmenu_item_selected");
 			
-			// Set link for refresh page button so we can reload the currently open div in workspace
+			//- Set link for refresh page button so we can reload the currently open div in workspace
 			$("#refreshpage").attr("refreshlink", $(this).attr("link"));
 			
-			// Set link for newitem button to open page for inserting new things in DB
-			// If the link is there. If the new item link is null then disable button.
-			if ($(this).attr("newitemlink").length > 10) { // We put 10 here as /new_item/ is automatically prepended to the link
+			//- Set link for newitem button to open page for inserting new things in DB
+			//- If the link is there. If the new item link is null then disable button.
+			if ($(this).attr("newitemlink").length > 10) { //- We put 10 here as /new_item/ is automatically prepended to the link
 				$("#newitem").show();
 				$("#newitem").attr("dblink", $(this).attr("newitemlink"))
 			} else {
 				$("#newitem").hide();
 			}
-			// Load the page selected in the workspace div
+			//- Load the page selected in the workspace div
 			$("#workspace").empty().load($(this).attr("link"));
-			// Unhide new item button and refresh button
+			//- Unhide new item button and refresh button
 			$("#newitem").removeClass("hide");
 			$("#refreshpage").removeClass("hide");
 			
-			// - Set page name based on selection	
-			// - $("#headingtext").text($(this).text().toUpperCase());	
+			//- Set page name based on selection	
+			//- $("#headingtext").text($(this).text().toUpperCase());	
 		});
 		
 		
-		// New item button
+		//- New item button
 		$("#newitem").click(function () {
 			//alert($("#newitem").attr("dblink"));
 			$('#divnewitem').fadeIn();
 			$('#divnewitemdet').empty().load($("#newitem").attr("dblink"), function () {
-				// Always focus first item in form when loading
+				//- Always focus first item in form when loading
 				$("#frmnewitem").find("input:first").focus();				
 			});
 		})
 		
-		// Always prevent frmnewinsert (when adding new items) to submit when hitting enter
-		// Emulate #btninsert click instead
+		//- Always prevent frmnewinsert (when adding new items) to submit when hitting enter
+		//- Emulate #btninsert click instead
 		$(document).bind("keypress", "#frmnewitem", function(e) {
 			if (e.keyCode == 13) {
 				return false;
@@ -62,26 +62,32 @@ script.
 		});
 			
 		$("#closenewitem").click(function () {
-			// Hide new item div
+			//- Hide new item div
 			$('#divnewitem').fadeOut();
 		})
 
-		// refresh page button
+		//- refresh page button
 		$("#refreshpage").click(function () {
-			// - Reload workspace based on link set when selected from menu
+			//- Reload workspace based on link set when selected from menu
 			$("#workspace").load($(this).attr("refreshlink"))				
-			// - Remove divnewitem
+			//- Remove divnewitem
 			$("#divnewitem").fadeOut()
 		})
 		
-		// - Button handler for setting up details such as user permissions, desktop icons etc
+		//- Button handler for setting up details such as user permissions, desktop icons etc
 		$(document).on("click", ".btn-setup", function () {
-			// For setup button load the page that is specified in the attribute setuplink of the button iself
+			//- For setup button load the page that is specified in the attribute setuplink of the button iself
 			$('#divnewitem').fadeIn();
-			$('#divnewitemdet').empty().load($(this).attr("setuplink") + "/param/" + $(this).attr("param") ); // Since this function can be used anywhere we use a generic attr param to apss parameters. The coder will then use it in AJAX calls etc
+			$('#divnewitemdet').empty().load($(this).attr("setuplink") + "/param/" + $(this).attr("param") ); //- Since this function can be used anywhere we use a generic attr param to apss parameters. The coder will then use it in AJAX calls etc
 		})
 		
-		// - Logout function
+		//- Button for printing reports
+		$(document).on("click", "#btn-print", function () {
+			//- Load the route in #printdiv so we can print the report
+			$("#printdiv").attr('src', '/reports/print_report/rep_template/' + $(this).attr("rep_template") + '/rep_name/' + encodeURIComponent($(this).attr("rep_name")) + '/view/' + $(this).attr("dbview") + '/param_name/' + $(this).attr("param_name") + '/param/' + $(this).attr("param"))
+		})
+		
+		//- Logout function
 		$("#logout").click(function () {
 			if (confirm('LOGOUT?')) {
 				window.location.href = "/logout"

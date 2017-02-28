@@ -29,6 +29,8 @@ var newitemsapi = require('./routes/newitemsapi'); // Contains the routes to div
 var menuapi = require('./routes/menu'); // Routes for the main menu
 var btnsetup = require('./routes/btn-setup'); // Routes for the setup buttons, when editing details of a line
 var uploadapi = require('./routes/uploadapi'); // upload API for uploading files to server
+var reportapi = require('./routes/reportapi'); // Reporting engine
+
 // App config
 var config = require('./appconfig.js') // Application configuration
 
@@ -37,8 +39,17 @@ var helmet = require('helmet')
 
 var app = express();
 
+// Make some variables available globally
+app.locals.logo = config.applogo;
+app.locals.report_logo = config.report_logo;
+app.locals.company_name = config.company_name;
+
+// Add moment  to app to manipulate dates and time
+app.locals.moment = require('moment');
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
+app.set('views', [ path.join(__dirname, 'views'), path.join(__dirname, 'reports') ]); // Add 2 view dirs
 app.set('view engine', 'pug');
 
 // Use compression for better performance
@@ -57,7 +68,10 @@ app.use(cookieParser());
 // Use helmet in app
 app.use(helmet())
 
+// Public dir express app
 app.use(express.static(path.join(__dirname, 'public')));
+// Public dir reports, exposes public stuff (CSS etc) for reports section
+app.use('/public_rep', express.static(path.join(__dirname, 'reports_public')));
 
 // Setup session handling 
 app.use(session({
@@ -136,6 +150,8 @@ app.use('/autocompletes', autocompleteapi)
 app.use('/btn-setup', btnsetup)
 // Upload files api
 app.use('/api/upload', uploadapi)
+// Reporting engine
+app.use('/reports', reportapi)
 
 // Add scripts for use in html code
 app.use('/scripts', express.static(__dirname + '/node_modules/'));

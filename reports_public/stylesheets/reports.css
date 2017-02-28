@@ -1,0 +1,53 @@
+@page {
+  size: A4;
+  margin: 5mm;
+}
+@media print {
+ 	html, body {
+		width: 210mm;
+		height: 297mm;
+		font-family: 'Raleway', sans-serif;
+	}
+}
+
+html, body, * {
+	font-family: 'Raleway', sans-serif;
+}
+
+/* Helpers */
+.bottom-border {
+	border-bottom-color: lightgray;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+/* report header */
+.report-header {
+	position: relative;	
+	vertical-align: middle;
+	text-align: center;
+	padding: 5px;
+	border-bottom-color: lightgray;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+.report-body {
+	padding: 20px;
+}
+
+.report-footer {
+	position: fixed;
+	width: 100%;
+	height: 10px;
+	line-height: 10px;
+	vertical-align: middle;
+	bottom: 0px;
+	font-size: 8px;
+}
+
+/* logo */
+.logo {
+	position: absolute;
+	left: 0;
+}

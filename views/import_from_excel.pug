@@ -1,0 +1,59 @@
+block content
+	div.container
+		div.row
+			div
+				span.bold.underline Click on the help button for help on how to import the excel file
+				br
+				br
+			button.btn.btn-warning(data-toggle="collapse" data-target="#importhelp") Help for Excel import
+			br
+			br
+			div.collapse(id="importhelp")
+				div.panel.panel-info
+					div.panel-heading
+						| How to bulk import Excel files into stock
+					div.panel-body
+						p
+							| Select the Excel file 
+							b (.xlsx) 
+							| to upload. Once the file has uploaded the data in the file will be displayed for editing in this page.<br>
+							| If everything is fine you can confirm the insertion in the selected warehouse. <br>
+							| The program will check if the item exists and if it does not is will create the entry.<br><br>
+							i 
+								u.text-danger There have to be the following column headers in the table and relative data:<br>
+							br 
+							
+							ul.list-group(style="margin: 0 auto; width: 50%")
+								li.list-group-item 
+									b ITEM_CODE 
+									| (Eg. AB000191)
+								li.list-group-item 
+									b ITEM_DESCRIPTION 
+									| (Fuel Filter Volvo F12)
+								li.list-group-item 
+									b ITEM_QTY 
+									| (How many are we adding to stock?)
+								li.list-group-item 
+									b ITEM_COST 
+									| (How much does it cost?)
+								li.list-group-item 
+									b ITEM_PRICE 
+									| (How much are we selling at?)
+								
+							br
+							| The equipment which the items are used for has to be set on a peritem basis.
+							br
+							a(href="/templates/excel_import_template.xlsx") Download the Excel template
+					
+			div
+				span.bold.underline Bulk Import Excels files into stock.
+				br
+				br 		
+			form.dropzone
+				button.btn.btn-primary(id="btn-dropzone" type="button" accepted_extensions=".xls,.xlsx" uploadroute="excel_upload" uploaddir="uploads" success_route="/menu/import_from_excel_confirm")
+					// dz-message class override the default Drop files to upload (or click) message i dropzone.js
+					span.dz-message Select the Excel file to upload 
+			
+	
+	// - Add dropzone handler
+	include addons/dropzone.pug

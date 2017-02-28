@@ -1,0 +1,51 @@
+extends layout
+
+block content
+	div.container-fluid.report-body
+		include report_header.pug
+		
+		div.row
+			div.col-xs-6
+				dl
+					dt Requested By
+					dd #{report_data[0].ginby}
+					dt Goods Issued To
+					dd #{report_data[0].ginto}
+					dt Notes
+					dd #{report_data[0].notes}
+	
+			div.col-xs-6
+				dl.dl-horizontal
+					dt Reference Number:
+					dd #{ref}
+					dt Date:
+					dd #{report_data[0].date}
+
+		
+		div.row
+			div.col-sm-2
+			div.col-sm-8
+				// - Items in note
+				table.table.table-striped
+					thead.thead-inverse
+						tr
+							th
+							th Item Code
+							th Description
+							th.text-right Quantity
+							th.text-left Unit
+							th.text-right Warehouse
+					tbody
+						- var count = 1
+						each d in report_data
+							tr
+								th #{count}
+								td #{d.wisku} 
+								td #{d.widescription} 
+								td.text-right #{d.gindqty}
+								td.text-left #{d.wuunit} 
+								td.text-right #{d.wdescription}
+							- count++
+			div.col-sm-2
+
+		include report_footer.pug 
