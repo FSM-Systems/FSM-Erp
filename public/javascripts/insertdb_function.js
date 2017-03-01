@@ -35,6 +35,9 @@ $(document).ready(function () {
 						if ($("#apppage").val() != "noreload") {
 							$("#workspace").load($("#apppage").val()) // Reload page in div to refresh data
 						}
+						if ($("#appage-det").val() != "") {
+							$("#workspace").load($("#apppage-det").val()) // Reload page in div to refresh data (for det)
+						}
 						$("#frmnewitem").find("input[type=text], input[type=email], input[type=number], textarea").val(""); // Clear the form after insert has been done
 						$("#frmnewitem").find("*").filter(":input:first").focus();
 					} else {
