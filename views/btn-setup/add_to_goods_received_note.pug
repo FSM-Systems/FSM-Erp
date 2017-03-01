@@ -75,7 +75,20 @@ block content
 				// On confirmation of issue note move items from temp table to warehouse stock with a multiplier of -1 as we are remiving
 				$("#btn-print").click(function () {
 					$.ajax({
-											
+						url: '/wh/goods_issue_note_confirm',
+						data: {
+							gin: "#{gin}",
+						},
+						success: function (data) {
+							if (data == "OK") {
+								$("#succesfull_db").slideDown().delay(600).slideUp();
+							} else {
+								alert(JSON.stringify(data));
+							}
+						}, 
+						error: function () {
+							$("#error_db").slideDown().delay(1000).slideUp();
+						}		
 					})
 				})			
 			})
