@@ -1,5 +1,5 @@
-// This is the main template that sets up the page requirements
-// jQuery boostrap etc 
+//- This is the main template that sets up the page requirements
+//- jQuery boostrap etc 
 
 doctype html
 html(lang="en")
@@ -11,27 +11,30 @@ html(lang="en")
 		
 		title= title
 		
-		// - Link external libraries (jquery/nprogress etc etc)
+		//- Link external libraries (jquery/nprogress etc etc)
 		include addons/external_libraries.pug
 	body
 		block content
 
-		// - Date picker and progress NProgress bar settings
+		//- Date picker and progress NProgress bar settings
 		include addons/datepicker_and_progressbar.pug
 		
 		// Tooltips and popovers
 		include addons/tooltips_and_popovers.pug
 			
-		// - jQuery scripts
-		// - Include the database scripts to updat/insert/delete
+		//- jQuery scripts
+		//- Include the database scripts to updat/insert/delete
 		include addons/dbscripts.pug
 			
 		
-		// - include the page that contains all button handlers.
+		//- include the page that contains all button handlers.
 		include addons/element_handlers.pug
 		
-		// - Include the handler to create autocompletes
+		//- Include the handler to create autocompletes
 		include addons/autocomplete_handler.pug
 		
-		// - Setup validation defaults for all forms
+		//- Setup validation defaults for all forms
 		include addons/jqueryvalidation_setup.pug
+		
+		//- Add permission functions to the page
+		include addons/permission_functions.pug
