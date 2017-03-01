@@ -32,10 +32,10 @@ $(document).ready(function () {
 				success: function (data) {
 					if (data == "OK") {
 						$("#succesfull_db").slideDown().delay(600).slideUp(); // Show success alert box
-						if ($("#apppage").val() != "noreload") {
+						if ($("#apppage").length && $("#apppage").val() != "noreload") {
 							$("#workspace").load($("#apppage").val()) // Reload page in div to refresh data
 						}
-						if ($("#appage-det").val() != "") {
+						if ($("#appage-det").length && $("#appage-det").val() != "") {
 							$("#workspace").load($("#apppage-det").val()) // Reload page in div to refresh data (for det)
 						}
 						$("#frmnewitem").find("input[type=text], input[type=email], input[type=number], textarea").val(""); // Clear the form after insert has been done
