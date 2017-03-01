@@ -1,9 +1,9 @@
 block content
-	- var count = 0
+	- var count = 0;
 		div.container
 			div.row.padding-10
 				span
-					strong #{title} for #{username} - UID: #{userid}
+					strong #{title} for #{user_description} - UID: #{user_id}
 			div.row
 				div.col-md-1
 				div.col-md-10
@@ -12,6 +12,19 @@ block content
 						div.col-md-3.text-left
 							input.perms(type="checkbox" name="menu_" + mid  id="menu_" + mid)
 							label(for="menu_" + mid) &nbsp;#{description}
+							
+					//- Add panel for generic permissions (copy paste etc)
+					div.panel.panel-info
+						div.panel-heading
+							span.underline General  Settings
+						div.panel-body
+							div.row
+								div.col-md-3.text-left
+									input.update.specialperms(type="checkbox" col="lcopypaste" colid="lid" colidval=user_id  id="copypaste")
+									label(for="copypaste") &nbsp;Can Copy/Paste
+								div.col-md-3.text-left
+									input.update.specialperms(type="checkbox" col="lreadonly" colid="lid" colidval=user_id  id="readonly")
+									label(for="readonly") &nbsp;Read Only user
 						
 					each p in menu
 						- if ( p.mgdescription != oldmenu )
@@ -27,27 +40,40 @@ block content
 											- if (count % 4 == 0 )
 													- count = 0;
 				div.col-md-1
+		input(type="hidden" id="dbtable" value="login")
 						
 		script.
 			$(document).ready(function () {
-				// - Apply checkbox ticks as for some reason I cannot do it in pug so I have to do it with jQuery.
+				//- Apply checkbox ticks as for some reason I cannot do it in pug so I have to do it with jQuery.
 				$(".perms").each(function () {
 					var ck = $(this)
-					var arruserperms = "!{userperms}".split(',');
+					var arruserperms = "#{mdata[0].lpermissions}".split(',');
 					$.each(arruserperms, function (index, value) {
 						if (value == ck.attr("id").replace("menu_","")) {
 							ck.prop("checked", true);
 						}
 					})
 				})
+				
+				//- For special perms (copypaste, readonly etc)
+				$(".specialperms").each(function (index, value) {
+					console.log("#{mdata[0].lreadonly}")
+					var ck = $(this);
+					if (ck.attr("col") == "lcopypaste") {
+						ck.prop("checked", !{mdata[0].lcopypaste})
+					}
+					if (ck.attr("col") == "lreadonly") {
+						ck.prop("checked", !{mdata[0].lreadonly})
+					}
+				})
 					
-				// -  This page has its own button handler as the data is slightly different from the rest of the application
-				// - Update perms when user checks r unchecks checkbox
+				//-  This page has its own button handler as the data is slightly different from the rest of the application
+				//- Update perms when user checks r unchecks checkbox
 				$(".perms").change(function () {
-					// -  Loop through the checkboxes and create a string of perms to pass to postgres
+					//-  Loop through the checkboxes and create a string of perms to pass to postgres
 					var perms = '';
 					$("input.perms:checked").each( function () {
-						perms = perms + this.id.replace("menu_","") + ','; // -  Comma separated string of items
+						perms = perms + this.id.replace("menu_","") + ','; //-  Comma separated string of items
 					})
 					perms = perms.substr(0, perms.length - 1)
 
@@ -59,7 +85,7 @@ block content
 							dbcol: 'lpermissions',
 							dbcolid: 'lid',
 							dbcolval: perms,
-							dbcolidval: !{userid},
+							dbcolidval: !{session.user_id},
 							_csrf: "!{_csrf}"
 						},
 						success: function (data) {
@@ -67,7 +93,7 @@ block content
 								$("#succesfull_db").slideDown().delay(600).slideUp();
 							} else {
 								alert(JSON.stringify(data))
-								// - $("#error_db").slideDown().delay(1000).slideUp();
+								//- $("#error_db").slideDown().delay(1000).slideUp();
 							}
 						}, 
 						error: function () {
