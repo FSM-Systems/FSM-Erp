@@ -5,7 +5,12 @@ var config = require('../appconfig');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index', { title: config.company_name, full_logo: config.full_logo, expired: req.query.expired, wrongcred: req.query.wrongcred})
+	// Send to desktop if logged in..
+	if (req.session.loggedin == true) {
+		res.redirect('/desktop')
+	} else {
+		res.render('index', { title: config.company_name, full_logo: config.full_logo, expired: req.query.expired, wrongcred: req.query.wrongcred})
+	}
 });
 
 router.post('/auth', function (req, res, next) { // Pass the pool object so it can be used in the function
