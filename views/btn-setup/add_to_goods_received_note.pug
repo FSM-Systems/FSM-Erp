@@ -37,7 +37,7 @@ block content
 					div.panel-heading
 						span Confirm this document
 					div.panel-body
-						button.btn.btn-warning(type="button" id="btn-print" rep_template="goods_issue_note" rep_name="GOODS ISSUE NOTE" dbview="vw_goods_issue_notes_print" param_name="ginid"  param=gin) CONFIRM AND PRINT GOODS ISSUE NOTE
+						button.btn.btn-warning(type="button" id="btn-print" rep_template="goods_issue_note" rep_name="GOODS ISSUE NOTE" dbview="vw_goods_issued_notes_print" param_name="ginid"  param=gin) CONFIRM AND PRINT GOODS ISSUE NOTE
 			div.col-sm-8
 				table.table.table-striped
 					thead
@@ -74,22 +74,27 @@ block content
 			$(document).ready(function () {
 				// On confirmation of issue note move items from temp table to warehouse stock with a multiplier of -1 as we are remiving
 				$("#btn-print").click(function () {
-					$.ajax({
-						url: '/wh/goods_issue_note_confirm',
-						data: {
-							gin: "#{gin}",
-						},
-						success: function (data) {
-							if (data == "OK") {
-								$("#succesfull_db").slideDown().delay(600).slideUp();
-							} else {
-								alert(JSON.stringify(data));
-							}
-						}, 
-						error: function () {
-							$("#error_db").slideDown().delay(1000).slideUp();
-						}		
-					})
+					if (confirm('PRINT AND CLOSE GOODS ISSUE NOTE?')) {
+						$.ajax({
+							url: '/wh/goods_issue_note_confirm',
+							data: {
+								gin: "#{gin}",
+							},
+							success: function (data) {
+								if (data == "OK") {
+									$("#succesfull_db").slideDown().delay(600).slideUp();
+									// Disable edit and delete buttons as we have saved the good issued note data@
+									$("#btn_del_#{gin}").attr("disabled", true);
+									$("#btn_edit_#{gin}").attr("disabled", true);
+								} else {
+									alert(JSON.stringify(data));
+								}
+							}, 
+							error: function () {
+								$("#error_db").slideDown().delay(1000).slideUp();
+							}		
+						})
+					}
 				})			
 			})
 										

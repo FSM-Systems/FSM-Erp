@@ -10,7 +10,13 @@ router.get('/goods_issue_note_confirm', function (req, res, next) {
 			if (err) {
 				res.send(err);
 			} else {
-				res.send("OK");	
+				db.query('update goods_issue_notes set gclosed=true where ginid=$1', [req.query.gin], function (err, result) {
+					if (err) {
+						res.send(err);
+					} else {
+						res.send("OK");	
+					}
+				})	
 			}
 	})
 })
