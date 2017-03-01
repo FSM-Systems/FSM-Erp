@@ -10,11 +10,13 @@ router.get('/', function(req, res, next) {
 
 router.post('/auth', function (req, res, next) { // Pass the pool object so it can be used in the function
 	// Authenticate user against DB and set session variables
-	db.query("SELECT lid, ldescription from login where lusername=$1 and lpassword=$2 and lactive=true", [req.body.username, req.body.pw], function (err, result) {
+	db.query("SELECT * from login where lusername=$1 and lpassword=$2 and lactive=true", [req.body.username, req.body.pw], function (err, result) {
 		if (result.rows.length == 1) {
 			req.session.loggedin = true;
 			req.session.user_id = result.rows[0].lid;
 			req.session.user_description = result.rows[0].ldescription;
+			req.session.copy_paste = result.rows[0].lcopypaste;
+			req.session.read_only = result.rows[0].lreadonly;
 			res.send("OK"); // For jQuery
 		} else {
 			// No user

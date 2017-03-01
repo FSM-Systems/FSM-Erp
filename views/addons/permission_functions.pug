@@ -1,0 +1,22 @@
+//- These function are addded to the app if the setting are true in the login table
+//- Copy and Paste, and Read Only
+if session.copy_paste == false
+	script.
+		$(document).ready(function() {
+			$('body').not("#srch").bind("cut copy paste", function(e) {
+				alert('SORRY, YOU ARE NOT ALLOWED TO COPY AND PASTE!');
+				e.preventDefault();
+			});
+		});
+if session.read_only == true
+	script.
+		// diable all fields
+		$(document).ready(function() {
+			$(document).on("click", "#workspace", function () {
+				$("input, textarea, .btn-delete").not("#srch").each(function () {
+					$(this).attr("disabled", true)			
+				})
+			});
+		})
+		
+		

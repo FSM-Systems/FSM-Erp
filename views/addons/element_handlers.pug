@@ -32,8 +32,13 @@ script.
 			} else {
 				$("#newitem").hide();
 			}
+	
 			//- Load the page selected in the workspace div
-			$("#workspace").empty().load($(this).attr("link"));
+			$("#workspace").empty().load($(this).attr("link"), function () {
+				//- After loading trigger a click on first element so if user has readonly set to true all fields will blank
+				$("#workspace").find("input").first().trigger("click");
+			});
+
 			//- Unhide new item button and refresh button
 			$("#newitem").removeClass("hide");
 			$("#refreshpage").removeClass("hide");
