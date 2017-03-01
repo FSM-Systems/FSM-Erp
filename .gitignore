@@ -1,3 +1,4 @@
 node_modules
 .DS_Store
-public/images*gctl*
+public/images/logogctl.png
+public/images/logotextgctl.png
