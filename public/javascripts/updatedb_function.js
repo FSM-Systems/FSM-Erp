@@ -12,30 +12,31 @@ $(document).ready(function () {
 		$(this).attr("oldvalue", $(this).val())
 	})
 	$(document).on("change", ".update", function () {
-		var dbcolval;
+		var colvalue;
 		var input = $(this);
-		if ($(this).is(":checkbox")) {
-			if ($(this).is(":checked")) {
-				dbcolval = true;	
+		if (input.is(":checkbox")) {
+			if (input.is(":checked")) {
+				colvalue = true;	
 			} else {
-				dbcolval = false;
+				colvalue = false;
 			}
 		} else {
-			if ($(this).val() == "") {
-				dbcolval = null;	
+			if (input.val() == "") {
+				colvalue = null;	
 			} else {
-				dbcolval = $(this).val();
+				colvalue = input.val();
 			}
 		}
+		
 		$.ajax({
 			type: 'POST',
 			url: '/api/db/update_db_field',
 			data: {
 				table: $("#dbtable").val(),
-				dbcol: $(this).attr("col"),
-				dbcolid: $(this).attr("colid"),
-				dbcolval: dbcolval,
-				dbcolidval: $(this).attr("colidval"),
+				dbcol: input.attr("col"),
+				dbcolid: input.attr("colid"),
+				dbcolval: colvalue,
+				dbcolidval: input.attr("colidval"),
 				_csrf: $("#_csrf").val(),
 			},
 			success: function (data) {
