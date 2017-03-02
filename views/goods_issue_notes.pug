@@ -43,8 +43,10 @@ block content
 							button.btn.btn-danger.btn-sm.btn-delete(id="btn_del_" + g.ginid dbcolid="ginid" disabled=g.gclosed dbcolidval=g.ginid)
 								span.glyphicon.glyphicon-trash(aria-hidden="true")
 								
-			input.nodb(type="hidden" id="apppage" value="/menu/goods_issue_notes")
-			input.nodb(type="hidden" id="dbtable" value="goods_issue_notes")
-			input.nodb(type="hidden" id="next_page_det" value="/btn-setup/add_to_goods_received_note/param/")
+			
+	input.nodb(type="hidden" id="apppage" value="/menu/goods_issue_notes")
+	input.nodb(type="hidden" id="dbtable" value="goods_issue_notes")
+	input.nodb(type="hidden" id="next_page_det" value="/btn-setup/add_to_goods_issued_note/param/")
 	
-	//- include addons/datatable.pug
+	
+include addons/datatable.pug
