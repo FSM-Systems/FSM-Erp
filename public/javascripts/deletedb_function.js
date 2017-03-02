@@ -31,7 +31,7 @@ $(document).ready(function () {
 						// remove row from table after succesfull DB Action
 						btn.closest("tr").remove();
 						// If we have set callfunction then execute the function
-						if (btn.attr("callfunc").length) {
+						if (btn.attr("call_back_func").length) {
 							eval(btn.attr("callfunc"));	
 						}
 					} else {

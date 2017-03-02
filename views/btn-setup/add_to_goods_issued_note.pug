@@ -66,7 +66,7 @@ block content
 								td.text-right
 									span #{i.gindqty} - #{i.wuunit}
 								td
-									button.btn.btn-danger.btn-sm.btn-delete.pull-right(isdetail="true" dbcolid="gindid" dbcolidval=i.gindid id="btn_del_" + i.gindid callfunc="check_det_rows()")
+									button.btn.btn-danger.btn-sm.btn-delete.pull-right(isdetail="true" dbcolid="gindid" dbcolidval=i.gindid id="btn_del_" + i.gindid call_back_func="check_det_rows()")
 										span.glyphicon.glyphicon-trash(aria-hidden="true")
 										
 		script.
