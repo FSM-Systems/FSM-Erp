@@ -37,7 +37,7 @@ router.post('/excel_upload/uploaddir/:uploaddir', function (req, res, next) {
 			// redirecto to confirmation page
 			res.send('OK');
 			// Then record
-    			fsm.update_actions_table('excel import', 'warehouse_stock', null, req);
+    			fsm.update_actions_table('excel import', 'warehouse_stock', null, null, req);
 		}
 	})	
 })
