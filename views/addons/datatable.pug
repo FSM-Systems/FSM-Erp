@@ -1,8 +1,12 @@
 // - Simply load the databases jquery plugin
 script.
 	$(document).ready(function () {
-		$('.table').DataTable({
-			searching: false,
-			ordering: false,
-		});
+		$(".table").each(function () {
+			if (!$.fn.dataTable.isDataTable($(this))) {
+				$(this).DataTable({
+					searching: false,
+					ordering: false,
+				});
+			}
+		})
 	})
