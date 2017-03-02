@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db.js');
+var fsm = require('../fsm_functions.js')
 
 // Update a table field
 router.post('/update_db_field', function (req, res, next) {
@@ -9,6 +10,8 @@ router.post('/update_db_field', function (req, res, next) {
     			res.send(err)
     		} else {
     			res.send("OK")	
+    			// Then record
+    			fsm.update_actions_table('update', req.body.table, req.body.dbcol, req.body.dbcolval.trim(), req);
     		}
 	})
 })
@@ -20,6 +23,8 @@ router.post('/delete_db_field', function (req, res, next) {
     			res.send(err)
     		} else {
     			res.send("OK")	
+    			// Then record
+    			fsm.update_actions_table('delete', req.body.table, req.body.dbcol, null, req);
     		}
 	})
 })
@@ -58,9 +63,9 @@ router.post('/insert_db_field', function (req, res, next) {
 	var returnid = formobj.returnid;
 	
 	// Remove the table key, returnid and app-page from the object as it will interfere with the data to send to pg
-	//delete formobj.dbtable;
-	//delete formobj.returnid;
-	//delete formobj.apppage;
+	delete formobj.dbtable;
+	delete formobj.returnid;
+	delete formobj.apppage;
 	delete formobj._csrf;
 	
 	// Build the SQL String with function
@@ -77,6 +82,8 @@ router.post('/insert_db_field', function (req, res, next) {
     			res.send(err)
     		} else {
 			res.send(result.rows[0].id.toString()) // return the inserted value
+			// Then record
+    			fsm.update_actions_table('insert', table, null, arrobj.toString(), req);
     		}
 	})
 })
@@ -98,6 +105,7 @@ router.get('/searchterm/table/:table/term/:term/fields/:fields/render/:render/ar
 	var arrayname = req.params.arrayname;
 	var term = req.params.term;
 	
+	//console.log('select * from ' + req.params.table + ' where ' + strfields)
 	db.query('select * from ' + req.params.table + ' where ' + strfields, function (err, result) {
 		if (err) {
     			res.send(err)

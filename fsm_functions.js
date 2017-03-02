@@ -50,5 +50,15 @@ module.exports = {
 		//fs.unlink(excel_file);
 		// return success state
   		return ret;
+	},
+	// For every action we will update the _user_actions table with what has been done
+	// This function is called for evey action: insert/update/delete
+	/// req has to be supplie as it comes from the route. We use it to get the session user
+	update_actions_table: function(action, table, column, data, req) {
+		db.query('insert into _user_actions (uaaction,uatable,uauser,uacolumn, uadata) values ($1,$2,$3,$4, $5)', [ action, table, req.session.user_id, column, data ], function (err, result) {
+			if (err) {
+				console.log(err)
+			}
+		})
 	}
 }

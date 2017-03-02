@@ -36,6 +36,8 @@ router.post('/excel_upload/uploaddir/:uploaddir', function (req, res, next) {
 		if (fsm.parse_excel(newfile, req.session.user_id) == true) {
 			// redirecto to confirmation page
 			res.send('OK');
+			// Then record
+    			fsm.update_actions_table('excel import', 'warehouse_stock', null, req);
 		}
 	})	
 })

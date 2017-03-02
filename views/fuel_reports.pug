@@ -1,0 +1,15 @@
+block content
+	
+		form.form-inline(id="frmfuelrep")
+			div.form-group
+				label(for="e") Equipment
+				input.input-sm.form-control.autocomplete(id="e" ac-source="equipment_with_plateno" placeholder="Equipment or Numberplate")
+			div.form-group
+				label(for="from") From Date
+				input.input-sm.form-control.datepicker(id="from" placeholder="From Date")
+			div.form-group
+				label(for="from") To Date
+				input.input-sm.form-control.datepicker(id="to" placeholder="To Date")
+				
+				button.btn.btn-sm.btn-primary.btn-space(id="fuelrep") Create Report				
+				button.btn.btn-sm.btn-warning(type="button" id="btn-print" rep_template="goods_issue_note" rep_name="GOODS ISSUE NOTE" dbview="vw_goods_issue_notes_print" param_name="ginid" optdate="a,b"  param=gin) Print Report

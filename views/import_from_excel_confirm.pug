@@ -1,0 +1,48 @@
+block content
+	div.container-fluid
+		form.form-inline(id="frmimportexcel")
+			div.form-group
+				label(for="temp_warehouse") Select warehouse to import to: &nbsp;
+				input.form-control.input-sm.autocomplete(ac-source="warehouses" id="temp_warehouse_txt" required)
+				input(type="hidden" id="temp_warehouse")
+			button.btn.btn-primary.btn-sm(id="btn-tempimport") Import to warehouse 
+					
+		div.row
+			table.table.table-striped
+				thead
+					th.text-left Item Code
+					th.text-left Description
+					th.text-center Quantity
+					th.text-center Cost
+					th.text-center Price
+					th
+				tbody
+					for i in items
+						tr
+							td.text-left #{i.sku}
+							td.text-left #{i.description}
+							td.text-right 
+								input.form-control.input-sm.update(col="qty" colid="serial" colidval=i.serial value=i.qty)
+							td.text-right 
+								input.form-control.input-sm.update(col="cost" colid="serial" colidval=i.serial value=i.cost)
+							td.text-right
+								input.form-control.input-sm.update(col="price" colid="serial" colidval=i.serial value=i.price)
+							td
+								div.btn-group.pull-right
+									button.btn.btn-danger.btn-sm.btn-delete(dbcolid="serial" dbcolidval=i.serial id="btn_del_" + i.serial)
+										span.glyphicon.glyphicon-trash(aria-hidden="true")
+										
+		input(type="hidden" id="apppage" value="/menu/import_from_excel_confirm")
+		input(type="hidden" id="dbtable" value="warehouse_stock_import_temporary")
+		
+		script.
+			$(document).ready(function () {
+				$("#btn-tempimport").click(function () {
+					$("#frmimportexcel").validate();
+					if ($("#frmimportexcel").valid() == true) {
+
+					}
+				})			
+			})
+						
+		include addons/datatable.pug	

@@ -14,6 +14,7 @@ $(document).ready(function () {
 	$(document).on("change", ".update", function () {
 		var colvalue;
 		var input = $(this);
+		var table = $("#dbtable").val();
 		if (input.is(":checkbox")) {
 			if (input.is(":checked")) {
 				colvalue = true;	
@@ -32,7 +33,7 @@ $(document).ready(function () {
 			type: 'POST',
 			url: '/api/db/update_db_field',
 			data: {
-				table: $("#dbtable").val(),
+				table: table,
 				dbcol: input.attr("col"),
 				dbcolid: input.attr("colid"),
 				dbcolval: colvalue,

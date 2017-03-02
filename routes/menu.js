@@ -111,7 +111,7 @@ router.get('/goods_issue_notes', function (req, res, next) {
 
 // Suppliers
 router.get('/suppliers', function (req, res, next) {
-	db.query('select * from suppliers', function (err, result) {
+	db.query('select * from suppliers order by sname', function (err, result) {
 		res.render('suppliers', { title: 'SUPPLIERS', suppliers: result.rows });
 	})
 })
@@ -123,9 +123,31 @@ router.get('/fuel_records', function (req, res, next) {
 	})
 })
 
+// Fuel Register
+router.get('/fuel_reports', function (req, res, next) {
+	res.render('fuel_reports', { title: 'FUEL REPORTS' });
+})
+
 // Import from excel
 router.get('/import_from_excel', function (req, res, next) {
 	res.render('import_from_excel')
+})
+
+// Import from excel confirm page
+router.get('/import_from_excel_confirm', function (req, res, next) {
+	db.query('select * from warehouse_stock_import_temporary where user_id=$1', [req.session.user_id], function (err, result) {
+		// Display imported stuff and prompt user to confirm warehouse and confirm insertion to database
+		res.render('import_from_excel_confirm', { items: result.rows })
+	})
+})
+
+// Check user actions. See who hjas done what in the app
+router.get('/check_user_actions', function (req, res, next) {
+	db.query('select * from vw_user_actions', function (err, result) {
+		res.render('check_user_actions', {
+			actions: result.rows	
+		})	
+	})
 })
 
 module.exports = router;
