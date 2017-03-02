@@ -18,6 +18,6 @@ config.session_time = 6 * 60 * 60000; // 6 hours
 // Report settings
 config.report_logo = 'logotextgctl.png'; // Logo on report
 // § -> year and ± ->  will be placed by the actual year and month date of the report
-config.refprefix = 'FSM/§§§§/±±±±/' // References number formatting. Eg. FSM/YEAR/MONTH/SERIAL
+config.refprefix = 'FSM/***type***/***year***/***month***/' // References number formatting. Eg. FSM/REPTYPE/YEAR/MONTH/SERIAL
 
 module.exports = config;
