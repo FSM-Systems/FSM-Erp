@@ -23,6 +23,3 @@ $(document).ready(function () {
 		})
 	})
 })
-
-
-// TO BE REVIEWED AS IT GOES IN LOOP
