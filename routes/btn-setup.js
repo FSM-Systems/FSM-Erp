@@ -31,6 +31,17 @@ router.get('/add_to_goods_issued_note/param/:param', function (req, res, next) {
 	})
 })
 
+// Show details of goods issue note when it is closed
+router.get('/show_goods_issue_note_det/param/:param', function (req, res, next) {
+	db.query('select * from vw_goods_issued_notes_details where gind_ginid=$1', [req.params.param], function (err, result) {
+		res.render('btn-setup/show_goods_issued_note_det', {
+			title: 'Goods Issue Note Details',	
+			items: result.rows,
+			gin: req.params.param,
+		})
+	})
+})
+
 // Set per user permissions for a single menu item (usefull when just created it)
 router.get('/single_permission_per_user/param/:param', function (req, res, next) {
 	db.query('select lid, ldescription, lpermissions from login order by ldescription', function (err, result) {
