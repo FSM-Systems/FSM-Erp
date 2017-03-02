@@ -28,8 +28,7 @@ block content
 								input(type="hidden" name="dbtable" id="dbtable-det" value="goods_issue_notes_details")
 								input(type="hidden" name="returnid" value="gindid")
 								input(type="hidden" name="gind_ginid" value=gin)
-								input(type="hidden" name="gind_user" id="gind_user" value=session.user_id)
-								input(type="hidden" id="apppage-det" value="/btn-setup/add_to_goods_received_note/param/" + gin)
+								input(type="hidden" id="apppage-det" value="/btn-setup/add_to_goods_issued_note/param/" + gin)
 								input(type="hidden" name="_csrf" value=_csrf)
 								button.btn.btn-success(type="button" id="btninsert-det") ADD TO GOODS REQUEST
 				// - Confirm goods issue note button
@@ -37,9 +36,9 @@ block content
 					div.panel-heading
 						span Confirm this document
 					div.panel-body
-						button.btn.btn-warning(type="button" id="btn-print" rep_template="goods_issue_note" rep_name="GOODS ISSUE NOTE" dbview="vw_goods_issued_notes_print" param_name="ginid"  param=gin) CONFIRM AND PRINT GOODS ISSUE NOTE
+						button.btn.btn-warning(type="button" disabled=true id="btn-print" rep_template="goods_issue_note" rep_name="GOODS ISSUE NOTE" dbview="vw_goods_issued_notes_print" param_name="ginid"  param=gin) CONFIRM AND PRINT GOODS ISSUE NOTE
 			div.col-sm-8
-				table.table.table-striped
+				table.table.table-striped(id="grndetails")
 					thead
 						tr
 							th(colspan="100")
@@ -53,7 +52,7 @@ block content
 							th
 					tbody
 						if items.length == 0
-							tr
+							tr(class="warn")
 								td(colspan="100") No results, please add a items to this good issued note
 						// - Load existing items if there
 						for i in items
@@ -67,12 +66,23 @@ block content
 								td.text-right
 									span #{i.gindqty} - #{i.wuunit}
 								td
-									button.btn.btn-danger.btn-sm.btn-delete.pull-right(isdetail="true" dbcolid="gindid" dbcolidval=i.gindid id="btn_del_" + i.gindid)
+									button.btn.btn-danger.btn-sm.btn-delete.pull-right(isdetail="true" dbcolid="gindid" dbcolidval=i.gindid id="btn_del_" + i.gindid callfunc="check_det_rows()")
 										span.glyphicon.glyphicon-trash(aria-hidden="true")
 										
 		script.
+			$(document).ready(function () {
+				// On page load check how many rows we have i items. If 0 disable print button
+				check_det_rows();
+			})
+			function check_det_rows() {
+				if($("#grndetails tbody tr").not(".warn").length > 0) {
+					$("#btn-print").attr("disabled", false)
+				} else {
+					$("#btn-print").attr("disabled", true)	
+				}	
+			}
 			//- On confirmation of issue note move items from temp table to warehouse stock with a multiplier of -1 as we are removing
-			//- Function has to be global
+			//- Function has to be global! Otherwise it will not work
 			function report_extra_handler() {
 				var ret;
 				$.ajax({
