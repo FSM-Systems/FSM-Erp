@@ -1,7 +1,11 @@
 block content
 	div.container
 		div.row.padding-10
-			span.bold.underline Details for Goods issue note number: #{gin}
+			div.col-md-2
+			div.col-md-8
+				span.bold.underline Details for Goods issue note number: #{gin}
+			div.col-md-2
+				button.btn.btn-warning(type="button" id="btn-print" confirm_message="REPRINT GOODS ISSUE NOTE?" rep_template="goods_issue_note" rep_name="GOODS ISSUE NOTE" dbview="vw_goods_issued_notes_print" param_name="ginid"  param=gin) Reprint this Goods Issue Note
 		div.row
 			div.col-md-2
 			div.col-md-8

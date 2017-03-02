@@ -36,7 +36,7 @@ block content
 					div.panel-heading
 						span Confirm this document
 					div.panel-body
-						button.btn.btn-warning(type="button" disabled=true id="btn-print" rep_template="goods_issue_note" rep_name="GOODS ISSUE NOTE" dbview="vw_goods_issued_notes_print" param_name="ginid"  param=gin) CONFIRM AND PRINT GOODS ISSUE NOTE
+						button.btn.btn-warning(type="button" disabled=true id="btn-print" confirm_message="PRINT AND CLOSE GOODS ISSUE NOTE?" rep_template="goods_issue_note" rep_name="GOODS ISSUE NOTE" dbview="vw_goods_issued_notes_print" param_name="ginid"  param=gin) CONFIRM AND PRINT GOODS ISSUE NOTE
 			div.col-sm-8
 				table.table.table-striped(id="grndetails")
 					thead

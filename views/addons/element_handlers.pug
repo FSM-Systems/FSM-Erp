@@ -94,9 +94,9 @@ script.
 		}
 		$(document).on("click", "#btn-print", function () {
 			var oldtitle = $(document).prop('title');
-			if (confirm('PRINT AND CLOSE GOODS ISSUE NOTE?')) {
+			if (confirm($(this).attr("confirm_message"))) {
 				//- Load the route in #printdiv so we can print the report. If we have an extra handler for the print report execute ot otherwise just print
-				if (jQuery.isFunction(report_extra_handler)) {
+				if (window.report_extra_handler) { // Check if we have extra handler
 					// Execute function and if success print report
 					var rep = report_extra_handler();
 					if (rep == "OK") {
