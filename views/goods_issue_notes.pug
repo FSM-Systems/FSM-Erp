@@ -26,16 +26,16 @@ block content
 					td.text-left
 						span #{g.date}
 					td.text-left
-						input.form-control.input-sm.autocomplete(type="text" ac-source="users" id="t" + g.ginid + "_txt" value=g.ginto)
-						input.update(type="hidden" col="ginissuedto" colid="ginid" colidval=g.ginid id="t" + g.ginid) 
+						input.form-control.input-sm.autocomplete(type="text" ac-source="users" disabled=g.gclosed id="t_" + g.ginid + "_txt" value=g.ginto)
+						input.update(type="hidden" col="ginissuedto" colid="ginid" colidval=g.ginid id="t_" + g.ginid) 
 						//span #{g.ginto}
 					td.text-left
-						input.form-control.input-sm.autocomplete(type="text" ac-source="users" id="b" + g.ginid + "_txt" value=g.ginby)
-						input.update(type="hidden" col="ginissuedby" colid="ginid" colidval=g.ginid id="b" + g.ginid)  
+						input.form-control.input-sm.autocomplete(type="text" ac-source="users" disabled=g.gclosed id="b_" + g.ginid + "_txt" value=g.ginby)
+						input.update(type="hidden" col="ginissuedby" colid="ginid" colidval=g.ginid id="b_" + g.ginid)  
 						//span #{g.ginby}
 					td.text-left 
 						//textarea.form-control.update(col="ginnotes" colid="ginid" colidval=g.ginid id="nt_" + g.ginid) #{g.notes}
-						input.form-control.input-sm.update(col="ginnotes" colid="ginid" colidval=g.ginid id="nt_" + g.ginid value=g.notes title=g.notes)
+						input.form-control.input-sm.update(col="ginnotes" disabled=g.gclosed colid="ginid" colidval=g.ginid id="nt_" + g.ginid value=g.notes title=g.notes)
 					td
 						div.btn-group.pull-right
 							button.btn.btn-default.btn-sm.btn-setup(id='btn_edit_' + g.ginid disabled=g.gclosed data-toggle="tooltip" setuplink="/btn-setup/add_to_goods_received_note" param=g.ginid data-placement="bottom" title="Add items to this goods issue note No " + g.ginid)
@@ -43,7 +43,8 @@ block content
 							button.btn.btn-danger.btn-sm.btn-delete(id="btn_del_" + g.ginid dbcolid="ginid" disabled=g.gclosed dbcolidval=g.ginid)
 								span.glyphicon.glyphicon-trash(aria-hidden="true")
 								
-			input(type="hidden" id="apppage" value="/menu/goods_issue_notes")
-			input(type="hidden" id="dbtable" value="goods_issue_notes")
+			input.nodb(type="hidden" id="apppage" value="/menu/goods_issue_notes")
+			input.nodb(type="hidden" id="dbtable" value="goods_issue_notes")
+			input.nodb(type="hidden" id="next_page_det" value="/btn-setup/add_to_goods_received_note/param/")
 	
 	//- include addons/datatable.pug

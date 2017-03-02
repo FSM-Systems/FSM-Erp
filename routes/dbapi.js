@@ -42,7 +42,7 @@ function create_insert_SQL(obj, table, returnid) {
 	strSQL += cols.substr(0, cols.length - 1);
 	strSQL += ') VALUES (';
 	strSQL += params.substr(0, params.length - 1)
-	strSQL += ') returning ' + returnid;
+	strSQL += ') returning ' + returnid + ' as id';
 	//console.log(strSQL);
 	return strSQL;
 }
@@ -58,9 +58,9 @@ router.post('/insert_db_field', function (req, res, next) {
 	var returnid = formobj.returnid;
 	
 	// Remove the table key, returnid and app-page from the object as it will interfere with the data to send to pg
-	delete formobj.dbtable;
-	delete formobj.returnid;
-	delete formobj.apppage;
+	//delete formobj.dbtable;
+	//delete formobj.returnid;
+	//delete formobj.apppage;
 	delete formobj._csrf;
 	
 	// Build the SQL String with function
@@ -76,7 +76,7 @@ router.post('/insert_db_field', function (req, res, next) {
 		if (err) {
     			res.send(err)
     		} else {
-			res.send("OK")
+			res.send(result.rows[0].id.toString()) // return the inserted value
     		}
 	})
 })

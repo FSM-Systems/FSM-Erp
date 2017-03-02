@@ -30,13 +30,19 @@ $(document).ready(function () {
 				url: '/api/db/insert_db_field',
 				data: $("#frmnewitem").find(":input").not(".nodb").serializeArray(), // Exclude class nodb as this is used in autocompletes. We want the id and not the text
 				success: function (data) {
-					if (data == "OK") {
+					if ($.isNumeric(data)) { // received id of newly inserted item
 						$("#succesfull_db").slideDown().delay(600).slideUp(); // Show success alert box
 						if ($("#apppage").length && $("#apppage").val() != "noreload") {
-							$("#workspace").load($("#apppage").val()) // Reload page in div to refresh data
+							$("#workspace").load($("#apppage").val(), function () {
+								// If button has next-page attribute load in divnewitem this page
+								if ($("#next_page_det").length) {
+									$('#divnewitem').fadeIn();
+									$("#divnewitemdet").empty().load($("#next_page_det").val() + data); // Call the next page sending the newly inserted id for processing
+								}
+							}) // Reload page in div to refresh data
 						}
 						if ($("#appage-det").length && $("#appage-det").val() != "") {
-							$("#workspace").load($("#apppage-det").val()) // Reload page in div to refresh data (for det)
+							$("#workspace").load($("#apppage-det").val()) // Reload page in div to refresh data (for det) and if we have det page to relaod the do it
 						}
 						$("#frmnewitem").find("input[type=text], input[type=email], input[type=number], textarea").val(""); // Clear the form after insert has been done
 						$("#frmnewitem").find("*").filter(":input:first").focus();
@@ -68,7 +74,7 @@ $(document).ready(function () {
 				url: '/api/db/insert_db_field',
 				data: $("#frmnewitem").find(":input").not(".nodb").serializeArray(), // Exclude class nodb as this is used in autocompletes. We want the id and not the text
 				success: function (data) {
-					if (data == "OK") {
+					if ($.isNumeric(data)) {
 						$("#succesfull_db").slideDown().delay(600).slideUp(); // Show success alert box
 						if ($("#apppage-det").val() != "noreload") {
 							$("#divnewitem").load($("#apppage-det").val()) // Reload page in div to refresh data

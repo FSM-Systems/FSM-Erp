@@ -71,31 +71,37 @@ block content
 										span.glyphicon.glyphicon-trash(aria-hidden="true")
 										
 		script.
-			$(document).ready(function () {
-				// On confirmation of issue note move items from temp table to warehouse stock with a multiplier of -1 as we are remiving
-				$("#btn-print").click(function () {
-					if (confirm('PRINT AND CLOSE GOODS ISSUE NOTE?')) {
-						$.ajax({
-							url: '/wh/goods_issue_note_confirm',
-							data: {
-								gin: "#{gin}",
-							},
-							success: function (data) {
-								if (data == "OK") {
-									$("#succesfull_db").slideDown().delay(600).slideUp();
-									// Disable edit and delete buttons as we have saved the good issued note data@
-									$("#btn_del_#{gin}").attr("disabled", true);
-									$("#btn_edit_#{gin}").attr("disabled", true);
-								} else {
-									alert(JSON.stringify(data));
-								}
-							}, 
-							error: function () {
-								$("#error_db").slideDown().delay(1000).slideUp();
-							}		
-						})
-					}
-				})			
-			})
+			//- On confirmation of issue note move items from temp table to warehouse stock with a multiplier of -1 as we are removing
+			//- Function has to be global
+			function report_extra_handler() {
+				var ret;
+				$.ajax({
+					async: false, // To return values from nested function
+					url: '/wh/goods_issue_note_confirm',
+					data: {
+						gin: "#{gin}",
+					},
+					success: function (data) {
+						if (data == "OK") {
+							$("#succesfull_db").slideDown().delay(600).slideUp();
+							// Disable edit and delete buttons as we have saved the good issued note data@ and inputs
+							$("#btn_del_#{gin}").attr("disabled", true);
+							$("#btn_edit_#{gin}").attr("disabled", true);
+							$("#t_#{gin}_txt").attr("disabled", true);
+							$("#b_#{gin}_txt").attr("disabled", true);
+							$("#nt_#{gin}").attr("disabled", true);
+							ret = "OK"
+						} else {
+							alert(JSON.stringify(data));
+							ret = "ERR"
+						}
+					}, 
+					error: function () {
+						$("#error_db").slideDown().delay(1000).slideUp();
+					}		
+				})
+				return ret;
+			}
+			
 										
 							
