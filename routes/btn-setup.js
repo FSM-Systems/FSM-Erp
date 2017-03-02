@@ -21,7 +21,7 @@ router.get('/user_permissions/param/:param', function (req, res, next) {
 })
 
 // Add stock items to goods issued notes
-router.get('/add_to_goods_received_note/param/:param', function (req, res, next) {
+router.get('/add_to_goods_issued_note/param/:param', function (req, res, next) {
 	db.query('select * from vw_goods_issued_notes_details where gind_ginid=$1', [req.params.param], function (err, result) {
 		res.render('btn-setup/add_to_goods_received_note.pug', {
 			title: 'Add items to Goods Received Notes',	
