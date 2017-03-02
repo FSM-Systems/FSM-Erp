@@ -1,0 +1,24 @@
+block content
+	div.container
+		div.row.padding-10
+			span.bold.underline Details for Goods issue note number: #{gin}
+		div.row
+			div.col-md-2
+			div.col-md-8
+				table.table.table-hover.table-condensed
+					thead
+						th Item Code
+						th Description
+						th.text-center Qty
+						th.text-center From Warehouse
+					tbody
+						each i in items
+							tr
+								td.text-left #{i.wisku}
+								td.text-left #{i.widescription}
+								td.text-center #{i.gindqty} - #{i.wuunit}
+								td.text-center #{i.wdescription}
+			div.col-md-2
+							
+	// - Add pagination
+	include ../addons/datatable.pug

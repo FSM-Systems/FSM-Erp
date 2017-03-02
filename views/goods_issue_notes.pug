@@ -38,10 +38,14 @@ block content
 						input.form-control.input-sm.update(col="ginnotes" disabled=g.gclosed colid="ginid" colidval=g.ginid id="nt_" + g.ginid value=g.notes title=g.notes)
 					td
 						div.btn-group.pull-right
-							button.btn.btn-default.btn-sm.btn-setup(id='btn_edit_' + g.ginid disabled=g.gclosed data-toggle="tooltip" setuplink="/btn-setup/add_to_goods_issued_note" param=g.ginid data-placement="bottom" title="Add items to this goods issue note No " + g.ginid)
-								span.glyphicon.glyphicon-pencil(aria-hidden="true")
-							button.btn.btn-danger.btn-sm.btn-delete(id="btn_del_" + g.ginid dbcolid="ginid" disabled=g.gclosed dbcolidval=g.ginid)
-								span.glyphicon.glyphicon-trash(aria-hidden="true")
+							if g.gclosed == true
+								button.btn.btn-default.btn-sm.btn-setup(setuplink="/btn-setup/show_goods_issue_note_det" param=g.ginid)
+									span.glyphicon.glyphicon-align-justify(aria-hidden="true")
+							else 
+								button.btn.btn-default.btn-sm.btn-setup(id='btn_edit_' + g.ginid disabled=g.gclosed data-toggle="tooltip" setuplink="/btn-setup/add_to_goods_issued_note" param=g.ginid data-placement="bottom" title="Add items to this goods issue note No " + g.ginid)
+									span.glyphicon.glyphicon-pencil(aria-hidden="true")
+								button.btn.btn-danger.btn-sm.btn-delete(id="btn_del_" + g.ginid dbcolid="ginid" disabled=g.gclosed dbcolidval=g.ginid)
+									span.glyphicon.glyphicon-trash(aria-hidden="true")
 								
 			
 	input.nodb(type="hidden" id="apppage" value="/menu/goods_issue_notes")
