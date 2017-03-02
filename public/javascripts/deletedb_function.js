@@ -29,7 +29,11 @@ $(document).ready(function () {
 					if (data == "OK") {
 						$("#succesfull_db").slideDown().delay(1000).slideUp();
 						// remove row from table after succesfull DB Action
-						btn.closest("tr").fadeOut();
+						btn.closest("tr").remove();
+						// If we have set callfunction then execute the function
+						if (btn.attr("callfunc").length) {
+							eval(btn.attr("callfunc"));	
+						}
 					} else {
 						alert(JSON.stringify(data))
 					}
