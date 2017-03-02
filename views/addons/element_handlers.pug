@@ -86,10 +86,26 @@ script.
 			$('#divnewitemdet').empty().load($(this).attr("setuplink") + "/param/" + $(this).attr("param") ); //- Since this function can be used anywhere we use a generic attr param to apss parameters. The coder will then use it in AJAX calls etc
 		})
 		
-		//- Button for printing reports
+		//- Set iframe source for printing reports
+		function print_report() {
+			$("#printdiv").attr('src', '/reports/print_report/rep_template/' + $("#btn-print").attr("rep_template") + '/rep_name/' + encodeURIComponent($("#btn-print").attr("rep_name")) + '/view/' + $("#btn-print").attr("dbview") + '/param_name/' + $("#btn-print").attr("param_name") + '/param/' + $("#btn-print").attr("param"));
+			// Close the nerw item window
+			$('#divnewitem').fadeOut();
+		}
 		$(document).on("click", "#btn-print", function () {
-			//- Load the route in #printdiv so we can print the report
-			$("#printdiv").attr('src', '/reports/print_report/rep_template/' + $(this).attr("rep_template") + '/rep_name/' + encodeURIComponent($(this).attr("rep_name")) + '/view/' + $(this).attr("dbview") + '/param_name/' + $(this).attr("param_name") + '/param/' + $(this).attr("param"))
+			var oldtitle = $(document).prop('title');
+			if (confirm('PRINT AND CLOSE GOODS ISSUE NOTE?')) {
+				//- Load the route in #printdiv so we can print the report. If we have an extra handler for the print report execute ot otherwise just print
+				if (jQuery.isFunction(report_extra_handler)) {
+					// Execute function and if success print report
+					var rep = report_extra_handler();
+					if (rep == "OK") {
+						print_report();
+					}
+				} else {
+					print_report();
+				}
+			}
 		})
 		
 		//- Logout function
