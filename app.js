@@ -30,6 +30,7 @@ var menuapi = require('./routes/menu'); // Routes for the main menu
 var btnsetup = require('./routes/btn-setup'); // Routes for the setup buttons, when editing details of a line
 var uploadapi = require('./routes/uploadapi'); // upload API for uploading files to server
 var reportapi = require('./routes/reportapi'); // Reporting engine
+var warehouse_actions = require('./routes/warehouse_actions'); // Actions in warehouse stock such as inventory issue notes etc
 
 // App config
 var config = require('./appconfig.js') // Application configuration
@@ -152,6 +153,8 @@ app.use('/btn-setup', btnsetup)
 app.use('/api/upload', uploadapi)
 // Reporting engine
 app.use('/reports', reportapi)
+// Warehouse actions
+app.use('/wh', warehouse_actions)
 
 // Add scripts for use in html code
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
