@@ -83,7 +83,7 @@ router.post('/insert_db_field', function (req, res, next) {
     		} else {
 			res.send(result.rows[0].id.toString()) // return the inserted value
 			// Then record
-    			fsm.update_actions_table('insert', table, null, arrobj.toString(), req);
+    			fsm.update_actions_table('insert', table, "All", arrobj.toString(), req);
     		}
 	})
 })
