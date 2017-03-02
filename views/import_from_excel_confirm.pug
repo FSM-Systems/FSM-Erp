@@ -3,9 +3,12 @@ block content
 		form.form-inline(id="frmimportexcel")
 			div.form-group
 				label(for="temp_warehouse") Select warehouse to import to: &nbsp;
-				input.form-control.input-sm.autocomplete(ac-source="warehouses" id="temp_warehouse_txt" required)
+				input.form-control.input-sm.autocomplete.btn-space(ac-source="warehouses" id="temp_warehouse_txt" required)
 				input(type="hidden" id="temp_warehouse")
 			button.btn.btn-primary.btn-sm(id="btn-tempimport") Import to warehouse 
+			
+		div.row
+			p Items marked in red are not existsing in the database. These will be automatically added.
 					
 		div.row
 			table.table.table-striped
@@ -17,8 +20,12 @@ block content
 					th.text-center Price
 					th
 				tbody
-					for i in items
-						tr
+					each i in items
+						if i.exists == false
+							- var xstyle = "color: red"
+						else 
+							- var xstyle = ''
+						tr(style=xstyle)
 							td.text-left #{i.sku}
 							td.text-left #{i.description}
 							td.text-right 
@@ -29,7 +36,7 @@ block content
 								input.form-control.input-sm.update(col="price" colid="serial" colidval=i.serial value=i.price)
 							td
 								div.btn-group.pull-right
-									button.btn.btn-danger.btn-sm.btn-delete(dbcolid="serial" dbcolidval=i.serial id="btn_del_" + i.serial)
+									button.btn.btn-danger.btn-sm.btn-delete(type="button" dbcolid="serial" dbcolidval=i.serial id="btn_del_" + i.serial)
 										span.glyphicon.glyphicon-trash(aria-hidden="true")
 										
 		input(type="hidden" id="apppage" value="/menu/import_from_excel_confirm")
@@ -40,7 +47,20 @@ block content
 				$("#btn-tempimport").click(function () {
 					$("#frmimportexcel").validate();
 					if ($("#frmimportexcel").valid() == true) {
-
+						// Call route to insert into warehopuse stock the temp items
+						$.ajax({
+							url: '/wh/confirm_excel_to_stock',
+							data: {
+								user: !{session.user_id},
+								warehouse: $("#temp_warehouse").val(),					
+							},
+							success: function (data) {
+								
+							},
+							error: function () {
+								alert('Error Importing to Database')	
+							}
+						})
 					}
 				})			
 			})
