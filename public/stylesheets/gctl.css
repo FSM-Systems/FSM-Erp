@@ -94,7 +94,9 @@ label.help:hover {
 	overflow: scroll;
 	position: absolute;
 	bottom:  0px;
-	height: 60%;
+	height: auto;
+	min-height: 50%;
+	padding-bottom: 20px;
 	background-color: #f6f6f6;
 	border-top-color: lightgray;
 	border-top-style: solid;
