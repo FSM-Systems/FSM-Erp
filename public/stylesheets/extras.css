@@ -1,10 +1,10 @@
 /* Sizing CSS */
-.size-50 {
-	width: 50px ! important;
-}
-
 .size-30 {
 	width: 30px ! important;
+}
+
+.size-50 {
+	width: 50px ! important;
 }
 
 .size-80 {
@@ -73,3 +73,12 @@
 .italic {
 	font-style: oblique ! important;
 }
+
+.datatable-small th {
+	font-size: 12px;
+
+}
+.datatable-small td {
+	font-size: 11px;
+}
+	
