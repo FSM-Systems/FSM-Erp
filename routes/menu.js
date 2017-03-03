@@ -16,7 +16,7 @@ router.get('/mainmenu/menugroup/:menugroup', function (req, res, next) {
 //System user menu option
 router.get('/system_users_setup', function (req, res, next) {
 	// Get all users and load in table on page
-	db.query('select * from login order by lid', function (err, result) {
+	db.query('select * from vw_login order by lid', function (err, result) {
 		res.render('system_users_setup', { sysusers: result.rows, pagename: 'System Users Management' })
 	})
 })

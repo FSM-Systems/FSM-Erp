@@ -13,6 +13,7 @@ block content
 				th Password
 				th User Description
 				th Email
+				th.size-80 Department
 				th.text-center Active?
 				th
 		
@@ -43,6 +44,10 @@ block content
 							span.input-group-addon
 								span.glyphicon.glyphicon-envelope(aria-hidden="true")
 							input.update.form-control.input-sm(type="text" col="lemail" colid="lid" colidval=u.lid  id="le_" + u.lid value=u.lemail)
+					td 
+						div.input-group
+							input.autocomplete.form-control.input-sm(type="text" id="ldep_" + u.lid + "_txt" ac-source="departments" value=u.dname)
+							input.update(type="hidden" col="ldepartment" colid="lid" colidval=u.lid  id="ldep_" + u.lid)
 					td.text-center
 						if u.lactive === true
 							input.update(type="checkbox" checked col="lactive" colid="lid" colidval=u.lid  id="la_" + u.lid)
