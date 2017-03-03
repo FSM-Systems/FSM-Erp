@@ -3,15 +3,15 @@ block content
 		include addons/searchbox.pug
 		input(type="hidden" id="searchparam" searchtable="vw_user_actions" fields="action,dbuser,dbcolumn,dbtable,data" render="check_user_actions" arrayname="actions")
 		
-		table.table.table-condensed.table-hover
+		table.table.table-condensed.table-hover.datatable-small
 			thead
 				tr 
-					th Date
-					th User
-					th Action 
-					th On table
-					th Column 
-					th.size-100 Data
+					th.size-80 Date
+					th.size-80 User
+					th.size-80 Action 
+					th.size-100 On table
+					th.size-100 Column 
+					th Data
 			
 			tbody
 				if actions.length == 0
@@ -24,7 +24,7 @@ block content
 							span #{a.date}
 						td.text-left
 							span #{a.dbuser}
-						td.text-right 
+						td.text-left
 							span #{a.action}
 						td.text-left 
 							span #{a.dbtable}
