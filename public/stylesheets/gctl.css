@@ -50,6 +50,7 @@ label.help:hover {
 	position: absolute;
 	cursor: pointer;
 	top: 4px;
+	height: 40px; 
 }
 
 /* menu css */
