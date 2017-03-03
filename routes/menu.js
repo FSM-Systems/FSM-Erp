@@ -134,8 +134,9 @@ router.get('/import_from_excel', function (req, res, next) {
 })
 
 // Import from excel confirm page
+// Show which items are not in the warehouse_stock table
 router.get('/import_from_excel_confirm', function (req, res, next) {
-	db.query('select * from warehouse_stock_import_temporary where user_id=$1', [req.session.user_id], function (err, result) {
+	db.query('select *, item_exists_in_stock(sku) as exists from warehouse_stock_import_temporary where user_id=$1 order by serial', [req.session.user_id], function (err, result) {
 		// Display imported stuff and prompt user to confirm warehouse and confirm insertion to database
 		res.render('import_from_excel_confirm', { items: result.rows })
 	})
@@ -146,6 +147,15 @@ router.get('/check_user_actions', function (req, res, next) {
 	db.query('select * from vw_user_actions', function (err, result) {
 		res.render('check_user_actions', {
 			actions: result.rows	
+		})	
+	})
+})
+
+// Show departments
+router.get('/department_setup', function (req, res, next) {
+	db.query('select * from departments', function (err, result) {
+		res.render('department_setup', {
+			deps: result.rows	
 		})	
 	})
 })

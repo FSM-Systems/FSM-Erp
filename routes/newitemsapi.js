@@ -35,6 +35,11 @@ router.get('/new_warehouse_unit', function (req, res, next) {
 	res.render('new_item/new_warehouse_unit', { title: 'ADD A NEW UNIT'} );
 })
 
+// New company department 
+router.get('/new_department', function (req, res, next) {
+	res.render('new_item/new_department', { title: 'ADD A NEW DEPARTMENT'} );
+})
+
 // New warehouse item (Stock article)
 router.get('/new_warehouse_item', function (req, res, next) {
 	// Send list of Equipments already registered and units for creation of new item

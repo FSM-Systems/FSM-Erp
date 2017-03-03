@@ -68,4 +68,11 @@ router.get('/menu_groups', function (req, res, next) {
 	})
 })
 
+// Company departments
+router.get('/departments', function (req, res, next) {
+	db.query("select did as value, dname as label from departments where dname ilike '%' || $1 || '%'", [req.query.term], function (err, result) {
+		res.json(result.rows)
+	})
+})
+
 module.exports = router;

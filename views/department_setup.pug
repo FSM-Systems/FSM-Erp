@@ -1,0 +1,30 @@
+// This is the template for building the main menu. It fetches JSON data from the express server and populates the template
+
+block content
+	// - h4 #{pagename}
+	table.table.table-hover.table-condensed(style="width: 60%")
+		thead
+			tr 
+				th.text-center ID
+				th Department
+				th
+		
+		tbody
+			if deps.length == 0
+				tr
+					td(colspan="100") No results, please add a new item
+			for d in deps
+				tr
+					td #{d.did}
+					td 
+						div.input-group
+							span.input-group-addon 
+								span.glyphicon.glyphicon-align-left(aria-hidden="true")
+							input.update.form-control.input-sm(type="text" col="dname" colid="did" colidval=d.did id="d_" + d.did value=d.dname)
+					td 
+						div.nput-group.pull-right
+							button.btn.btn-danger.btn-sm.btn-delete(dbcolid="did" dbcolidval=d.did id="btn_del_" + d.did)
+								span.glyphicon.glyphicon-trash(aria-hidden="true")
+								
+	input( type="hidden" id="apppage" value="/menu/department_setup")
+	input( type="hidden" id="dbtable" value="departments")
